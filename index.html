@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Form Penilaian Seleksi Siswa Baru — SD Islam Tahfizh Cahaya Quran</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a3a2a;
+    --green-mid: #2d5a3d;
+    --green-light: #3d7a52;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d0;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --white: #ffffff;
+    --red: #c0392b;
+    --orange: #e67e22;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(160deg, #0e2318 0%, #1a3a2a 40%, #2d5a3d 100%);
+    padding: 28px 16px 22px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Emboss layer: geometric arabesque pattern */
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(201,168,76,0.045) 18px, rgba(201,168,76,0.045) 19px),
+      repeating-linear-gradient(-45deg, transparent, transparent 18px, rgba(201,168,76,0.045) 18px, rgba(201,168,76,0.045) 19px);
+    pointer-events: none;
+  }
+
+  /* Arabesque SVG overlay for emboss depth */
+  .header::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-opacity='0.07' stroke-width='0.8'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3Cline x1='10' y1='40' x2='70' y2='40'/%3E%3Cline x1='40' y1='10' x2='40' y2='70'/%3E%3Cline x1='18' y1='18' x2='62' y2='62'/%3E%3Cline x1='62' y1='18' x2='18' y2='62'/%3E%3Cpolygon points='40,12 47,32 68,32 51,45 58,65 40,52 22,65 29,45 12,32 33,32' stroke-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+  }
+
+  /* Inner glow rim at bottom of header */
+  .header-rim {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold-light) 50%, var(--gold) 80%, transparent);
+  }
+
+  .header-inner { position: relative; z-index: 1; }
+
+  /* Bismillah with emboss text-shadow */
+  .bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 34px;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    direction: rtl;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,0.08),
+      0 -1px 0 rgba(0,0,0,0.5),
+      0 2px 8px rgba(0,0,0,0.4),
+      0 0 30px rgba(201,168,76,0.15);
+    letter-spacing: 2px;
+  }
+
+  /* Decorative divider under bismillah */
+  .bismillah-divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; margin: 0 auto 12px; max-width: 320px;
+  }
+  .bismillah-divider .line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5));
+  }
+  .bismillah-divider .line.rev {
+    background: linear-gradient(90deg, rgba(201,168,76,0.5), transparent);
+  }
+  .bismillah-divider .diamond {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .bismillah-divider .crescent {
+    font-size: 14px; color: var(--gold); line-height: 1;
+  }
+
+  .school-name {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+  .header h1 {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .header-sub {
+    color: rgba(245,240,232,0.6);
+    font-size: 11px;
+  }
+
+  /* ── STEP NAV ── */
+  .step-nav {
+    background: var(--green-dark);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .step-nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .step-dot {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.35);
+    background: transparent;
+    color: rgba(255,255,255,0.45);
+    font-size: 12px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all .2s; font-family: Tahoma, sans-serif;
+  }
+  .step-dot.active { background: var(--gold); border-color: var(--gold); color: var(--green-dark); }
+  .step-dot.done { background: var(--green-light); border-color: var(--green-light); color: white; }
+
+  /* Admin button */
+  .admin-btn {
+    display: flex; align-items: center; gap: 5px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1.5px solid rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    font-size: 11px; font-weight: 700;
+    cursor: pointer;
+    font-family: Tahoma, sans-serif;
+    transition: all .2s;
+    flex-shrink: 0;
+    margin-left: 6px;
+  }
+  .admin-btn:hover {
+    background: rgba(201,168,76,0.2);
+    border-color: var(--gold);
+  }
+  .admin-btn .admin-icon {
+    font-size: 14px; line-height: 1;
+  }
+
+  /* Admin panel modal */
+  .admin-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 500;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 60px;
+  }
+  .admin-overlay.show { display: flex; }
+  .admin-panel {
+    background: var(--white);
+    border-radius: 14px;
+    width: 90%; max-width: 420px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+  .admin-panel-head {
+    background: var(--green-dark);
+    padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 2px solid var(--gold);
+  }
+  .admin-panel-head h3 { color: var(--gold); font-size: 14px; }
+  .admin-close {
+    background: none; border: none; color: rgba(255,255,255,0.6);
+    font-size: 18px; cursor: pointer; line-height: 1; padding: 0;
+  }
+  .admin-body { padding: 18px; }
+  .admin-menu-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--cream-dark);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all .15s;
+    background: var(--cream);
+  }
+  .admin-menu-item:hover { border-color: var(--gold); background: #fdf8ec; }
+  .admin-menu-item .ami-icon { font-size: 22px; }
+  .admin-menu-item .ami-text h4 { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+  .admin-menu-item .ami-text p { font-size: 11px; color: var(--text-mid); margin-top: 2px; }
+  .admin-login {
+    background: var(--cream); border-radius: 10px; padding: 14px;
+    display: none;
+  }
+  .admin-login input {
+    width: 100%; padding: 9px 12px;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 8px; font-size: 13px;
+    font-family: Tahoma, sans-serif;
+    margin-bottom: 8px; outline: none;
+    background: white;
+  }
+  .admin-login input:focus { border-color: var(--gold); }
+  .admin-login-btn {
+    width: 100%; padding: 10px;
+    background: var(--green-dark); color: white;
+    border: none; border-radius: 8px;
+    font-family: Tahoma, sans-serif; font-size: 13px; font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ── MAIN ── */
+  .container { max-width: 600px; margin: 0 auto; padding: 16px; }
+
+  .section { display: none; animation: fadeIn .3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  .section-header {
+    background: var(--green-dark);
+    color: white;
+    padding: 13px 18px;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 3px solid var(--gold);
+  }
+  .section-header h2 { font-size: 14px; font-weight: 700; }
+  .section-header p { font-size: 11px; color: var(--cream-dark); margin-top: 2px; }
+
+  .section-body {
+    background: white;
+    border-radius: 0 0 10px 10px;
+    padding: 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 16px;
+  }
+
+  /* FORM */
+  .form-group { margin-bottom: 14px; }
+  label { display: block; font-size: 12px; font-weight: 700; color: var(--green-dark); margin-bottom: 5px; }
+  label .req { color: var(--red); }
+
+  input[type="text"], select, textarea {
+    width: 100%; padding: 10px 12px;
+    border: 2px solid var(--cream-dark);
+    border-radius: 8px;
+    font-family: Tahoma, sans-serif;
+    font-size: 13px;
+    background: var(--cream);
+    color: var(--text-dark);
+    transition: border .2s;
+    outline: none;
+  }
+  input:focus, select:focus { border-color: var(--gold); background: white; }
+  input.error { border-color: var(--red); }
+
+  .info-box {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-mid);
+  }
+  .info-box strong { color: var(--green-dark); display: block; margin-bottom: 4px; }
+
+  /* AUTOCOMPLETE */
+  .autocomplete-wrap { position: relative; }
+  .autocomplete-list {
+    position: absolute; top: calc(100% + 2px); left: 0; right: 0;
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    max-height: 200px; overflow-y: auto;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: none;
+  }
+  .autocomplete-list.show { display: block; }
+  .ac-item {
+    padding: 10px 14px; cursor: pointer;
+    font-size: 13px;
+    border-bottom: 1px solid var(--cream-dark);
+    transition: background .15s;
+  }
+  .ac-item:hover { background: var(--cream); }
+  .ac-item:last-child { border-bottom: none; }
+  .ac-item .ac-sub { font-size: 11px; color: var(--text-mid); margin-top: 2px; }
+
+  /* PENGINPUT LOCKED */
+  .penginput-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--cream); border: 2px solid var(--gold);
+    border-radius: 8px; padding: 9px 12px;
+    font-size: 13px; font-weight: 700; color: var(--green-dark);
+  }
+  .penginput-badge .badge-change {
+    margin-left: auto; font-size: 11px; font-weight: 400;
+    color: var(--text-mid); cursor: pointer; text-decoration: underline;
+  }
+
+  /* RUBRIK */
+  .rubrik-item {
+    background: var(--cream);
+    border-radius: 8px; padding: 11px 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--cream-dark);
+    transition: border-color .2s;
+  }
+  .rubrik-item.belum-isi { border-color: var(--red); background: #fdf5f5; }
+  .rubrik-label { font-size: 12px; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
+  .rubrik-label span { font-weight: 400; color: var(--text-mid); }
+  .score-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .score-btn {
+    flex: 1; min-width: 60px; padding: 8px 4px;
+    border: 2px solid var(--cream-dark);
+    border-radius: 6px; background: white;
+    cursor: pointer; font-family: Tahoma, sans-serif;
+    font-size: 11px; font-weight: 700; color: var(--text-mid);
+    text-align: center; transition: all .15s;
+  }
+  .score-btn:hover { border-color: var(--gold); }
+  .score-btn.selected-1 { background: #fef5f5; border-color: var(--red); color: var(--red); }
+  .score-btn.selected-2 { background: #fff8ec; border-color: var(--orange); color: var(--orange); }
+  .score-btn.selected-3 { background: #f0faf4; border-color: #27ae60; color: #27ae60; }
+
+  .neg-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .neg-btn {
+    flex: 1; min-width: 70px; padding: 8px 4px;
+    border: 2px solid var(--cream-dark); border-radius: 6px;
+    background: white; cursor: pointer;
+    font-family: Tahoma, sans-serif;
+    font-size: 11px; font-weight: 700; color: var(--text-mid);
+    text-align: center; transition: all .15s;
+  }
+  .neg-btn.sel-0 { background: #f0faf4; border-color: #27ae60; color: #27ae60; }
+  .neg-btn.sel-1 { background: #fff8ec; border-color: var(--orange); color: var(--orange); }
+  .neg-btn.sel-2 { background: #fef5f5; border-color: var(--red); color: var(--red); }
+
+  /* SUB HEADER */
+  .sub-header {
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin: 14px 0 8px; padding-bottom: 4px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  /* HASIL */
+  .hasil-card {
+    background: var(--green-dark);
+    color: white; border-radius: 12px;
+    padding: 24px; text-align: center; margin-bottom: 16px;
+  }
+  .hasil-nama { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+  .hasil-score { font-size: 52px; font-weight: 700; color: white; line-height: 1; margin: 10px 0; }
+  .hasil-cat { font-size: 14px; color: var(--gold-light); }
+  .score-breakdown { background: white; border-radius: 8px; overflow: hidden; border: 1px solid var(--cream-dark); margin-bottom: 16px; }
+  .breakdown-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; border-bottom: 1px solid var(--cream-dark); font-size: 13px;
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-row .lbl { color: var(--text-mid); }
+  .breakdown-row .val { font-weight: 700; color: var(--green-dark); }
+
+  /* REKAP TABLE */
+  .rekap-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
+  .rekap-table th { background: var(--green-dark); color: white; padding: 8px 6px; text-align: left; }
+  .rekap-table td { padding: 8px 6px; border-bottom: 1px solid var(--cream-dark); }
+  .rekap-table tr:nth-child(even) td { background: var(--cream); }
+  .cat-istimewa { color: #27ae60; font-weight: 700; }
+  .cat-baik { color: #2980b9; font-weight: 700; }
+  .cat-cukup { color: var(--orange); font-weight: 700; }
+  .cat-kurang { color: var(--red); font-weight: 700; }
+
+  /* BUTTONS */
+  .btn-row { display: flex; gap: 10px; margin-top: 16px; }
+  .btn {
+    flex: 1; padding: 13px;
+    border: none; border-radius: 8px;
+    font-family: Tahoma, sans-serif;
+    font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: all .2s;
+  }
+  .btn-next { background: var(--gold); color: var(--green-dark); }
+  .btn-next:hover { background: var(--gold-light); }
+  .btn-prev { background: var(--cream-dark); color: var(--text-mid); }
+  .btn-prev:hover { background: #d5cbb5; }
+  .btn-save { background: var(--green-mid); color: white; }
+  .btn-save:hover { background: var(--green-dark); }
+  .btn-export { background: var(--green-dark); color: var(--gold); border: 2px solid var(--gold); flex: none; padding: 10px 16px; }
+
+  .error-msg { color: var(--red); font-size: 11px; margin-top: 4px; display: none; }
+  .error-msg.show { display: block; }
+
+  .error-summary {
+    background: #fef5f5; border: 2px solid var(--red);
+    border-radius: 8px; padding: 10px 14px;
+    margin-bottom: 12px; font-size: 12px; color: var(--red); display: none;
+  }
+  .error-summary.show { display: block; }
+  .error-summary strong { display: block; margin-bottom: 4px; }
+
+  .progress-bar { background: var(--cream-dark); border-radius: 4px; height: 5px; margin: 8px 0 16px; }
+  .progress-fill { background: var(--gold); height: 100%; border-radius: 4px; transition: width .4s ease; }
+
+  .catatan-area textarea { height: 70px; resize: none; }
+  .alert { padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 12px; }
+  .alert-warn { background: #fff8ec; border: 1px solid var(--orange); color: #7d4800; }
+
+  @media (max-width: 400px) {
+    .score-btn { font-size: 10px; padding: 7px 2px; }
+    .bismillah { font-size: 26px; }
+    .admin-btn span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="header-inner">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+    <div class="bismillah-divider">
+      <div class="line"></div>
+      <div class="crescent">☽</div>
+      <div class="diamond"></div>
+      <div class="crescent">✦</div>
+      <div class="diamond"></div>
+      <div class="crescent">☾</div>
+      <div class="line rev"></div>
+    </div>
+    <div class="school-name">SD Islam Tahfizh Cahaya Quran</div>
+    <h1>Form Penilaian Seleksi Siswa Baru</h1>
+    <div class="header-sub">Tahun Ajaran 2025/2026</div>
+  </div>
+  <div class="header-rim"></div>
+</div>
+
+<!-- ── STEP NAV ── -->
+<div class="step-nav" id="stepNav">
+  <div class="step-nav-inner" id="stepDots"></div>
+  <button class="admin-btn" onclick="toggleAdmin()">
+    <span class="admin-icon">☽</span>
+    <span>Admin</span>
+  </button>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div class="admin-overlay" id="adminOverlay" onclick="closeAdminOutside(event)">
+  <div class="admin-panel">
+    <div class="admin-panel-head">
+      <h3>☽ Panel Admin</h3>
+      <button class="admin-close" onclick="toggleAdmin()">✕</button>
+    </div>
+    <div class="admin-body">
+      <div id="adminMenu">
+        <div class="admin-menu-item" onclick="showAdminLogin('rekap')">
+          <span class="ami-icon">📋</span>
+          <div class="ami-text">
+            <h4>Lihat Rekap Semua Siswa</h4>
+            <p>Tabel nilai seluruh peserta seleksi</p>
+          </div>
+        </div>
+        <div class="admin-menu-item" onclick="showAdminLogin('export')">
+          <span class="ami-icon">⬇</span>
+          <div class="ami-text">
+            <h4>Export Data CSV</h4>
+            <p>Unduh semua data ke spreadsheet</p>
+          </div>
+        </div>
+        <div class="admin-menu-item" onclick="showAdminLogin('reset')">
+          <span class="ami-icon">↺</span>
+          <div class="ami-text">
+            <h4>Reset Sesi</h4>
+            <p>Hapus semua data di sesi ini</p>
+          </div>
+        </div>
+      </div>
+      <div class="admin-login" id="adminLogin">
+        <p style="font-size:12px;color:#666;margin-bottom:10px">Masukkan PIN Admin:</p>
+        <input type="password" id="adminPin" placeholder="PIN Admin" onkeydown="if(event.key==='Enter') checkPin()">
+        <button class="admin-login-btn" onclick="checkPin()">Masuk</button>
+        <p style="font-size:11px;color:var(--red);margin-top:6px;display:none" id="pinErr">PIN salah</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12%"></div></div>
+
+  <!-- STEP 1 -->
+  <div class="section active" id="sec1">
+    <div class="section-header">
+      <h2>Langkah 1 — Identitas</h2>
+      <p>Pilih penginput dan nama siswa yang akan dinilai</p>
+    </div>
+    <div class="section-body">
+      <div class="form-group" id="penginputGroup">
+        <label>Nama Penginput <span class="req">*</span></label>
+        <div id="penginputLocked" style="display:none">
+          <div class="penginput-badge">
+            <span>👤</span>
+            <span id="lockedNamaPenginput">—</span>
+            <span class="badge-change" onclick="gantiPenginput()">Ganti</span>
+          </div>
+        </div>
+        <div id="penginputInput">
+          <div class="autocomplete-wrap">
+            <input type="text" id="inputPenginput" placeholder="Ketik nama penginput..." autocomplete="off">
+            <div class="autocomplete-list" id="acListPenginput"></div>
+          </div>
+        </div>
+        <div class="error-msg" id="errPenginput">Wajib memilih atau mengisi nama penginput</div>
+      </div>
+
+      <div class="form-group">
+        <label>Nama Siswa <span class="req">*</span></label>
+        <div class="autocomplete-wrap">
+          <input type="text" id="inputNama" placeholder="Ketik nama atau sebagian nama..." autocomplete="off">
+          <div class="autocomplete-list" id="acList"></div>
+        </div>
+        <div class="error-msg" id="errNama">Wajib memilih nama siswa dari daftar</div>
+      </div>
+
+      <div id="infoBox" class="info-box" style="display:none">
+        <strong id="infoNama">—</strong>
+        <span id="infoDetail">—</span>
+      </div>
+
+      <div class="btn-row"><button class="btn btn-next" onclick="goNext(1)">Lanjut ke Kognitif →</button></div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="section" id="sec2">
+    <div class="section-header"><h2>Langkah 2 — Tes Kognitif</h2><p>1 = Belum Bisa · 2 = Perlu Bantuan · 3 = Bisa Mandiri</p></div>
+    <div class="section-body">
+      <div class="error-summary" id="errSummary2"></div>
+      <div class="sub-header">A. Membaca &amp; Huruf</div><div id="kog-A"></div>
+      <div class="sub-header">B. Berhitung</div><div id="kog-B"></div>
+      <div class="sub-header">C. Warna, Bentuk &amp; Logika</div><div id="kog-C"></div>
+      <div class="sub-header">D. Bahasa Inggris</div><div id="kog-D"></div>
+      <div class="sub-header">E. Bahasa Arab</div><div id="kog-E"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(2)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(2)">Lanjut ke Tahfizh →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="section" id="sec3">
+    <div class="section-header"><h2>Langkah 3 — Tes Tahfizh</h2><p>1 = Kurang · 2 = Cukup · 3 = Baik</p></div>
+    <div class="section-body">
+      <div class="error-summary" id="errSummary3"></div>
+      <div class="form-group">
+        <label>Surat yang Disetorkan <span class="req">*</span></label>
+        <input type="text" id="inputSurat" placeholder="Contoh: Al-Fatihah, Al-Ikhlas, An-Nas">
+        <div class="error-msg" id="errSurat">Wajib diisi</div>
+      </div>
+      <div class="sub-header">Penilaian Tahfizh</div>
+      <div id="tahfizh-items"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(3)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(3)">Lanjut ke Adab →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="section" id="sec4">
+    <div class="section-header"><h2>Langkah 4 — Adab &amp; Emosi</h2><p>1 = Kurang · 2 = Cukup · 3 = Baik</p></div>
+    <div class="section-body">
+      <div class="error-summary" id="errSummary4"></div>
+      <div class="sub-header">Adab Umum</div><div id="adab-A"></div>
+      <div class="sub-header">Emosi &amp; Reaksi</div><div id="adab-B"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(4)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(4)">Lanjut ke Perilaku →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="section" id="sec5">
+    <div class="section-header"><h2>Langkah 5 — Perilaku Negatif</h2><p>Catat jika perilaku negatif muncul selama sesi</p></div>
+    <div class="section-body">
+      <div class="alert alert-warn">Isi hanya jika perilaku tersebut muncul. "Tidak Muncul" adalah default.</div>
+      <div id="neg-items"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(5)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(5)">Lanjut ke Kemandirian →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="section" id="sec6">
+    <div class="section-header"><h2>Langkah 6 — Kemandirian</h2><p>1 = Belum · 2 = Perlu Dorongan · 3 = Mandiri</p></div>
+    <div class="section-body">
+      <div class="error-summary" id="errSummary6"></div>
+      <div id="mandiri-items"></div>
+      <div class="catatan-area form-group" style="margin-top:12px">
+        <label>Catatan Khusus (opsional)</label>
+        <textarea id="catatanKhusus" placeholder="Tuliskan kejadian atau pengamatan penting selama sesi..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(6)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(6)">Lihat Hasil →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7: HASIL -->
+  <div class="section" id="sec7">
+    <div class="section-header"><h2>Langkah 7 — Hasil Penilaian</h2><p>Ringkasan nilai otomatis</p></div>
+    <div class="section-body">
+      <div class="hasil-card" id="hasilCard">
+        <div class="hasil-nama" id="hasilNama">—</div>
+        <div class="hasil-score" id="hasilScore">0</div>
+        <div class="hasil-cat" id="hasilCat">—</div>
+      </div>
+      <div class="score-breakdown" id="scoreBreakdown"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(7)">← Kembali</button>
+        <button class="btn btn-save" onclick="simpanData()">✓ Simpan Penilaian</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 8: REKAP -->
+  <div class="section" id="sec8">
+    <div class="section-header"><h2>Langkah 8 — Rekap Semua Siswa</h2><p>Data tersimpan di sesi ini</p></div>
+    <div class="section-body">
+      <div class="btn-row" style="margin-bottom:12px;margin-top:0">
+        <button class="btn btn-next" onclick="nilaiSiswaBaru()">+ Nilai Siswa Baru</button>
+        <button class="btn btn-export" onclick="exportCSV()">Export CSV</button>
+      </div>
+      <div id="rekapContent">
+        <div style="text-align:center;color:var(--text-mid);padding:30px;font-size:13px">Belum ada data tersimpan</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── DATA ──
+const TIM_PENGINPUT = ["Fatih Raihan, S.Pd","Sahid Cakra B., S.Pd","Najwa Azka Khairani, S.Pd","Muna Hanifah"];
+const ADMIN_PIN = "1234"; // ganti sesuai kebutuhan
+const SB_URL = "https://ohxepgioghhivpnbbsgb.supabase.co";
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oeGVwZ2lvZ2hoaXZwbmJic2diIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMzg0NjIsImV4cCI6MjA5MjYxNDQ2Mn0.0yhI2WDQhgpW5nDXJdva6nIgoPyjUDnnqSkm-3X5Uyc";
+
+async function sbInsert(data){
+  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
+    body:JSON.stringify(data)
+  });
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||r.statusText);}
+}
+
+async function sbSelect(){
+  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?select=*&order=created_at.desc',{
+    headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
+  });
+  if(!r.ok) throw new Error('Gagal memuat data');
+  return r.json();
+}
+
+const SISWA = [
+  {nama:"Ubaydillah Abiyyu",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
+  {nama:"Ibrahim Syathir Ahnaf",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
+  {nama:"Alghifari Hibatullah Jatmiko",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
+  {nama:"Anfa Khalid Dhyiaulhaq Widiarto",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
+  {nama:"Rahagi Atharrazka Ariyandana",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
+  {nama:"Musa Abdul Malik",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
+  {nama:"M. Alfatih",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
+  {nama:"Rafardhan Abqary Iskandar",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
+  {nama:"M. Yazid Ilmany",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
+  {nama:"Ghaidan Aura Al Ghazali",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
+  {nama:"Yahya Zaidan Alfath",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
+  {nama:"M. Hamizan Muhsinin",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
+  {nama:"M. Mannaf Fadilah",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
+  {nama:"Afnan Addifaa Dhiyaulhaq",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
+  {nama:"Ilyas Zaid Dhiaurrahman",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
+  {nama:"Haidar Zayd",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
+  {nama:"Fazodra Aretta Rafaeyyza Nasution",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
+  {nama:"Abdul Jabbar Al Miqdad",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
+  {nama:"M. Zayn Irfansyah",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
+  {nama:"Muhammad Al Ghaisan Ziyan Tugor",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
+  {nama:"M. Khalid Ar Rasyid",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
+  {nama:"Muhammad Akhtar A.",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
+  {nama:"Azama Amiir Al Uswah",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
+  {nama:"Abdurrahman Baz Al Chuluq",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
+  {nama:"Abrisam Mannaf Abdussalam",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
+  {nama:"Marsekal Az Zubair Ramadhan",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
+  {nama:"Abdurrahman Cahya Sundara",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
+  {nama:"M. Abrizam Al Faqih",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
+  {nama:"M. Uwais Abdurrohman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
+  {nama:"Alfathan Zeyn Pramono",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
+  {nama:"Abimana Muhammad Kurniawan",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
+  {nama:"Abdurrozaq Ibadurrahman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
+  {nama:"Shalteza Mesach Kardiman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
+  {nama:"Khalid Al Karim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
+  {nama:"Gentama Mizyan Ahnaf",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
+  {nama:"Khalid Ash Shiddiq",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
+  {nama:"Ibrahim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
+  {nama:"Rayyan Atharrazka Dalimunthe",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
+  {nama:"Saad Al Akram Siregar",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
+  {nama:"Ibrahim Faris",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
+  {nama:"M. Said Elnursie",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
+  {nama:"Muammar Ahmad Chaeran",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
+  {nama:"M. Kayandra Romansyah",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
+  {nama:"Aubrey M. El Rasya",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
+  {nama:"Leander Haamiz Wijaya",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
+  {nama:"M. Hafidz Alfatih Maulana",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
+  {nama:"Maulana Malik Ibrahim",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
+  {nama:"Sulaiman Lingga Fibrayir",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
+  {nama:"Rumi Ahmad Mukhlashin",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
+  {nama:"Alrafa Zaidan Fathan",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
+  {nama:"Utsman Syauqi",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
+  {nama:"Althaf Elhasiq Mulyawan",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
+  {nama:"Abdurrahman Saleh Bawazir",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
+  {nama:"Dafiya Ghumaisha Hilmi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
+  {nama:"Maryam Azzahra Abdurrahman",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
+  {nama:"Sofiya Haura Al Khansa",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
+  {nama:"Almahyra Leica Nugraha",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
+  {nama:"Maryam",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
+  {nama:"Syakira Az Zahra",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
+  {nama:"Kayina Dzikria Rizqi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
+  {nama:"Shofiyya",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
+  {nama:"Khaula Shabriloveiyatsawab Riadi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
+  {nama:"Azzahra Hanifah Khairunnisa",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
+  {nama:"Naqiyya Zhufairah Yumna",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
+  {nama:"Sarah Adzkiya",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
+  {nama:"Hafidzah Khairunnisa Alfatih",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
+  {nama:"Nuha Elnara Adianto",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
+  {nama:"Khadijah Shakayla Humaira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
+  {nama:"Shafiyyah Diar Zaiba",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
+  {nama:"Abidah Nuha Shabira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
+  {nama:"Fayra Afiza Hafidin",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
+  {nama:"Khalisa Zaila Hamidah",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
+  {nama:"Sakiinah Putri Irsyad",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
+  {nama:"Marzia Musyaffa Imannudin",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
+  {nama:"Ince Adifa Usaima Mufidhah",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
+  {nama:"Hafshah Wafa Shidqia",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
+  {nama:"Aisyah Zhafira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
+  {nama:"Maryam Nusaibah Arina Rusli",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
+  {nama:"Alesha Putri Izzati",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
+  {nama:"Elmasyifa Berlian Shahira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
+  {nama:"Hanin Zhafira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
+  {nama:"Inara Maryam Ramadhina",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
+  {nama:"Khadijah Mustofa",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
+  {nama:"Arsyila Felka Elrizqi",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
+  {nama:"Aliya Dzakira Ismail",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
+  {nama:"Unsa Fathimah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
+  {nama:"Sophia Az Zahra Salsabila",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
+  {nama:"Zakirah Mutmainnah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
+  {nama:"Jenna Chairany Rompis",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
+  {nama:"Queen Fakhira Hariza",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
+  {nama:"Hadeeja Ad Dayyinah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
+  {nama:"Shahinaz Rashida Ikram",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
+  {nama:"Fatimah Aulia Hafizah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
+  {nama:"Assyifa Dzakira",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
+  {nama:"Rumaysha Taqiyya",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
+  {nama:"Halwa Qanita An Khafiyya",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
+  {nama:"Hafshah Tya Amira",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
+  {nama:"Hadzkadina Rahmi Bakhtiar",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
+  {nama:"Nafisha Zunaira Rachman",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
+  {nama:"Butsaina Iftitah Delisha",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
+  {nama:"Hanna Sofia",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
+  {nama:"Nathisa Athfa",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
+  {nama:"Fasheeha Azizah Amrulla",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+  {nama:"Halimah Nur Almahyra",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+  {nama:"Khadijah Naura Izzatunnisa",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+  {nama:"Shofiyyah Qintharani",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+  {nama:"Hawla Dzakiyyah Alfasha",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+  {nama:"Nafisha Naura Putri Nayyara",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+  {nama:"Aika Zhafeera Jennaira Zharifah",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+];
+
+const RUBRIK_KOG = {
+  A:[{id:"kog_huruf",label:"Mengenal huruf A-Z",sub:"Menyebut dan menunjuk huruf"},{id:"kog_baca",label:"Membaca suku kata",sub:"ba-ju, ma-ta, ru-mah"},{id:"kog_kata",label:"Membaca kata sederhana",sub:"buku, meja, pintu"}],
+  B:[{id:"kog_angka",label:"Mengenal angka 1-20",sub:"Menyebut dan menulis angka"},{id:"kog_tambah",label:"Penjumlahan sederhana",sub:"Contoh: 3+4, 5+2"},{id:"kog_kurang",label:"Pengurangan sederhana",sub:"Contoh: 7-3, 9-4"}],
+  C:[{id:"kog_warna",label:"Mengenal warna dasar",sub:"Merah, kuning, biru, hijau"},{id:"kog_bentuk",label:"Mengenal bentuk",sub:"Lingkaran, kotak, segitiga"},{id:"kog_logika",label:"Logika & pola sederhana",sub:"Melanjutkan pola gambar/angka"}],
+  D:[{id:"kog_en_greeting",label:"Sapaan dasar",sub:"Hello, Good morning, My name is..."},{id:"kog_en_number",label:"Angka 1-10 (Inggris)",sub:"One, two, three... ten"},{id:"kog_en_color",label:"Warna (Inggris)",sub:"Red, yellow, blue, green"},{id:"kog_en_body",label:"Anggota tubuh (Inggris)",sub:"Head, hand, eye, nose"}],
+  E:[{id:"kog_ar_number",label:"Angka 1-10 (Arab)",sub:"Wahid, itsnan, tsalatsa..."},{id:"kog_ar_greet",label:"Salam & sapaan Arab",sub:"Assalamu'alaikum, Bismillah"},{id:"kog_ar_body",label:"Anggota tubuh (Arab)",sub:"Ras, yadun, ainun, anfun"},{id:"kog_ar_daily",label:"Kosakata harian Arab",sub:"Kitabun, qalamin, baitun"}],
+};
+const RUBRIK_TAHFIZH=[{id:"tf_kelancaran",label:"Kelancaran hafalan",sub:"Lancar tanpa banyak berhenti"},{id:"tf_tajwid",label:"Tajwid",sub:"Hukum bacaan sesuai"},{id:"tf_makhraj",label:"Makharijul huruf",sub:"Pengucapan huruf tepat"},{id:"tf_adab",label:"Adab membaca",sub:"Sikap, ketenangan, konsentrasi"}];
+const RUBRIK_ADAB={A:[{id:"adab_duduk",label:"Adab duduk & berpakaian",sub:"Rapi, sopan"},{id:"adab_guru",label:"Sopan kepada guru",sub:"Salam, menjawab, tidak memotong"},{id:"adab_teman",label:"Sopan kepada teman",sub:"Berbicara baik, tidak kasar"},{id:"adab_jujur",label:"Kejujuran",sub:"Tidak menyontek, mengakui kesalahan"}],B:[{id:"em_sabar",label:"Kesabaran menunggu",sub:"Tenang saat antri"},{id:"em_gagal",label:"Reaksi saat gagal/susah",sub:"Tidak langsung menyerah atau marah"},{id:"em_stabil",label:"Stabilitas emosi",sub:"Tidak mudah menangis/tertawa berlebihan"},{id:"em_fokus",label:"Konsentrasi & fokus",sub:"Tidak mudah terganggu lingkungan"}]};
+const RUBRIK_NEG=[{id:"neg_marah",label:"Marah berlebihan",sub:"Teriak, membanting barang"},{id:"neg_bully",label:"Bullying verbal/fisik",sub:"Mengejek, mendorong, memukul"},{id:"neg_tantrum",label:"Tantrum",sub:"Menangis tidak terkendali"},{id:"neg_lawan",label:"Melawan guru",sub:"Menolak instruksi"},{id:"neg_bohong",label:"Berbohong",sub:"Tertangkap tidak jujur"},{id:"neg_rusak",label:"Merusak barang",sub:"Menyobek, melempar, merusak"}];
+const RUBRIK_MANDIRI=[{id:"man_baju",label:"Mandiri berpakaian",sub:"Merapikan baju, tali sepatu sendiri"},{id:"man_barang",label:"Merapikan barang",sub:"Mengembalikan alat ke tempat semula"},{id:"man_tugas",label:"Menyelesaikan tugas mandiri",sub:"Tidak langsung minta bantuan"},{id:"man_berani",label:"Berani bicara ke guru",sub:"Bertanya, menyampaikan kebutuhan"},{id:"man_inisiatif",label:"Inisiatif positif",sub:"Membantu teman tanpa disuruh"}];
+
+const WAJIB_BY_STEP={2:[...RUBRIK_KOG.A,...RUBRIK_KOG.B,...RUBRIK_KOG.C,...RUBRIK_KOG.D,...RUBRIK_KOG.E],3:RUBRIK_TAHFIZH,4:[...RUBRIK_ADAB.A,...RUBRIK_ADAB.B],6:RUBRIK_MANDIRI};
+
+let currentStep=1, selectedSiswa=null, selectedPenginput=null, scores={}, rekapData=[];
+const TOTAL_STEPS=8;
+
+// ── STEP NAV ──
+function buildStepNav(){
+  const inner=document.getElementById('stepDots');
+  inner.innerHTML=Array.from({length:TOTAL_STEPS},(_,i)=>
+    `<div class="step-dot" id="dot${i+1}" onclick="jumpStep(${i+1})">${i+1}</div>`
+  ).join('');
+}
+function updateNav(){
+  for(let i=1;i<=TOTAL_STEPS;i++){
+    const d=document.getElementById('dot'+i);
+    d.classList.remove('active','done');
+    if(i===currentStep) d.classList.add('active');
+    else if(i<currentStep) d.classList.add('done');
+  }
+}
+
+// ── RUBRIK ──
+function buildRubrikSection(cid,items,type='score'){
+  const el=document.getElementById(cid);if(!el)return;
+  el.innerHTML=items.map(item=>{
+    if(type==='neg') return `<div class="rubrik-item" id="wrap_${item.id}">
+      <div class="rubrik-label">${item.label} <span>— ${item.sub}</span></div>
+      <div class="neg-btns">
+        <button class="neg-btn sel-0" onclick="setNeg('${item.id}',0,this)">Tidak Muncul</button>
+        <button class="neg-btn" onclick="setNeg('${item.id}',1,this)">Muncul 1×</button>
+        <button class="neg-btn" onclick="setNeg('${item.id}',2,this)">Sering</button>
+      </div></div>`;
+    return `<div class="rubrik-item" id="wrap_${item.id}">
+      <div class="rubrik-label">${item.label} <span>— ${item.sub}</span></div>
+      <div class="score-btns">
+        <button class="score-btn" onclick="setScore('${item.id}',1,this)">1</button>
+        <button class="score-btn" onclick="setScore('${item.id}',2,this)">2</button>
+        <button class="score-btn" onclick="setScore('${item.id}',3,this)">3</button>
+      </div></div>`;
+  }).join('');
+  if(type==='neg') items.forEach(i=>{if(scores[i.id]===undefined) scores[i.id]=0;});
+}
+function buildAll(){
+  buildRubrikSection('kog-A',RUBRIK_KOG.A);buildRubrikSection('kog-B',RUBRIK_KOG.B);
+  buildRubrikSection('kog-C',RUBRIK_KOG.C);buildRubrikSection('kog-D',RUBRIK_KOG.D);
+  buildRubrikSection('kog-E',RUBRIK_KOG.E);buildRubrikSection('tahfizh-items',RUBRIK_TAHFIZH);
+  buildRubrikSection('adab-A',RUBRIK_ADAB.A);buildRubrikSection('adab-B',RUBRIK_ADAB.B);
+  buildRubrikSection('neg-items',RUBRIK_NEG,'neg');buildRubrikSection('mandiri-items',RUBRIK_MANDIRI);
+}
+
+// ── SCORE ──
+function setScore(id,val,btn){
+  scores[id]=val;
+  btn.closest('.score-btns').querySelectorAll('.score-btn').forEach(b=>b.classList.remove('selected-1','selected-2','selected-3'));
+  btn.classList.add('selected-'+val);
+  document.getElementById('wrap_'+id)?.classList.remove('belum-isi');
+}
+function setNeg(id,val,btn){
+  scores[id]=val;
+  btn.closest('.neg-btns').querySelectorAll('.neg-btn').forEach(b=>b.classList.remove('sel-0','sel-1','sel-2'));
+  btn.classList.add('sel-'+val);
+}
+
+// ── CALC ──
+function calcScore(){
+  const kogItems=[...RUBRIK_KOG.A,...RUBRIK_KOG.B,...RUBRIK_KOG.C,...RUBRIK_KOG.D,...RUBRIK_KOG.E];
+  const pct=(items)=>items.reduce((s,i)=>s+(scores[i.id]||0),0)/(items.length*3)*100;
+  const kog=pct(kogItems),tf=pct(RUBRIK_TAHFIZH),adab=pct([...RUBRIK_ADAB.A,...RUBRIK_ADAB.B]),man=pct(RUBRIK_MANDIRI);
+  const neg=RUBRIK_NEG.reduce((s,i)=>s+(scores[i.id]||0),0)*3;
+  const nilai=Math.min(100,Math.max(0,kog*0.30+tf*0.30+adab*0.25+man*0.15-neg));
+  return{kogPct:kog.toFixed(1),tfPct:tf.toFixed(1),adabPct:adab.toFixed(1),manPct:man.toFixed(1),negPenalty:neg,nilai:nilai.toFixed(1)};
+}
+function getKategori(n){
+  if(n>=85)return{label:'Sangat Direkomendasikan',cls:'cat-istimewa'};
+  if(n>=70)return{label:'Direkomendasikan',cls:'cat-baik'};
+  if(n>=55)return{label:'Perlu Pertimbangan',cls:'cat-cukup'};
+  return{label:'Belum Direkomendasikan',cls:'cat-kurang'};
+}
+
+// ── NAV ──
+function goTo(step){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec'+step).classList.add('active');
+  currentStep=step; updateNav();
+  document.getElementById('progressFill').style.width=(step/TOTAL_STEPS*100)+'%';
+  window.scrollTo(0,0);
+  if(step===7) renderHasil();
+  if(step===8) renderRekap();
+}
+function goNext(step){if(!validateStep(step))return;goTo(step+1);}
+function goPrev(step){goTo(step-1);}
+function jumpStep(s){if(s<=currentStep) goTo(s);}
+
+function validateStep(step){
+  let ok=true;
+  if(step===1){
+    if(!selectedPenginput){
+      const t=document.getElementById('inputPenginput').value.trim();
+      if(!t){document.getElementById('errPenginput').classList.add('show');ok=false;}
+      else{selectedPenginput=t;lockPenginput(t);}
+    }
+    if(!selectedSiswa){document.getElementById('errNama').classList.add('show');ok=false;}
+  }
+  if(step===3){
+    if(!document.getElementById('inputSurat').value.trim()){
+      document.getElementById('errSurat').classList.add('show');
+      document.getElementById('inputSurat').classList.add('error');ok=false;
+    }
+  }
+  const wajib=WAJIB_BY_STEP[step];
+  if(wajib){
+    const belum=wajib.filter(i=>scores[i.id]===undefined);
+    if(belum.length){
+      belum.forEach(i=>document.getElementById('wrap_'+i.id)?.classList.add('belum-isi'));
+      const es=document.getElementById('errSummary'+step);
+      es.innerHTML=`<strong>⚠ ${belum.length} item belum dinilai:</strong>${belum.map(i=>'• '+i.label).join('<br>')}`;
+      es.classList.add('show');es.scrollIntoView({behavior:'smooth',block:'center'});
+      ok=false;
+    } else {
+      document.getElementById('errSummary'+step)?.classList.remove('show');
+    }
+  }
+  return ok;
+}
+
+// ── AUTOCOMPLETE PENGINPUT ──
+document.getElementById('inputPenginput').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  selectedPenginput=null;
+  document.getElementById('errPenginput').classList.remove('show');
+  if(!q){document.getElementById('acListPenginput').classList.remove('show');return;}
+  const m=TIM_PENGINPUT.filter(n=>n.toLowerCase().includes(q));
+  let html=m.map(n=>`<div class="ac-item" onclick="pilihPenginput('${esc(n)}')">${n}<div class="ac-sub">Tim Penginput</div></div>`).join('');
+  if(!TIM_PENGINPUT.some(n=>n.toLowerCase()===q))
+    html+=`<div class="ac-item" onclick="pilihPenginput('${esc(this.value.trim())}')">${this.value.trim()}<div class="ac-sub">Masukkan nama ini</div></div>`;
+  document.getElementById('acListPenginput').innerHTML=html;
+  document.getElementById('acListPenginput').classList.add('show');
+});
+function pilihPenginput(n){selectedPenginput=n;lockPenginput(n);document.getElementById('acListPenginput').classList.remove('show');document.getElementById('errPenginput').classList.remove('show');}
+function lockPenginput(n){
+  document.getElementById('lockedNamaPenginput').textContent=n;
+  document.getElementById('penginputLocked').style.display='block';
+  document.getElementById('penginputInput').style.display='none';
+}
+function gantiPenginput(){
+  selectedPenginput=null;
+  document.getElementById('inputPenginput').value='';
+  document.getElementById('penginputLocked').style.display='none';
+  document.getElementById('penginputInput').style.display='block';
+  document.getElementById('inputPenginput').focus();
+}
+
+// ── AUTOCOMPLETE SISWA ──
+document.getElementById('inputNama').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  selectedSiswa=null;document.getElementById('infoBox').style.display='none';
+  document.getElementById('errNama').classList.remove('show');
+  if(q.length<2){document.getElementById('acList').classList.remove('show');return;}
+  const m=SISWA.filter(s=>s.nama.toLowerCase().includes(q)).slice(0,8);
+  if(!m.length){document.getElementById('acList').classList.remove('show');return;}
+  document.getElementById('acList').innerHTML=m.map(s=>
+    `<div class="ac-item" onclick="selectSiswa('${esc(s.nama)}')">${s.nama}<div class="ac-sub">${s.sesi} — Kelas ${s.kelas} — Kelompok ${s.kelompok}</div></div>`
+  ).join('');
+  document.getElementById('acList').classList.add('show');
+});
+function selectSiswa(nama){
+  const s=SISWA.find(x=>x.nama===nama);if(!s)return;
+  selectedSiswa=s;
+  document.getElementById('inputNama').value=s.nama;
+  document.getElementById('acList').classList.remove('show');
+  document.getElementById('errNama').classList.remove('show');
+  document.getElementById('infoBox').style.display='block';
+  document.getElementById('infoNama').textContent=s.nama;
+  document.getElementById('infoDetail').textContent=`${s.sesi} | Kelas ${s.kelas} | Kelompok ${s.kelompok}`;
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.autocomplete-wrap')){
+    document.getElementById('acList').classList.remove('show');
+    document.getElementById('acListPenginput').classList.remove('show');
+  }
+});
+
+// ── HASIL ──
+function renderHasil(){
+  const sc=calcScore();const kat=getKategori(parseFloat(sc.nilai));
+  document.getElementById('hasilNama').textContent=selectedSiswa?.nama||'—';
+  document.getElementById('hasilScore').textContent=sc.nilai;
+  document.getElementById('hasilCat').textContent=kat.label;
+  document.getElementById('scoreBreakdown').innerHTML=`
+    <div class="breakdown-row"><span class="lbl">Kognitif (30%)</span><span class="val">${sc.kogPct}%</span></div>
+    <div class="breakdown-row"><span class="lbl">Tahfizh (30%)</span><span class="val">${sc.tfPct}%</span></div>
+    <div class="breakdown-row"><span class="lbl">Adab & Emosi (25%)</span><span class="val">${sc.adabPct}%</span></div>
+    <div class="breakdown-row"><span class="lbl">Kemandirian (15%)</span><span class="val">${sc.manPct}%</span></div>
+    <div class="breakdown-row"><span class="lbl">Penalti Perilaku</span><span class="val" style="color:var(--red)">-${sc.negPenalty}</span></div>
+    <div class="breakdown-row" style="background:var(--cream)"><span class="lbl" style="font-weight:700">Nilai Akhir</span><span class="val" style="font-size:16px">${sc.nilai}</span></div>
+  `;
+}
+
+// ── SIMPAN ──
+async function simpanData(){
+  const sc=calcScore();const kat=getKategori(parseFloat(sc.nilai));
+  const entry={
+    nama:selectedSiswa.nama,sesi:selectedSiswa.sesi,kelas:selectedSiswa.kelas,
+    kelompok:selectedSiswa.kelompok,penginput:selectedPenginput||'—',
+    surat:document.getElementById('inputSurat').value,
+    kognitif:sc.kogPct,tahfizh:sc.tfPct,adab:sc.adabPct,kemandirian:sc.manPct,
+    penalti:sc.negPenalty,nilai:sc.nilai,kategori:kat.label,
+    catatan:document.getElementById('catatanKhusus').value,
+    waktu:new Date().toLocaleString('id-ID')
+  };
+  const sbEntry={
+    nama_siswa:entry.nama,sesi:entry.sesi,kelas:entry.kelas,kelompok:entry.kelompok,
+    penginput:entry.penginput,surat_disetorkan:entry.surat,
+    skor_kognitif:parseFloat(sc.kogPct),skor_tahfizh:parseFloat(sc.tfPct),
+    skor_adab:parseFloat(sc.adabPct),skor_kemandirian:parseFloat(sc.manPct),
+    penalti_perilaku:sc.negPenalty,nilai_akhir:parseFloat(sc.nilai),
+    kategori:kat.label,catatan_observer:entry.catatan,
+    detail_skor:scores,waktu_input:new Date().toISOString()
+  };
+  const btn=document.querySelector('#sec7 .btn-save');
+  btn.textContent='Menyimpan...';btn.disabled=true;
+  try{
+    await sbInsert(sbEntry);
+    rekapData.push(entry);
+    btn.textContent='✓ Simpan Penilaian';btn.disabled=false;
+    alert('✓ Data '+selectedSiswa.nama+' berhasil disimpan ke database!');
+    goTo(8);
+  } catch(e){
+    btn.textContent='✓ Simpan Penilaian';btn.disabled=false;
+    rekapData.push(entry);
+    alert('⚠ Tersimpan lokal, tapi gagal ke Supabase:\n'+e.message);
+    goTo(8);
+  }
+}
+
+// ── REKAP ──
+async function renderRekap(){
+  const el=document.getElementById('rekapContent');
+  el.innerHTML='<div style="text-align:center;padding:20px;color:var(--text-mid)">Memuat data dari database...</div>';
+  try{
+    const data=await sbSelect();
+    if(!data.length){el.innerHTML='<div style="text-align:center;color:var(--text-mid);padding:30px;font-size:13px">Belum ada data tersimpan</div>';return;}
+    rekapData=data.map(d=>({nama:d.nama_siswa,sesi:d.sesi,kelas:d.kelas,kelompok:d.kelompok,penginput:d.penginput,surat:d.surat_disetorkan,kognitif:d.skor_kognitif,tahfizh:d.skor_tahfizh,adab:d.skor_adab,kemandirian:d.skor_kemandirian,penalti:d.penalti_perilaku,nilai:d.nilai_akhir,kategori:d.kategori,catatan:d.catatan_observer,waktu:d.created_at}));
+    el.innerHTML=`<div style="overflow-x:auto"><table class="rekap-table">
+      <thead><tr><th>No</th><th>Nama</th><th>Sesi</th><th>Kelas</th><th>Kog</th><th>Taf</th><th>Adab</th><th>Man</th><th>Nilai</th><th>Kategori</th></tr></thead>
+      <tbody>${rekapData.map((d,i)=>`<tr><td>${i+1}</td><td>${d.nama}</td><td>${d.sesi}</td><td>${d.kelas}</td><td>${d.kognitif}</td><td>${d.tahfizh}</td><td>${d.adab}</td><td>${d.kemandirian}</td><td><strong>${d.nilai}</strong></td><td class="${getKategori(parseFloat(d.nilai)).cls}">${d.kategori}</td></tr>`).join('')}</tbody>
+    </table></div>`;
+  } catch(e){
+    el.innerHTML=`<div style="text-align:center;color:var(--red);padding:20px;font-size:13px">Gagal memuat: ${e.message}</div>`;
+  }
+}
+function nilaiSiswaBaru(){
+  selectedSiswa=null;scores={};
+  document.getElementById('inputNama').value='';
+  document.getElementById('inputSurat').value='';
+  document.getElementById('catatanKhusus').value='';
+  document.getElementById('infoBox').style.display='none';
+  document.querySelectorAll('.error-summary').forEach(e=>e.classList.remove('show'));
+  buildAll();goTo(1);
+}
+function exportCSV(){
+  if(!rekapData.length){alert('Belum ada data!');return;}
+  const keys=['nama','sesi','kelas','kelompok','penginput','surat','kognitif','tahfizh','adab','kemandirian','penalti','nilai','kategori','catatan','waktu'];
+  const csv=[keys.join(','),...rekapData.map(d=>keys.map(k=>`"${(d[k]||'').toString().replace(/"/g,'""')}"`).join(','))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+  a.download='rekap_penilaian_seleksi.csv';a.click();
+}
+
+// ── ADMIN ──
+let pendingAdminAction=null;
+function toggleAdmin(){
+  const ov=document.getElementById('adminOverlay');
+  const isShow=ov.classList.contains('show');
+  ov.classList.toggle('show',!isShow);
+  if(!isShow){
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminMenu').style.display='block';
+    document.getElementById('adminPin').value='';
+    document.getElementById('pinErr').style.display='none';
+  }
+}
+function closeAdminOutside(e){if(e.target===document.getElementById('adminOverlay')) toggleAdmin();}
+function showAdminLogin(action){
+  pendingAdminAction=action;
+  document.getElementById('adminMenu').style.display='none';
+  document.getElementById('adminLogin').style.display='block';
+  setTimeout(()=>document.getElementById('adminPin').focus(),100);
+}
+function checkPin(){
+  const pin=document.getElementById('adminPin').value;
+  if(pin===ADMIN_PIN){
+    toggleAdmin();
+    if(pendingAdminAction==='rekap') goTo(8);
+    else if(pendingAdminAction==='export') exportCSV();
+    else if(pendingAdminAction==='reset'){if(confirm('Reset semua data sesi ini?')){rekapData=[];scores={};selectedSiswa=null;alert('Data direset.');}}
+  } else {
+    document.getElementById('pinErr').style.display='block';
+    document.getElementById('adminPin').value='';
+  }
+}
+
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
+
+// ── INIT ──
+buildStepNav();buildAll();updateNav();
+document.getElementById('inputSurat').addEventListener('input',function(){
+  this.classList.remove('error');document.getElementById('errSurat').classList.remove('show');
+});
+</script>
+</body>
+</html>
