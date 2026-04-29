@@ -1373,23 +1373,34 @@ function buatLaporan(entry, sc){
   const kat = getKategori(parseFloat(sc.nilai));
   const nama = entry.nama;
   const panggilNama = nama.split(' ')[0];
+  const k=parseFloat(sc.kogPct), t=parseFloat(sc.tfPct), a=parseFloat(sc.adabPct), m=parseFloat(sc.manPct);
 
-  // Analisa tiap dimensi
-  const unggul=[], perlu=[], saran=[];
+  // ── NARASI KEUNGGULAN ──
+  // Selalu mulai dari hal positif, apapun skor anak
+  const unggulList=[];
+  if(k>=75) unggulList.push('kemampuan akademik dasar yang sudah berkembang dengan baik, terlihat dari kelancaran membaca dan berhitungnya');
+  else if(k>=55) unggulList.push('semangat belajar yang tampak antusias selama sesi berlangsung');
+  if(t>=75) unggulList.push('hafalan Al-Quran yang cukup kuat disertai bacaan yang sudah terjaga dengan baik');
+  else if(t>=55) unggulList.push('kebiasaan membaca Al-Quran yang sudah mulai terbentuk dengan baik');
+  if(a>=75) unggulList.push('adab dan sopan santun yang sudah tertanam indah — ananda terlihat hormat kepada guru dan ramah kepada teman-temannya');
+  else if(a>=55) unggulList.push('sikap yang kooperatif dan mau mengikuti arahan selama kegiatan berlangsung');
+  if(m>=75) unggulList.push('kemandirian yang menonjol — ananda mampu menyelesaikan tugas sendiri dan tidak ragu berinisiatif membantu orang lain');
+  else if(m>=55) unggulList.push('keberanian untuk mencoba melakukan hal-hal secara mandiri');
 
-  if(parseFloat(sc.kogPct)>=75) unggul.push('kemampuan kognitif (membaca, berhitung, dan pengenalan konsep dasar)');
-  else if(parseFloat(sc.kogPct)<55){ perlu.push('kemampuan kognitif dasar seperti membaca dan berhitung'); saran.push('melatih membaca suku kata dan berhitung sederhana setiap hari minimal 15 menit bersama orang tua'); }
+  // Jika semua rendah, tetap ada hal positif
+  if(unggulList.length===0) unggulList.push('kehadiran dan partisipasi ananda selama sesi seleksi berlangsung dengan baik');
 
-  if(parseFloat(sc.tfPct)>=75) unggul.push('hafalan Al-Quran dengan kualitas bacaan yang baik');
-  else if(parseFloat(sc.tfPct)<55){ perlu.push('kelancaran dan kualitas hafalan Al-Quran'); saran.push('membiasakan murajaah setiap selesai sholat, perhatikan makhraj huruf bersama ustadz atau orang tua'); }
+  // ── NARASI PENGEMBANGAN ──
+  // Framing: bukan kekurangan, tapi "potensi yang masih bisa berkembang"
+  const kembangList=[];
+  if(k<55) kembangList.push({aspek:'kemampuan membaca dan berhitung', saran:'Latihan ringan setiap hari sudah cukup — bacakan buku cerita bersama, atau ajak ananda menghitung benda-benda kecil di sekitar rumah dengan cara yang menyenangkan.'});
+  else if(k<75) kembangList.push({aspek:'penguatan kemampuan akademik', saran:'Ananda sudah di jalur yang tepat. Pertahankan rutinitas belajar yang sudah ada dan sesekali tambahkan permainan edukatif agar semangat belajarnya terus terjaga.'});
+  if(t<55) kembangList.push({aspek:'hafalan Al-Quran', saran:'Murajaah singkat setiap selesai sholat, meski hanya satu surat pendek, akan sangat membantu. Suasana yang tenang dan penuh kasih sayang di rumah adalah kunci agar ananda mencintai Al-Quran.'});
+  else if(t<75) kembangList.push({aspek:'kualitas bacaan Al-Quran', saran:'Sesekali simak bacaan ananda bersama ustadz atau melalui murattal, agar makhraj dan tajwidnya semakin berkembang secara alami.'});
+  if(a<55) kembangList.push({aspek:'pengelolaan emosi dan adab keseharian', saran:'Anak seusia ini masih dalam proses belajar mengelola perasaan — ini sangat wajar. Keteladanan orang tua dalam bersikap sabar dan santun di rumah adalah guru terbaik bagi ananda.'});
+  if(m<55) kembangList.push({aspek:'kemandirian sehari-hari', saran:'Berikan ananda kesempatan untuk mencoba sendiri hal-hal kecil di rumah — merapikan mainan, memakai sepatu sendiri, atau menuangkan minumannya. Apresiasi setiap usahanya, bukan hanya hasilnya.'});
 
-  if(parseFloat(sc.adabPct)>=75) unggul.push('adab keseharian dan kestabilan emosi yang matang');
-  else if(parseFloat(sc.adabPct)<55){ perlu.push('adab kepada guru dan teman serta pengelolaan emosi'); saran.push('membiasakan salam, meminta izin, dan bersabar dalam antrian di rumah sebagai latihan sehari-hari'); }
-
-  if(parseFloat(sc.manPct)>=75) unggul.push('kemandirian dan inisiatif positif dalam kegiatan');
-  else if(parseFloat(sc.manPct)<55){ perlu.push('kemandirian dalam menyelesaikan tugas'); saran.push('membiasakan anak merapikan barang sendiri, berpakaian mandiri, dan berani menyampaikan kebutuhannya'); }
-
-  // Rekomendasi eskul
+  // ── REKOMENDASI ESKUL ──
   const ESKUL_MAP=[
     {nama:'Cinematography',kat:'wajib',min:{k:0,t:0,a:50,m:50}},
     {nama:'Arabik & English',kat:'pilihan',min:{k:60,t:0,a:0,m:0}},
@@ -1403,11 +1414,16 @@ function buatLaporan(entry, sc){
     {nama:'Olimpiade Sains',kat:'lomba',min:{k:75,t:0,a:0,m:50}},
     {nama:'Olimpiade Bahasa',kat:'lomba',min:{k:70,t:0,a:0,m:0}},
   ];
-  const k=parseFloat(sc.kogPct),t=parseFloat(sc.tfPct),a=parseFloat(sc.adabPct),m=parseFloat(sc.manPct);
   const reks=ESKUL_MAP.filter(e=>k>=e.min.k&&t>=e.min.t&&a>=e.min.a&&m>=e.min.m);
   const clsMap={wajib:'let-wajib',lomba:'let-lomba',tahfizh:'let-tahfizh',pilihan:'let-pilihan'};
+  const labelMap={wajib:'Eskul Wajib',lomba:'Persiapan Lomba',tahfizh:'Tahfizh Intensif',pilihan:'Pilihan'};
 
   const tgl=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+
+  // Kalimat pembuka yang berbeda sesuai nilai
+  const pembuka = k>=70&&t>=70&&a>=70&&m>=70
+    ? `Dengan penuh rasa syukur, kami menyampaikan hasil observasi seleksi ananda <strong>${nama}</strong> yang telah mengikuti kegiatan seleksi siswa baru SD Islam Tahfizh Cahaya Quran dengan sangat baik.`
+    : `Dengan penuh perhatian dan rasa syukur, kami menyampaikan hasil observasi seleksi ananda <strong>${nama}</strong> yang telah mengikuti kegiatan seleksi siswa baru SD Islam Tahfizh Cahaya Quran.`;
 
   document.getElementById('lapContent').innerHTML=`
     <div class="lap-siswa-info">
@@ -1421,55 +1437,59 @@ function buatLaporan(entry, sc){
       <div class="lap-nilai-angka">${sc.nilai}</div>
       <div class="lap-nilai-detail">
         <div class="lap-nilai-kat">${kat.label}</div>
-        <div class="lap-nilai-sub">Kognitif ${sc.kogPct}% · Tahfizh ${sc.tfPct}% · Adab ${sc.adabPct}% · Kemandirian ${sc.manPct}%</div>
+        <div class="lap-nilai-sub">Kognitif ${sc.kogPct}% &nbsp;·&nbsp; Tahfizh ${sc.tfPct}% &nbsp;·&nbsp; Adab & Emosi ${sc.adabPct}% &nbsp;·&nbsp; Kemandirian ${sc.manPct}%</div>
       </div>
     </div>
 
     <div class="lap-section">
-      <h4>Keunggulan Ananda</h4>
-      <p>${unggul.length
-        ? `Ananda <strong>${panggilNama}</strong> menunjukkan keunggulan dalam ${unggul.join(', ')}. Potensi ini sangat baik untuk terus dikembangkan dan diperkuat melalui program pembelajaran di sekolah.`
-        : `Ananda ${panggilNama} sedang dalam proses perkembangan yang baik. Dengan bimbingan yang konsisten dan penuh kasih sayang, potensi ananda akan semakin terlihat.`
-      }</p>
+      <h4>Pengantar</h4>
+      <p>${pembuka} Laporan ini disusun sebagai bahan diskusi bersama antara pihak sekolah dan Bapak/Ibu orang tua, dalam rangka mendukung tumbuh kembang ananda secara optimal.</p>
     </div>
 
     <div class="lap-section">
-      <h4>Area yang Perlu Ditingkatkan</h4>
-      <p>${perlu.length
-        ? `Berdasarkan hasil observasi seleksi, terdapat beberapa aspek yang membutuhkan perhatian lebih dari orang tua dan guru, yaitu ${perlu.join('; ')}. Hal ini merupakan hal yang wajar dan dapat berkembang dengan latihan yang terstruktur dan dukungan positif.`
-        : `Alhamdulillah, ananda menunjukkan perkembangan yang baik di seluruh aspek yang dinilai. Pertahankan dan tingkatkan terus kebiasaan-kebiasaan positif yang sudah terbentuk.`
-      }</p>
+      <h4>Yang Kami Banggakan dari Ananda</h4>
+      <p>Selama sesi observasi berlangsung, kami dengan senang hati menyaksikan ${unggulList.join(', serta ')}. Hal-hal ini adalah modal yang sangat berharga bagi perjalanan belajar ananda ke depan, dan kami yakin potensi ini akan terus berkembang indah dengan dukungan Bapak/Ibu di rumah.</p>
+    </div>
+
+    ${kembangList.length>0?`
+    <div class="lap-section">
+      <h4>Ruang Tumbuh yang Masih Terbuka</h4>
+      <p>Setiap anak memiliki ritme perkembangannya masing-masing, dan kami percaya ananda pun demikian. Beberapa aspek yang kami lihat masih memiliki ruang untuk tumbuh lebih jauh adalah:</p>
+      ${kembangList.map(item=>`
+        <div style="margin:10px 0 10px 8px;padding-left:12px;border-left:2px solid #c9a84c">
+          <div style="font-weight:700;margin-bottom:3px;font-family:Tahoma,sans-serif;font-size:12px;color:#1a3a2a">${item.aspek}</div>
+          <div>${item.saran}</div>
+        </div>
+      `).join('')}
+    </div>`:''}
+
+    <div class="lap-section">
+      <h4>Pesan untuk Bapak/Ibu</h4>
+      <p>Terima kasih telah mempercayakan pendidikan ananda kepada kami. Kehadiran Bapak/Ibu dalam proses ini adalah bentuk cinta yang luar biasa. Kami percaya bahwa dengan kolaborasi yang baik antara rumah dan sekolah, ananda akan tumbuh menjadi generasi yang tidak hanya cerdas, tetapi juga berakhlak mulia dan mencintai Al-Quran. Semoga Allah mudahkan langkah ananda dan keluarga.</p>
     </div>
 
     <div class="lap-section">
-      <h4>Saran untuk Orang Tua</h4>
-      <p>${saran.length
-        ? `Untuk mendukung perkembangan ananda secara optimal, kami menyarankan agar orang tua dapat: ${saran.map((s,i)=>`(${i+1}) ${s}`).join('; ')}. Konsistensi dan keteladanan dari orang tua adalah kunci utama keberhasilan ananda.`
-        : `Pertahankan kebiasaan positif yang sudah terbentuk di rumah. Teruslah memberikan semangat, perhatian, dan keteladanan yang baik kepada ananda setiap harinya.`
-      }</p>
-    </div>
-
-    <div class="lap-section">
-      <h4>Rekomendasi Ekstrakurikuler</h4>
-      <p>Berdasarkan profil kemampuan ananda, berikut kegiatan ekstrakurikuler yang kami rekomendasikan:</p>
+      <h4>Rekomendasi Kegiatan Ekstrakurikuler</h4>
+      <p>Berdasarkan profil ananda secara menyeluruh, berikut kegiatan ekstrakurikuler yang kami rekomendasikan untuk mendukung perkembangannya:</p>
       <div class="lap-eskul-list">
         ${reks.length
           ? reks.map(e=>`<span class="lap-eskul-tag ${clsMap[e.kat]}">${e.nama}</span>`).join('')
-          : '<span style="font-size:12px;color:#666">Akan diinformasikan lebih lanjut oleh pihak sekolah.</span>'
+          : '<span style="font-size:12px;color:#666;font-style:italic">Rekomendasi kegiatan akan disampaikan secara personal oleh wali kelas.</span>'
         }
       </div>
     </div>
 
     ${entry.catatan?`<div class="lap-section">
-      <h4>Catatan Observer</h4>
+      <h4>Catatan Tambahan dari Observer</h4>
       <p style="font-style:italic;color:#555">"${entry.catatan}"</p>
     </div>`:''}
 
     <div class="lap-ttd">
       <div class="lap-ttd-box">
         <div style="font-size:11px;color:#666;margin-bottom:2px">Jakarta, ${tgl}</div>
-        <div style="font-size:11px;color:#666;margin-bottom:2px">Penilai,</div>
+        <div style="font-size:11px;color:#666;margin-bottom:2px">Hormat kami,</div>
         <div class="ttd-nama">${entry.penginput}</div>
+        <div class="ttd-jabatan">Observer Seleksi Siswa Baru</div>
       </div>
     </div>
   `;
