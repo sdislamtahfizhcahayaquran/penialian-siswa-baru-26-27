@@ -242,6 +242,21 @@
     font-family: Tahoma, sans-serif; font-size: 13px; font-weight: 700;
     cursor: pointer;
   }
+  .admin-rekap { display: none; }
+  .admin-rekap-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .admin-rekap-head h4 { font-size: 13px; font-weight: 700; color: var(--green-dark); }
+  .admin-rekap-actions { display: flex; gap: 8px; }
+  .admin-rekap-btn {
+    padding: 6px 12px; border-radius: 6px; border: none;
+    font-family: Tahoma, sans-serif; font-size: 11px; font-weight: 700;
+    cursor: pointer;
+  }
+  .arb-refresh { background: var(--green-dark); color: white; }
+  .arb-csv { background: var(--gold); color: var(--green-dark); }
+  .arb-back { background: var(--cream-dark); color: var(--text-mid); }
 
   /* ── MAIN ── */
   .container { max-width: 600px; margin: 0 auto; padding: 16px; }
@@ -253,12 +268,12 @@
   .section-header {
     background: var(--green-dark);
     color: white;
-    padding: 13px 18px;
+    padding: 14px 18px;
     border-radius: 10px 10px 0 0;
     border-bottom: 3px solid var(--gold);
   }
-  .section-header h2 { font-size: 14px; font-weight: 700; }
-  .section-header p { font-size: 11px; color: var(--cream-dark); margin-top: 2px; }
+  .section-header h2 { font-size: 16px; font-weight: 700; }
+  .section-header p { font-size: 12px; color: var(--cream-dark); margin-top: 3px; line-height: 1.5; }
 
   .section-body {
     background: white;
@@ -337,37 +352,41 @@
   /* RUBRIK */
   .rubrik-item {
     background: var(--cream);
-    border-radius: 8px; padding: 11px 12px;
-    margin-bottom: 8px;
-    border: 1px solid var(--cream-dark);
+    border-radius: 12px; padding: 14px 16px;
+    margin-bottom: 10px;
+    border: 1.5px solid var(--cream-dark);
     transition: border-color .2s;
   }
   .rubrik-item.belum-isi { border-color: var(--red); background: #fdf5f5; }
-  .rubrik-label { font-size: 12px; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
-  .rubrik-label span { font-weight: 400; color: var(--text-mid); }
-  .score-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .rubrik-label { font-size: 14px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
+  .rubrik-sub { font-size: 12px; font-weight: 400; color: var(--text-mid); margin-bottom: 12px; }
+  .score-btns { display: flex; gap: 8px; }
   .score-btn {
-    flex: 1; min-width: 60px; padding: 8px 4px;
+    flex: 1; padding: 12px 8px;
     border: 2px solid var(--cream-dark);
-    border-radius: 6px; background: white;
+    border-radius: 10px; background: white;
     cursor: pointer; font-family: Tahoma, sans-serif;
-    font-size: 11px; font-weight: 700; color: var(--text-mid);
-    text-align: center; transition: all .15s;
+    font-size: 13px; font-weight: 700; color: var(--text-mid);
+    text-align: center; transition: all .2s;
+    line-height: 1.3;
   }
-  .score-btn:hover { border-color: var(--gold); }
-  .score-btn.selected-1 { background: #fef5f5; border-color: var(--red); color: var(--red); }
-  .score-btn.selected-2 { background: #fff8ec; border-color: var(--orange); color: var(--orange); }
-  .score-btn.selected-3 { background: #f0faf4; border-color: #27ae60; color: #27ae60; }
+  .score-btn .snum { font-size: 20px; font-weight: 700; display: block; margin-bottom: 2px; }
+  .score-btn .sdesc { font-size: 10px; font-weight: 400; opacity: 0.8; display: block; }
+  .score-btn:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+  .score-btn.selected-1 { background: #fef5f5; border-color: var(--red); color: var(--red); box-shadow: 0 3px 10px rgba(192,57,43,0.15); }
+  .score-btn.selected-2 { background: #fff8ec; border-color: var(--orange); color: var(--orange); box-shadow: 0 3px 10px rgba(230,126,34,0.15); }
+  .score-btn.selected-3 { background: #f0faf4; border-color: #27ae60; color: #27ae60; box-shadow: 0 3px 10px rgba(39,174,96,0.15); }
 
-  .neg-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .neg-btns { display: flex; gap: 8px; flex-wrap: wrap; }
   .neg-btn {
-    flex: 1; min-width: 70px; padding: 8px 4px;
-    border: 2px solid var(--cream-dark); border-radius: 6px;
+    flex: 1; min-width: 80px; padding: 10px 8px;
+    border: 2px solid var(--cream-dark); border-radius: 10px;
     background: white; cursor: pointer;
     font-family: Tahoma, sans-serif;
-    font-size: 11px; font-weight: 700; color: var(--text-mid);
-    text-align: center; transition: all .15s;
+    font-size: 12px; font-weight: 700; color: var(--text-mid);
+    text-align: center; transition: all .2s;
   }
+  .neg-btn:hover { transform: translateY(-1px); }
   .neg-btn.sel-0 { background: #f0faf4; border-color: #27ae60; color: #27ae60; }
   .neg-btn.sel-1 { background: #fff8ec; border-color: var(--orange); color: var(--orange); }
   .neg-btn.sel-2 { background: #fef5f5; border-color: var(--red); color: var(--red); }
@@ -443,12 +462,116 @@
   .alert { padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 12px; }
   .alert-warn { background: #fff8ec; border: 1px solid var(--orange); color: #7d4800; }
 
+  .surat-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+  .surat-tag{display:flex;align-items:center;gap:4px;background:var(--green-dark);color:white;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+  .surat-tag .tag-x{cursor:pointer;opacity:0.7;font-size:12px;line-height:1}
+  .surat-tag .tag-x:hover{opacity:1}
   @media (max-width: 400px) {
     .score-btn { font-size: 10px; padding: 7px 2px; }
     .bismillah { font-size: 26px; }
     .admin-btn span { display: none; }
   }
-</style>
+
+  /* ── LAPORAN OVERLAY ── */
+  .lap-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 400;
+    overflow-y: auto;
+    padding: 20px 16px 40px;
+  }
+  .lap-overlay.show { display: block; }
+  .lap-wrap {
+    max-width: 640px; margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+  .lap-toolbar {
+    background: var(--green-dark);
+    padding: 12px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 2px solid var(--gold);
+  }
+  .lap-toolbar span { color: var(--gold); font-size: 13px; font-weight: 700; }
+  .lap-toolbar-btns { display: flex; gap: 8px; }
+  .lap-tb-btn {
+    padding: 7px 14px; border-radius: 6px; border: none;
+    font-family: Tahoma, sans-serif; font-size: 12px; font-weight: 700;
+    cursor: pointer;
+  }
+  .ltb-print { background: var(--gold); color: var(--green-dark); }
+  .ltb-next { background: var(--green-light); color: white; }
+  .ltb-close { background: rgba(255,255,255,0.15); color: white; }
+
+  /* Laporan konten - bersih untuk print */
+  .lap-content {
+    padding: 32px 36px;
+    font-family: 'Times New Roman', serif;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #1a1a1a;
+  }
+  .lap-siswa-info {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4px 20px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ccc;
+    font-family: Tahoma, sans-serif;
+    font-size: 12px;
+  }
+  .lap-siswa-info .li-row { display: flex; gap: 6px; }
+  .lap-siswa-info .li-key { color: #666; min-width: 80px; }
+  .lap-siswa-info .li-val { font-weight: 700; color: #1a1a1a; }
+  .lap-nilai-bar {
+    display: flex; align-items: center; gap: 14px;
+    background: #f5f5f5; border-radius: 8px;
+    padding: 14px 18px; margin-bottom: 20px;
+    font-family: Tahoma, sans-serif;
+  }
+  .lap-nilai-angka { font-size: 42px; font-weight: 700; color: var(--green-dark); line-height: 1; }
+  .lap-nilai-detail { flex: 1; }
+  .lap-nilai-kat { font-size: 14px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
+  .lap-nilai-sub { font-size: 11px; color: #666; }
+  .lap-section { margin-bottom: 18px; }
+  .lap-section h4 {
+    font-family: Tahoma, sans-serif;
+    font-size: 11px; font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e0d8c8;
+  }
+  .lap-section p { text-align: justify; }
+  .lap-eskul-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .lap-eskul-tag {
+    padding: 3px 12px; border-radius: 20px;
+    font-family: Tahoma, sans-serif; font-size: 11px; font-weight: 700;
+  }
+  .let-wajib { background: #1a3a2a; color: white; }
+  .let-lomba { background: #c0392b; color: white; }
+  .let-tahfizh { background: #c9a84c; color: white; }
+  .let-pilihan { background: #ede5d0; color: #4a4a4a; }
+  .lap-ttd {
+    margin-top: 30px;
+    display: flex; justify-content: flex-end;
+    font-family: Tahoma, sans-serif; font-size: 12px;
+  }
+  .lap-ttd-box { text-align: center; }
+  .lap-ttd-box .ttd-nama { border-top: 1px solid #333; margin-top: 40px; padding-top: 4px; font-weight: 700; }
+  .lap-ttd-box .ttd-jabatan { color: #666; font-size: 11px; }
+
+  @media print {
+    .header, .step-nav, .container, .lap-toolbar, .admin-overlay { display: none !important; }
+    .lap-overlay { display: block !important; position: static; background: white; padding: 0; }
+    .lap-wrap { box-shadow: none; border-radius: 0; }
+    .lap-content { padding: 0; }
+    body { background: white; }
+  }
 </head>
 <body>
 
@@ -493,15 +616,8 @@
         <div class="admin-menu-item" onclick="showAdminLogin('rekap')">
           <span class="ami-icon">📋</span>
           <div class="ami-text">
-            <h4>Lihat Rekap Semua Siswa</h4>
-            <p>Tabel nilai seluruh peserta seleksi</p>
-          </div>
-        </div>
-        <div class="admin-menu-item" onclick="showAdminLogin('export')">
-          <span class="ami-icon">⬇</span>
-          <div class="ami-text">
-            <h4>Export Data CSV</h4>
-            <p>Unduh semua data ke spreadsheet</p>
+            <h4>Rekap Semua Siswa</h4>
+            <p>Lihat nilai seluruh peserta seleksi</p>
           </div>
         </div>
         <div class="admin-menu-item" onclick="showAdminLogin('reset')">
@@ -517,6 +633,17 @@
         <input type="password" id="adminPin" placeholder="PIN Admin" onkeydown="if(event.key==='Enter') checkPin()">
         <button class="admin-login-btn" onclick="checkPin()">Masuk</button>
         <p style="font-size:11px;color:var(--red);margin-top:6px;display:none" id="pinErr">PIN salah</p>
+      </div>
+      <div class="admin-rekap" id="adminRekap">
+        <div class="admin-rekap-head">
+          <h4>Rekap Penilaian</h4>
+          <div class="admin-rekap-actions">
+            <button class="admin-rekap-btn arb-refresh" onclick="loadAdminRekap()">↻ Refresh</button>
+            <button class="admin-rekap-btn arb-csv" onclick="exportCSV()">↓ CSV</button>
+            <button class="admin-rekap-btn arb-back" onclick="backToAdminMenu()">← Menu</button>
+          </div>
+        </div>
+        <div id="adminRekapContent" style="font-size:12px;color:var(--text-mid);text-align:center;padding:20px">Memuat...</div>
       </div>
     </div>
   </div>
@@ -592,8 +719,12 @@
       <div class="error-summary" id="errSummary3"></div>
       <div class="form-group">
         <label>Surat yang Disetorkan <span class="req">*</span></label>
-        <input type="text" id="inputSurat" placeholder="Contoh: Al-Fatihah, Al-Ikhlas, An-Nas">
-        <div class="error-msg" id="errSurat">Wajib diisi</div>
+        <div class="autocomplete-wrap">
+          <input type="text" id="inputSurat" placeholder="Ketik nama surat..." autocomplete="off">
+          <div class="autocomplete-list" id="acSurat"></div>
+        </div>
+        <div class="surat-tags" id="suratTags"></div>
+        <div class="error-msg" id="errSurat">Wajib memilih minimal satu surat</div>
       </div>
       <div class="sub-header">Penilaian Tahfizh</div>
       <div id="tahfizh-items"></div>
@@ -665,20 +796,21 @@
     </div>
   </div>
 
-  <!-- STEP 8: REKAP -->
-  <div class="section" id="sec8">
-    <div class="section-header"><h2>Langkah 8 — Rekap Semua Siswa</h2><p>Data tersimpan di sesi ini</p></div>
-    <div class="section-body">
-      <div class="btn-row" style="margin-bottom:12px;margin-top:0">
-        <button class="btn btn-next" onclick="nilaiSiswaBaru()">+ Nilai Siswa Baru</button>
-        <button class="btn btn-export" onclick="exportCSV()">Export CSV</button>
-      </div>
-      <div id="rekapContent">
-        <div style="text-align:center;color:var(--text-mid);padding:30px;font-size:13px">Belum ada data tersimpan</div>
+
+</div>
+
+<!-- ── LAPORAN OVERLAY ── -->
+<div class="lap-overlay" id="lapOverlay">
+  <div class="lap-wrap">
+    <div class="lap-toolbar">
+      <span>☽ Laporan Penilaian</span>
+      <div class="lap-toolbar-btns">
+        <button class="lap-tb-btn ltb-print" onclick="window.print()">🖨 Cetak</button>
+        <button class="lap-tb-btn ltb-next" onclick="tutupLaporan()">Siswa Berikutnya →</button>
       </div>
     </div>
+    <div class="lap-content" id="lapContent"></div>
   </div>
-
 </div>
 
 <script>
@@ -829,10 +961,67 @@ const RUBRIK_ADAB={A:[{id:"adab_duduk",label:"Adab duduk & berpakaian",sub:"Rapi
 const RUBRIK_NEG=[{id:"neg_marah",label:"Marah berlebihan",sub:"Teriak, membanting barang"},{id:"neg_bully",label:"Bullying verbal/fisik",sub:"Mengejek, mendorong, memukul"},{id:"neg_tantrum",label:"Tantrum",sub:"Menangis tidak terkendali"},{id:"neg_lawan",label:"Melawan guru",sub:"Menolak instruksi"},{id:"neg_bohong",label:"Berbohong",sub:"Tertangkap tidak jujur"},{id:"neg_rusak",label:"Merusak barang",sub:"Menyobek, melempar, merusak"}];
 const RUBRIK_MANDIRI=[{id:"man_baju",label:"Mandiri berpakaian",sub:"Merapikan baju, tali sepatu sendiri"},{id:"man_barang",label:"Merapikan barang",sub:"Mengembalikan alat ke tempat semula"},{id:"man_tugas",label:"Menyelesaikan tugas mandiri",sub:"Tidak langsung minta bantuan"},{id:"man_berani",label:"Berani bicara ke guru",sub:"Bertanya, menyampaikan kebutuhan"},{id:"man_inisiatif",label:"Inisiatif positif",sub:"Membantu teman tanpa disuruh"}];
 
+const SURAT_LIST=[
+  "Al-Fatihah","Al-Baqarah","Ali 'Imran","An-Nisa","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Taubah","Yunus",
+  "Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra","Al-Kahfi","Maryam","Ta Ha",
+  "Al-Anbiya","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Asy-Syu'ara","An-Naml","Al-Qasas","Al-'Ankabut","Ar-Rum",
+  "Luqman","As-Sajdah","Al-Ahzab","Saba","Fatir","Ya Sin","As-Saffat","Sad","Az-Zumar","Ghafir",
+  "Fussilat","Asy-Syura","Az-Zukhruf","Ad-Dukhan","Al-Jasiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf",
+  "Az-Zariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadila","Al-Hasyr","Al-Mumtahanah",
+  "As-Saf","Al-Jumu'ah","Al-Munafiqun","At-Tagabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij",
+  "Nuh","Al-Jinn","Al-Muzzammil","Al-Muddassir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba","An-Nazi'at","'Abasa",
+  "At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Insyiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Gasyiyah","Al-Fajr","Al-Balad",
+  "Asy-Syams","Al-Lail","Ad-Duha","Al-Insyirah","At-Tin","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Adiyat",
+  "Al-Qari'ah","At-Takasur","Al-'Asr","Al-Humazah","Al-Fil","Quraisy","Al-Ma'un","Al-Kausar","Al-Kafirun","An-Nasr",
+  "Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"
+];
+
+let suratDipilih=[];
+
+function getSuratValue(){return suratDipilih.join(', ');}
+
+document.getElementById('inputSurat').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  document.getElementById('errSurat').classList.remove('show');
+  if(!q){document.getElementById('acSurat').classList.remove('show');return;}
+  const m=SURAT_LIST.filter(s=>s.toLowerCase().includes(q)&&!suratDipilih.includes(s)).slice(0,8);
+  if(!m.length){document.getElementById('acSurat').classList.remove('show');return;}
+  document.getElementById('acSurat').innerHTML=m.map(s=>
+    `<div class="ac-item" onclick="pilihSurat('${esc(s)}')">${s}<div class="ac-sub">Juz ${getSuratJuz(s)}</div></div>`
+  ).join('');
+  document.getElementById('acSurat').classList.add('show');
+});
+
+function pilihSurat(nama){
+  if(!suratDipilih.includes(nama)) suratDipilih.push(nama);
+  document.getElementById('inputSurat').value='';
+  document.getElementById('acSurat').classList.remove('show');
+  renderSuratTags();
+  document.getElementById('errSurat').classList.remove('show');
+}
+
+function hapusSurat(nama){
+  suratDipilih=suratDipilih.filter(s=>s!==nama);
+  renderSuratTags();
+}
+
+function renderSuratTags(){
+  document.getElementById('suratTags').innerHTML=suratDipilih.map(s=>
+    `<div class="surat-tag">${s}<span class="tag-x" onclick="hapusSurat('${esc(s)}')">✕</span></div>`
+  ).join('');
+}
+
+function getSuratJuz(nama){
+  const idx=SURAT_LIST.indexOf(nama)+1;
+  if(idx<=2)return'1-2';if(idx<=5)return'3-6';if(idx<=9)return'7-10';
+  if(idx<=29)return String(Math.ceil(idx/3));if(idx<=50)return String(Math.ceil(idx/2.5));
+  if(idx<=78)return String(25+Math.ceil((idx-78)/3));return'28-30';
+}
+
 const WAJIB_BY_STEP={2:[...RUBRIK_KOG.A,...RUBRIK_KOG.B,...RUBRIK_KOG.C,...RUBRIK_KOG.D,...RUBRIK_KOG.E],3:RUBRIK_TAHFIZH,4:[...RUBRIK_ADAB.A,...RUBRIK_ADAB.B],6:RUBRIK_MANDIRI};
 
 let currentStep=1, selectedSiswa=null, selectedPenginput=null, scores={}, rekapData=[];
-const TOTAL_STEPS=8;
+const TOTAL_STEPS=7;
 
 // ── STEP NAV ──
 function buildStepNav(){
@@ -855,18 +1044,20 @@ function buildRubrikSection(cid,items,type='score'){
   const el=document.getElementById(cid);if(!el)return;
   el.innerHTML=items.map(item=>{
     if(type==='neg') return `<div class="rubrik-item" id="wrap_${item.id}">
-      <div class="rubrik-label">${item.label} <span>— ${item.sub}</span></div>
+      <div class="rubrik-label">${item.label}</div>
+      <div class="rubrik-sub">${item.sub}</div>
       <div class="neg-btns">
         <button class="neg-btn sel-0" onclick="setNeg('${item.id}',0,this)">Tidak Muncul</button>
         <button class="neg-btn" onclick="setNeg('${item.id}',1,this)">Muncul 1×</button>
         <button class="neg-btn" onclick="setNeg('${item.id}',2,this)">Sering</button>
       </div></div>`;
     return `<div class="rubrik-item" id="wrap_${item.id}">
-      <div class="rubrik-label">${item.label} <span>— ${item.sub}</span></div>
+      <div class="rubrik-label">${item.label}</div>
+      <div class="rubrik-sub">${item.sub}</div>
       <div class="score-btns">
-        <button class="score-btn" onclick="setScore('${item.id}',1,this)">1</button>
-        <button class="score-btn" onclick="setScore('${item.id}',2,this)">2</button>
-        <button class="score-btn" onclick="setScore('${item.id}',3,this)">3</button>
+        <button class="score-btn" onclick="setScore('${item.id}',1,this)"><span class="snum">1</span><span class="sdesc">Belum Bisa</span></button>
+        <button class="score-btn" onclick="setScore('${item.id}',2,this)"><span class="snum">2</span><span class="sdesc">Perlu Bantuan</span></button>
+        <button class="score-btn" onclick="setScore('${item.id}',3,this)"><span class="snum">3</span><span class="sdesc">Bisa Mandiri</span></button>
       </div></div>`;
   }).join('');
   if(type==='neg') items.forEach(i=>{if(scores[i.id]===undefined) scores[i.id]=0;});
@@ -916,7 +1107,6 @@ function goTo(step){
   document.getElementById('progressFill').style.width=(step/TOTAL_STEPS*100)+'%';
   window.scrollTo(0,0);
   if(step===7) renderHasil();
-  if(step===8) renderRekap();
 }
 function goNext(step){if(!validateStep(step))return;goTo(step+1);}
 function goPrev(step){goTo(step-1);}
@@ -933,9 +1123,8 @@ function validateStep(step){
     if(!selectedSiswa){document.getElementById('errNama').classList.add('show');ok=false;}
   }
   if(step===3){
-    if(!document.getElementById('inputSurat').value.trim()){
-      document.getElementById('errSurat').classList.add('show');
-      document.getElementById('inputSurat').classList.add('error');ok=false;
+    if(!suratDipilih.length){
+      document.getElementById('errSurat').classList.add('show');ok=false;
     }
   }
   const wajib=WAJIB_BY_STEP[step];
@@ -1033,7 +1222,7 @@ async function simpanData(){
   const entry={
     nama:selectedSiswa.nama,sesi:selectedSiswa.sesi,kelas:selectedSiswa.kelas,
     kelompok:selectedSiswa.kelompok,penginput:selectedPenginput||'—',
-    surat:document.getElementById('inputSurat').value,
+    surat:getSuratValue(),
     kognitif:sc.kogPct,tahfizh:sc.tfPct,adab:sc.adabPct,kemandirian:sc.manPct,
     penalti:sc.negPenalty,nilai:sc.nilai,kategori:kat.label,
     catatan:document.getElementById('catatanKhusus').value,
@@ -1054,14 +1243,23 @@ async function simpanData(){
     await sbInsert(sbEntry);
     rekapData.push(entry);
     btn.textContent='✓ Simpan Penilaian';btn.disabled=false;
-    alert('✓ Data '+selectedSiswa.nama+' berhasil disimpan ke database!');
-    goTo(8);
+    buatLaporan(entry, sc);
   } catch(e){
     btn.textContent='✓ Simpan Penilaian';btn.disabled=false;
     rekapData.push(entry);
-    alert('⚠ Tersimpan lokal, tapi gagal ke Supabase:\n'+e.message);
-    goTo(8);
+    buatLaporan(entry, sc);
   }
+}
+
+function showSimpanNotif(nama, gagal=false){
+  const existing=document.getElementById('simpanNotif');
+  if(existing) existing.remove();
+  const notif=document.createElement('div');
+  notif.id='simpanNotif';
+  notif.style.cssText=`position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:300;background:${gagal?'#fff3cd':'#1a3a2a'};color:${gagal?'#856404':'white'};padding:12px 20px;border-radius:10px;font-size:13px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.2);border:2px solid ${gagal?'#ffc107':'#c9a84c'};white-space:nowrap;max-width:90vw;text-align:center`;
+  notif.textContent=gagal?`⚠ ${nama} disimpan lokal saja`:`✓ ${nama} berhasil disimpan!`;
+  document.body.appendChild(notif);
+  setTimeout(()=>notif.remove(), 3000);
 }
 
 // ── REKAP ──
@@ -1081,9 +1279,10 @@ async function renderRekap(){
   }
 }
 function nilaiSiswaBaru(){
-  selectedSiswa=null;scores={};
+  selectedSiswa=null;scores={};suratDipilih=[];
   document.getElementById('inputNama').value='';
   document.getElementById('inputSurat').value='';
+  renderSuratTags();
   document.getElementById('catatanKhusus').value='';
   document.getElementById('infoBox').style.display='none';
   document.querySelectorAll('.error-summary').forEach(e=>e.classList.remove('show'));
@@ -1106,6 +1305,7 @@ function toggleAdmin(){
   if(!isShow){
     document.getElementById('adminLogin').style.display='none';
     document.getElementById('adminMenu').style.display='block';
+    document.getElementById('adminRekap').style.display='none';
     document.getElementById('adminPin').value='';
     document.getElementById('pinErr').style.display='none';
   }
@@ -1117,26 +1317,166 @@ function showAdminLogin(action){
   document.getElementById('adminLogin').style.display='block';
   setTimeout(()=>document.getElementById('adminPin').focus(),100);
 }
+function backToAdminMenu(){
+  document.getElementById('adminRekap').style.display='none';
+  document.getElementById('adminMenu').style.display='block';
+}
 function checkPin(){
   const pin=document.getElementById('adminPin').value;
   if(pin===ADMIN_PIN){
-    toggleAdmin();
-    if(pendingAdminAction==='rekap') goTo(8);
-    else if(pendingAdminAction==='export') exportCSV();
-    else if(pendingAdminAction==='reset'){if(confirm('Reset semua data sesi ini?')){rekapData=[];scores={};selectedSiswa=null;alert('Data direset.');}}
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('pinErr').style.display='none';
+    if(pendingAdminAction==='rekap'){
+      document.getElementById('adminRekap').style.display='block';
+      loadAdminRekap();
+    } else if(pendingAdminAction==='reset'){
+      if(confirm('Reset semua data sesi ini?')){rekapData=[];scores={};selectedSiswa=null;alert('Data direset.');}
+      toggleAdmin();
+    }
   } else {
     document.getElementById('pinErr').style.display='block';
     document.getElementById('adminPin').value='';
   }
 }
+async function loadAdminRekap(){
+  const el=document.getElementById('adminRekapContent');
+  el.innerHTML='<div style="text-align:center;padding:16px;color:var(--text-mid)">Memuat dari database...</div>';
+  try{
+    const data=await sbSelect();
+    if(!data.length){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--text-mid)">Belum ada data</div>';return;}
+    rekapData=data.map(d=>({nama:d.nama_siswa,sesi:d.sesi,kelas:d.kelas,kelompok:d.kelompok,penginput:d.penginput,surat:d.surat_disetorkan,kognitif:d.skor_kognitif,tahfizh:d.skor_tahfizh,adab:d.skor_adab,kemandirian:d.skor_kemandirian,penalti:d.penalti_perilaku,nilai:d.nilai_akhir,kategori:d.kategori,catatan:d.catatan_observer,waktu:d.created_at}));
+    el.innerHTML=`<div style="overflow-x:auto;border-radius:8px;border:1px solid var(--cream-dark)">
+      <table class="rekap-table" style="margin-bottom:0">
+        <thead><tr><th>#</th><th>Nama Siswa</th><th>Kelas</th><th>Nilai</th><th>Kategori</th><th>Penginput</th></tr></thead>
+        <tbody>${data.map((d,i)=>`<tr>
+          <td>${i+1}</td>
+          <td style="font-weight:700;min-width:120px">${d.nama_siswa}</td>
+          <td>${d.kelas}</td>
+          <td style="font-weight:700;font-size:14px">${d.nilai_akhir}</td>
+          <td class="${getKategori(parseFloat(d.nilai_akhir)).cls}">${d.kategori}</td>
+          <td style="color:var(--text-mid);font-size:11px">${d.penginput}</td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>
+    <div style="margin-top:8px;font-size:11px;color:var(--text-mid);text-align:right">${data.length} siswa dinilai</div>`;
+  } catch(e){
+    el.innerHTML=`<div style="text-align:center;padding:16px;color:var(--red)">Gagal: ${e.message}</div>`;
+  }
+}
 
-function esc(s){return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
+function tutupLaporan(){
+  document.getElementById('lapOverlay').classList.remove('show');
+  nilaiSiswaBaru();
+}
 
-// ── INIT ──
+function buatLaporan(entry, sc){
+  const kat = getKategori(parseFloat(sc.nilai));
+  const nama = entry.nama;
+  const panggilNama = nama.split(' ')[0];
+
+  // Analisa tiap dimensi
+  const unggul=[], perlu=[], saran=[];
+
+  if(parseFloat(sc.kogPct)>=75) unggul.push('kemampuan kognitif (membaca, berhitung, dan pengenalan konsep dasar)');
+  else if(parseFloat(sc.kogPct)<55){ perlu.push('kemampuan kognitif dasar seperti membaca dan berhitung'); saran.push('melatih membaca suku kata dan berhitung sederhana setiap hari minimal 15 menit bersama orang tua'); }
+
+  if(parseFloat(sc.tfPct)>=75) unggul.push('hafalan Al-Quran dengan kualitas bacaan yang baik');
+  else if(parseFloat(sc.tfPct)<55){ perlu.push('kelancaran dan kualitas hafalan Al-Quran'); saran.push('membiasakan murajaah setiap selesai sholat, perhatikan makhraj huruf bersama ustadz atau orang tua'); }
+
+  if(parseFloat(sc.adabPct)>=75) unggul.push('adab keseharian dan kestabilan emosi yang matang');
+  else if(parseFloat(sc.adabPct)<55){ perlu.push('adab kepada guru dan teman serta pengelolaan emosi'); saran.push('membiasakan salam, meminta izin, dan bersabar dalam antrian di rumah sebagai latihan sehari-hari'); }
+
+  if(parseFloat(sc.manPct)>=75) unggul.push('kemandirian dan inisiatif positif dalam kegiatan');
+  else if(parseFloat(sc.manPct)<55){ perlu.push('kemandirian dalam menyelesaikan tugas'); saran.push('membiasakan anak merapikan barang sendiri, berpakaian mandiri, dan berani menyampaikan kebutuhannya'); }
+
+  // Rekomendasi eskul
+  const ESKUL_MAP=[
+    {nama:'Cinematography',kat:'wajib',min:{k:0,t:0,a:50,m:50}},
+    {nama:'Arabik & English',kat:'pilihan',min:{k:60,t:0,a:0,m:0}},
+    {nama:'Robotik',kat:'pilihan',min:{k:65,t:0,a:0,m:40}},
+    {nama:'Shinkenjuku',kat:'pilihan',min:{k:0,t:0,a:60,m:60}},
+    {nama:'Sains',kat:'pilihan',min:{k:60,t:0,a:0,m:0}},
+    {nama:'Cooking Class',kat:'pilihan',min:{k:0,t:0,a:40,m:50}},
+    {nama:'Archery',kat:'pilihan',min:{k:0,t:0,a:50,m:50}},
+    {nama:'Taekwondo',kat:'pilihan',min:{k:0,t:0,a:40,m:40}},
+    {nama:'Tahfizh Intensif',kat:'tahfizh',min:{k:0,t:65,a:50,m:0}},
+    {nama:'Olimpiade Sains',kat:'lomba',min:{k:75,t:0,a:0,m:50}},
+    {nama:'Olimpiade Bahasa',kat:'lomba',min:{k:70,t:0,a:0,m:0}},
+  ];
+  const k=parseFloat(sc.kogPct),t=parseFloat(sc.tfPct),a=parseFloat(sc.adabPct),m=parseFloat(sc.manPct);
+  const reks=ESKUL_MAP.filter(e=>k>=e.min.k&&t>=e.min.t&&a>=e.min.a&&m>=e.min.m);
+  const clsMap={wajib:'let-wajib',lomba:'let-lomba',tahfizh:'let-tahfizh',pilihan:'let-pilihan'};
+
+  const tgl=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+
+  document.getElementById('lapContent').innerHTML=`
+    <div class="lap-siswa-info">
+      <div class="li-row"><span class="li-key">Nama</span><span class="li-val">${nama}</span></div>
+      <div class="li-row"><span class="li-key">Sesi</span><span class="li-val">${entry.sesi}</span></div>
+      <div class="li-row"><span class="li-key">Kelas</span><span class="li-val">${entry.kelas} — Kelompok ${entry.kelompok}</span></div>
+      <div class="li-row"><span class="li-key">Surat</span><span class="li-val">${entry.surat||'—'}</span></div>
+    </div>
+
+    <div class="lap-nilai-bar">
+      <div class="lap-nilai-angka">${sc.nilai}</div>
+      <div class="lap-nilai-detail">
+        <div class="lap-nilai-kat">${kat.label}</div>
+        <div class="lap-nilai-sub">Kognitif ${sc.kogPct}% · Tahfizh ${sc.tfPct}% · Adab ${sc.adabPct}% · Kemandirian ${sc.manPct}%</div>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>Keunggulan Ananda</h4>
+      <p>${unggul.length
+        ? `Ananda <strong>${panggilNama}</strong> menunjukkan keunggulan dalam ${unggul.join(', ')}. Potensi ini sangat baik untuk terus dikembangkan dan diperkuat melalui program pembelajaran di sekolah.`
+        : `Ananda ${panggilNama} sedang dalam proses perkembangan yang baik. Dengan bimbingan yang konsisten dan penuh kasih sayang, potensi ananda akan semakin terlihat.`
+      }</p>
+    </div>
+
+    <div class="lap-section">
+      <h4>Area yang Perlu Ditingkatkan</h4>
+      <p>${perlu.length
+        ? `Berdasarkan hasil observasi seleksi, terdapat beberapa aspek yang membutuhkan perhatian lebih dari orang tua dan guru, yaitu ${perlu.join('; ')}. Hal ini merupakan hal yang wajar dan dapat berkembang dengan latihan yang terstruktur dan dukungan positif.`
+        : `Alhamdulillah, ananda menunjukkan perkembangan yang baik di seluruh aspek yang dinilai. Pertahankan dan tingkatkan terus kebiasaan-kebiasaan positif yang sudah terbentuk.`
+      }</p>
+    </div>
+
+    <div class="lap-section">
+      <h4>Saran untuk Orang Tua</h4>
+      <p>${saran.length
+        ? `Untuk mendukung perkembangan ananda secara optimal, kami menyarankan agar orang tua dapat: ${saran.map((s,i)=>`(${i+1}) ${s}`).join('; ')}. Konsistensi dan keteladanan dari orang tua adalah kunci utama keberhasilan ananda.`
+        : `Pertahankan kebiasaan positif yang sudah terbentuk di rumah. Teruslah memberikan semangat, perhatian, dan keteladanan yang baik kepada ananda setiap harinya.`
+      }</p>
+    </div>
+
+    <div class="lap-section">
+      <h4>Rekomendasi Ekstrakurikuler</h4>
+      <p>Berdasarkan profil kemampuan ananda, berikut kegiatan ekstrakurikuler yang kami rekomendasikan:</p>
+      <div class="lap-eskul-list">
+        ${reks.length
+          ? reks.map(e=>`<span class="lap-eskul-tag ${clsMap[e.kat]}">${e.nama}</span>`).join('')
+          : '<span style="font-size:12px;color:#666">Akan diinformasikan lebih lanjut oleh pihak sekolah.</span>'
+        }
+      </div>
+    </div>
+
+    ${entry.catatan?`<div class="lap-section">
+      <h4>Catatan Observer</h4>
+      <p style="font-style:italic;color:#555">"${entry.catatan}"</p>
+    </div>`:''}
+
+    <div class="lap-ttd">
+      <div class="lap-ttd-box">
+        <div style="font-size:11px;color:#666;margin-bottom:2px">Jakarta, ${tgl}</div>
+        <div style="font-size:11px;color:#666;margin-bottom:2px">Penilai,</div>
+        <div class="ttd-nama">${entry.penginput}</div>
+      </div>
+    </div>
+  `;
+  document.getElementById('lapOverlay').classList.add('show');
+  document.getElementById('lapOverlay').scrollTop=0;
+}
 buildStepNav();buildAll();updateNav();
-document.getElementById('inputSurat').addEventListener('input',function(){
-  this.classList.remove('error');document.getElementById('errSurat').classList.remove('show');
-});
 </script>
 </body>
 </html>
