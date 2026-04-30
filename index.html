@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Form Penilaian Observasi Siswa Baru — SD Islam Tahfizh Cahaya Quran</title>
+<title>Form Penilaian Observasi — SD Islam Tahfizh Cahaya Quran</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
   --green-dark:#1a3a2a;--green-mid:#2d5a3d;--green-light:#3d7a52;
@@ -303,7 +304,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
 <div class="counter-bar">
   <div class="cb-item">👦 Banin: <span class="cb-fill" id="counterBanin">— / —</span></div>
   <div class="cb-sep">|</div>
-  <div class="cb-item">🧕 Banat: <span class="cb-fill" id="counterBanat">— / —</span></div>
+  <div class="cb-item">👧 Banat: <span class="cb-fill" id="counterBanat">— / —</span></div>
   <div class="cb-sep">|</div>
   <button class="admin-btn-top" onclick="bukaAdmin()">⚙ Admin</button>
 </div>
@@ -530,30 +531,47 @@ input:focus,select:focus{border-color:var(--gold);background:white}
 // ══ CONFIG ══
 const TIM_PENGINPUT=["Fatih Raihan, S.Pd","Sahid Cakra B., S.Pd","Najwa Azka Khairani, S.Pd","Muna Hanifah"];
 const SB_URL="https://ohxepgioghhivpnbbsgb.supabase.co";
-const SB_KEY="sb_publishable_UnoaOXgpxfVvHc2cTCI-mQ_n01abxG9";
+const SB_KEY="sb_publishable_KXI7kugcN0x3CtnHBEi7lw_odCZimek";
 const TOTAL_STEPS=8;
 
-// ══ SUPABASE ══
+// ══ SUPABASE via JS Client ══
+let _sb=null;
+function getSB(){
+  if(!_sb&&window.supabase){_sb=window.supabase.createClient(SB_URL,SB_KEY);}
+  return _sb;
+}
 async function sbInsert(data){
-  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},body:JSON.stringify(data)});
-  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||r.statusText);}
-  return r.json();
+  const sb=getSB();
+  if(!sb)throw new Error('Supabase tidak tersedia');
+  const{data:d,error}=await sb.from('penilaian_seleksi').insert(data).select();
+  if(error)throw new Error(error.message);
+  return d;
 }
 async function sbSelect(){
-  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?select=*&order=created_at.desc',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
-  if(!r.ok)throw new Error('Gagal memuat data');return r.json();
+  const sb=getSB();
+  if(!sb)throw new Error('Supabase tidak tersedia');
+  const{data,error}=await sb.from('penilaian_seleksi').select('*').order('created_at',{ascending:false});
+  if(error)throw new Error(error.message);
+  return data;
 }
 async function sbUpdate(id,data){
-  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?id=eq.'+id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify(data)});
-  if(!r.ok)throw new Error('Gagal update');
+  const sb=getSB();
+  if(!sb)throw new Error('Supabase tidak tersedia');
+  const{error}=await sb.from('penilaian_seleksi').update(data).eq('id',id);
+  if(error)throw new Error(error.message);
 }
 async function sbDelete(id){
-  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?id=eq.'+id,{method:'DELETE',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
-  if(!r.ok)throw new Error('Gagal hapus');
+  const sb=getSB();
+  if(!sb)throw new Error('Supabase tidak tersedia');
+  const{error}=await sb.from('penilaian_seleksi').delete().eq('id',id);
+  if(error)throw new Error(error.message);
 }
 async function sbGetAdmins(){
-  const r=await fetch(SB_URL+'/rest/v1/admin_users?select=*',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
-  if(!r.ok)return null;return r.json();
+  const sb=getSB();
+  if(!sb)return null;
+  const{data,error}=await sb.from('admin_users').select('*');
+  if(error)return null;
+  return data;
 }
 
 // ══ SISWA DATA ══
@@ -1126,7 +1144,7 @@ function buatLaporan(entry,sc){
   // ── RENDER HTML LAPORAN ──
   document.getElementById('lapContent').innerHTML=`
     <div class="lap-kop">
-      <div class="lk-sekolah">Laporan Observasi Seleksi Siswa Baru</div>
+      <div class="lk-sekolah">Laporan Observasi Observasi Siswa Baru</div>
       <div class="lk-judul">SD Islam Tahfizh Cahaya Quran</div>
       <div class="lk-sub">Tahun Ajaran 2026/2027 &nbsp;·&nbsp; Dokumen Bersifat Rahasia untuk Orang Tua</div>
     </div>
@@ -1136,7 +1154,7 @@ function buatLaporan(entry,sc){
       <div class="li-row"><span class="li-key">Sesi</span><span class="li-val">${esc(entry.sesi)}</span></div>
       <div class="li-row"><span class="li-key">Kelas Observasi</span><span class="li-val">${esc(entry.kelas)} — Kelompok ${esc(entry.kelompok)}</span></div>
       <div class="li-row"><span class="li-key">Surat Disetorkan</span><span class="li-val">${esc(entry.surat_disetorkan||'—')}</span></div>
-      <div class="li-row"><span class="li-key">Observer</span><span class="li-val">${esc(entry.penginput)}</span></div>
+      <div class="li-row"><span class="li-key">Observer</span><span class="li-val">${esc(entry.observer||entry.penginput||'—')}</span></div>
       <div class="li-row"><span class="li-key">Tanggal</span><span class="li-val">${tgl}</span></div>
     </div>
 
@@ -1159,7 +1177,7 @@ function buatLaporan(entry,sc){
     <div class="lap-section">
       <h4>Pengantar dari Sekolah</h4>
       <p>Bismillahirrahmanirrahim. Assalamu'alaikum warahmatullahi wabarakatuh.</p>
-      <p>Dengan penuh kebahagiaan dan rasa syukur kepada Allah Subhanahu wa Ta'ala, kami menyampaikan laporan observasi ananda <strong>${esc(nama)}</strong> yang telah mengikuti rangkaian seleksi penerimaan siswa baru SD Islam Tahfizh Cahaya Quran. Laporan ini disusun dengan teliti berdasarkan pengamatan langsung tim observer kami yang berpengalaman, dan bertujuan memberikan gambaran menyeluruh yang jujur namun penuh kasih sayang kepada Bapak/Ibu sebagai orang tua.</p>
+      <p>Dengan penuh kebahagiaan dan rasa syukur kepada Allah Subhanahu wa Ta'ala, kami menyampaikan laporan observasi ananda <strong>${esc(nama)}</strong> yang telah mengikuti rangkaian observasi penerimaan siswa baru SD Islam Tahfizh Cahaya Quran. Laporan ini disusun dengan teliti berdasarkan pengamatan langsung tim observer kami yang berpengalaman, dan bertujuan memberikan gambaran menyeluruh yang jujur namun penuh kasih sayang kepada Bapak/Ibu sebagai orang tua.</p>
       <p>Kami percaya setiap anak adalah anugerah unik dari Allah — laporan ini bukan sekadar kumpulan angka, melainkan cermin dari potensi besar yang sedang menunggu untuk berkembang dengan bimbingan yang tepat. Semoga laporan ini menjadi bekal bagi Bapak/Ibu untuk semakin memahami keunikan ananda dan mendampinginya dengan lebih terarah.</p>
     </div>
 
