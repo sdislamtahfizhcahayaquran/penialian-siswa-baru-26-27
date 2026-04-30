@@ -47,7 +47,11 @@ body{font-family:Tahoma,Geneva,Verdana,sans-serif;background:var(--cream);color:
 .admin-login-box .al-logo{font-family:'Amiri',serif;font-size:28px;color:var(--gold-light);margin-bottom:6px}
 .admin-login-box .al-title{color:white;font-size:18px;font-weight:700;margin-bottom:4px}
 .admin-login-box .al-sub{color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:28px}
-.admin-login-box input{width:100%;padding:12px 16px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(201,168,76,0.25);border-radius:10px;color:white !important;font-family:Tahoma,sans-serif;font-size:14px;margin-bottom:12px;outline:none;transition:border .2s;-webkit-text-fill-color:white !important}
+.admin-login-box input{width:100%;padding:12px 16px;background:rgba(255,255,255,0.9);border:1.5px solid rgba(201,168,76,0.25);border-radius:10px;color:#1a1a1a !important;-webkit-text-fill-color:#1a1a1a !important;font-family:Tahoma,sans-serif;font-size:14px;margin-bottom:12px;outline:none;transition:border .2s}
+.admin-login-box input::placeholder{color:#999 !important;-webkit-text-fill-color:#999 !important}
+.admin-login-box input:-webkit-autofill,
+.admin-login-box input:-webkit-autofill:hover,
+.admin-login-box input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 1000px rgba(255,255,255,0.9) inset !important;-webkit-text-fill-color:#1a1a1a !important;border-color:rgba(201,168,76,0.5)}
 .admin-login-box input::placeholder{color:rgba(255,255,255,0.3)}
 .admin-login-box input:focus{border-color:var(--gold)}
 .admin-login-submit{width:100%;padding:13px;background:var(--gold);color:var(--green-dark);border:none;border-radius:10px;font-family:Tahoma,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .2s}
@@ -290,7 +294,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
     </div>
     <div class="school-name">SD Islam Tahfizh Cahaya Quran</div>
     <h1>Form Penilaian Seleksi Siswa Baru</h1>
-    <div class="header-sub">Tahun Ajaran 2025/2026</div>
+    <div class="header-sub">Tahun Ajaran 2026/2027</div>
   </div>
   <div class="header-rim"></div>
 </div>
@@ -299,7 +303,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
 <div class="counter-bar">
   <div class="cb-item">👦 Banin: <span class="cb-fill" id="counterBanin">— / —</span></div>
   <div class="cb-sep">|</div>
-  <div class="cb-item">👧 Banat: <span class="cb-fill" id="counterBanat">— / —</span></div>
+  <div class="cb-item">🧕 Banat: <span class="cb-fill" id="counterBanat">— / —</span></div>
   <div class="cb-sep">|</div>
   <button class="admin-btn-top" onclick="bukaAdmin()">⚙ Admin</button>
 </div>
@@ -526,7 +530,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
 // ══ CONFIG ══
 const TIM_PENGINPUT=["Fatih Raihan, S.Pd","Sahid Cakra B., S.Pd","Najwa Azka Khairani, S.Pd","Muna Hanifah"];
 const SB_URL="https://ohxepgioghhivpnbbsgb.supabase.co";
-const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oeGVwZ2lvZ2hoaXZwbmJic2diIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMzg0NjIsImV4cCI6MjA5MjYxNDQ2Mn0.0yhI2WDQhgpW5nDXJdva6nIgoPyjUDnnqSkm-3X5Uyc";
+const SB_KEY="sb_publishable_UnoaOXgpxfVvHc2cTCI-mQ_n01abxG9";
 const TOTAL_STEPS=8;
 
 // ══ SUPABASE ══
@@ -1124,7 +1128,7 @@ function buatLaporan(entry,sc){
     <div class="lap-kop">
       <div class="lk-sekolah">Laporan Observasi Seleksi Siswa Baru</div>
       <div class="lk-judul">SD Islam Tahfizh Cahaya Quran</div>
-      <div class="lk-sub">Tahun Ajaran 2025/2026 &nbsp;·&nbsp; Dokumen Bersifat Rahasia untuk Orang Tua</div>
+      <div class="lk-sub">Tahun Ajaran 2026/2027 &nbsp;·&nbsp; Dokumen Bersifat Rahasia untuk Orang Tua</div>
     </div>
 
     <div class="lap-identitas">
