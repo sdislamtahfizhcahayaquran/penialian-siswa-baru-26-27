@@ -3,575 +3,289 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Form Penilaian Seleksi Siswa Baru — SD Islam Tahfizh Cahaya Quran</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>Form Penilaian Seleksi — SD Islam Tahfizh Cahaya Quran</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green-dark: #1a3a2a;
-    --green-mid: #2d5a3d;
-    --green-light: #3d7a52;
-    --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --cream: #f5f0e8;
-    --cream-dark: #ede5d0;
-    --text-dark: #1a1a1a;
-    --text-mid: #4a4a4a;
-    --white: #ffffff;
-    --red: #c0392b;
-    --orange: #e67e22;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    min-height: 100vh;
-  }
+:root{
+  --green-dark:#1a3a2a;--green-mid:#2d5a3d;--green-light:#3d7a52;
+  --gold:#c9a84c;--gold-light:#e8c97a;--cream:#f5f0e8;--cream-dark:#ede5d0;
+  --text-dark:#1a1a1a;--text-mid:#4a4a4a;--white:#ffffff;
+  --red:#c0392b;--orange:#e67e22;--blue:#2980b9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,Geneva,Verdana,sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh}
 
-  /* ── HEADER ── */
-  .header {
-    background: linear-gradient(160deg, #0e2318 0%, #1a3a2a 40%, #2d5a3d 100%);
-    padding: 28px 16px 22px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* ── HEADER ── */
+.header{background:linear-gradient(160deg,#0e2318 0%,#1a3a2a 40%,#2d5a3d 100%);padding:24px 16px 18px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(201,168,76,0.045) 18px,rgba(201,168,76,0.045) 19px),repeating-linear-gradient(-45deg,transparent,transparent 18px,rgba(201,168,76,0.045) 18px,rgba(201,168,76,0.045) 19px);pointer-events:none}
+.header::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-opacity='0.07' stroke-width='0.8'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3Cline x1='10' y1='40' x2='70' y2='40'/%3E%3Cline x1='40' y1='10' x2='40' y2='70'/%3E%3Cline x1='18' y1='18' x2='62' y2='62'/%3E%3Cline x1='62' y1='18' x2='18' y2='62'/%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none}
+.header-rim{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold) 20%,var(--gold-light) 50%,var(--gold) 80%,transparent)}
+.header-inner{position:relative;z-index:1}
+.bismillah{font-family:'Amiri',serif;font-size:30px;color:var(--gold-light);margin-bottom:8px;direction:rtl;text-shadow:0 2px 8px rgba(0,0,0,0.4);letter-spacing:2px}
+.bismillah-divider{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 10px;max-width:320px}
+.bismillah-divider .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5))}
+.bismillah-divider .line.rev{background:linear-gradient(90deg,rgba(201,168,76,0.5),transparent)}
+.bismillah-divider .diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+.bismillah-divider .crescent{font-size:14px;color:var(--gold);line-height:1}
+.school-name{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.header h1{color:var(--white);font-size:15px;font-weight:700;margin-bottom:2px}
+.header-sub{color:rgba(245,240,232,0.6);font-size:11px}
 
-  .header::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(201,168,76,0.045) 18px, rgba(201,168,76,0.045) 19px),
-      repeating-linear-gradient(-45deg, transparent, transparent 18px, rgba(201,168,76,0.045) 18px, rgba(201,168,76,0.045) 19px);
-    pointer-events: none;
-  }
+/* counter bar */
+.counter-bar{background:#0e2318;padding:8px 16px;display:flex;justify-content:center;gap:20px;border-bottom:2px solid var(--gold)}
+.cb-item{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.7)}
+.cb-fill{color:var(--gold-light)}
+.cb-sep{color:rgba(201,168,76,0.4)}
+.admin-btn-top{padding:5px 12px;border-radius:20px;border:1.5px solid rgba(201,168,76,0.4);background:rgba(201,168,76,0.08);color:var(--gold);font-size:11px;font-weight:700;cursor:pointer;font-family:Tahoma,sans-serif;transition:all .2s}
+.admin-btn-top:hover{background:rgba(201,168,76,0.2)}
 
-  .header::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-opacity='0.07' stroke-width='0.8'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3Cline x1='10' y1='40' x2='70' y2='40'/%3E%3Cline x1='40' y1='10' x2='40' y2='70'/%3E%3Cline x1='18' y1='18' x2='62' y2='62'/%3E%3Cline x1='62' y1='18' x2='18' y2='62'/%3E%3Cpolygon points='40,12 47,32 68,32 51,45 58,65 40,52 22,65 29,45 12,32 33,32' stroke-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E") repeat;
-    pointer-events: none;
-  }
+/* ── ADMIN FULLSCREEN ── */
+.admin-fullscreen{display:none;position:fixed;inset:0;background:#0e1a12;z-index:1000;flex-direction:column}
+.admin-fullscreen.show{display:flex}
+.admin-login-screen{flex:1;display:flex;align-items:center;justify-content:center;padding:20px}
+.admin-login-box{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.25);border-radius:16px;padding:40px 36px;width:100%;max-width:380px;text-align:center}
+.admin-login-box .al-logo{font-family:'Amiri',serif;font-size:28px;color:var(--gold-light);margin-bottom:6px}
+.admin-login-box .al-title{color:white;font-size:18px;font-weight:700;margin-bottom:4px}
+.admin-login-box .al-sub{color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:28px}
+.admin-login-box input{width:100%;padding:12px 16px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(201,168,76,0.25);border-radius:10px;color:white !important;font-family:Tahoma,sans-serif;font-size:14px;margin-bottom:12px;outline:none;transition:border .2s;-webkit-text-fill-color:white !important}
+.admin-login-box input::placeholder{color:rgba(255,255,255,0.3)}
+.admin-login-box input:focus{border-color:var(--gold)}
+.admin-login-submit{width:100%;padding:13px;background:var(--gold);color:var(--green-dark);border:none;border-radius:10px;font-family:Tahoma,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .2s}
+.admin-login-submit:hover{background:var(--gold-light)}
+.admin-login-err{color:#e74c3c;font-size:12px;margin-top:8px;display:none}
 
-  .header-rim {
-    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold-light) 50%, var(--gold) 80%, transparent);
-  }
+/* Admin App */
+.admin-app{display:none;flex-direction:column;height:100%}
+.admin-app.show{display:flex}
+.admin-topbar{background:#0e2318;border-bottom:2px solid var(--gold);padding:0 20px;display:flex;align-items:center;gap:16px;height:52px;flex-shrink:0}
+.admin-topbar .atb-logo{font-size:18px;color:var(--gold)}
+.admin-topbar .atb-title{color:white;font-size:13px;font-weight:700;flex:1}
+.admin-topbar .atb-user{color:rgba(255,255,255,0.5);font-size:11px}
+.admin-topbar .atb-logout{padding:5px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;color:rgba(255,255,255,0.6);font-size:11px;font-weight:700;cursor:pointer;font-family:Tahoma,sans-serif;transition:all .2s}
+.admin-topbar .atb-logout:hover{background:rgba(192,57,43,0.3);border-color:#e74c3c;color:#e74c3c}
 
-  .header-inner { position: relative; z-index: 1; }
+.admin-body{display:flex;flex:1;overflow:hidden}
+.admin-sidebar{width:200px;background:#0a1a0f;border-right:1px solid rgba(201,168,76,0.15);flex-shrink:0;padding:16px 0}
+.admin-sidebar .asb-item{display:flex;align-items:center;gap:10px;padding:11px 18px;color:rgba(255,255,255,0.5);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;border-left:3px solid transparent}
+.admin-sidebar .asb-item:hover{color:white;background:rgba(255,255,255,0.04)}
+.admin-sidebar .asb-item.active{color:var(--gold);background:rgba(201,168,76,0.08);border-left-color:var(--gold)}
+.admin-sidebar .asb-icon{font-size:16px}
 
-  .bismillah {
-    font-family: 'Amiri', serif;
-    font-size: 34px;
-    color: var(--gold-light);
-    margin-bottom: 10px;
-    direction: rtl;
-    text-shadow:
-      0 1px 0 rgba(255,255,255,0.08),
-      0 -1px 0 rgba(0,0,0,0.5),
-      0 2px 8px rgba(0,0,0,0.4),
-      0 0 30px rgba(201,168,76,0.15);
-    letter-spacing: 2px;
-  }
+.admin-content{flex:1;overflow-y:auto;padding:20px;background:#f0ece0}
+.admin-card{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);overflow:hidden;margin-bottom:16px}
+.admin-card-head{background:var(--green-dark);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold)}
+.admin-card-head h3{color:var(--gold);font-size:13px}
+.admin-card-head .ach-actions{display:flex;gap:8px}
+.admin-card-body{padding:16px}
+.ac-btn{padding:7px 13px;border-radius:6px;border:none;font-family:Tahoma,sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s}
+.acb-green{background:var(--green-dark);color:white}
+.acb-gold{background:var(--gold);color:var(--green-dark)}
+.acb-red{background:#e74c3c;color:white}
+.acb-gray{background:#ddd;color:#555}
+.acb-blue{background:var(--blue);color:white}
 
-  .bismillah-divider {
-    display: flex; align-items: center; justify-content: center;
-    gap: 10px; margin: 0 auto 12px; max-width: 320px;
-  }
-  .bismillah-divider .line {
-    flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5));
-  }
-  .bismillah-divider .line.rev {
-    background: linear-gradient(90deg, rgba(201,168,76,0.5), transparent);
-  }
-  .bismillah-divider .diamond {
-    width: 6px; height: 6px;
-    background: var(--gold);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
-  .bismillah-divider .crescent {
-    font-size: 14px; color: var(--gold); line-height: 1;
-  }
+.data-table{width:100%;border-collapse:collapse;font-size:12px}
+.data-table th{background:var(--green-dark);color:white;padding:9px 10px;text-align:left;white-space:nowrap}
+.data-table td{padding:9px 10px;border-bottom:1px solid var(--cream-dark);vertical-align:middle}
+.data-table tr:hover td{background:#fdf8ec}
+.data-table .td-actions{display:flex;gap:6px}
+.cat-istimewa{color:#27ae60;font-weight:700}
+.cat-baik{color:#2980b9;font-weight:700}
+.cat-cukup{color:var(--orange);font-weight:700}
+.cat-kurang{color:var(--red);font-weight:700}
 
-  .school-name {
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-  }
-  .header h1 {
-    color: var(--white);
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 3px;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-  }
-  .header-sub {
-    color: rgba(245,240,232,0.6);
-    font-size: 11px;
-  }
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin-bottom:16px}
+.stat-card{background:white;border-radius:10px;padding:14px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.05)}
+.stat-card .sc-num{font-size:30px;font-weight:700;color:var(--green-dark);line-height:1}
+.stat-card .sc-label{font-size:10px;color:var(--text-mid);margin-top:4px}
 
-  /* ── STEP NAV ── */
-  .step-nav {
-    background: var(--green-dark);
-    padding: 10px 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    position: sticky; top: 0; z-index: 100;
-    border-bottom: 2px solid var(--gold);
-  }
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal-box{background:white;border-radius:14px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.25)}
+.modal-head{background:var(--green-dark);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);position:sticky;top:0}
+.modal-head h3{color:var(--gold);font-size:13px}
+.modal-close{background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer}
+.modal-body{padding:18px}
+.mf-group{margin-bottom:12px}
+.mf-group label{display:block;font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:4px}
+.mf-group input,.mf-group select,.mf-group textarea{width:100%;padding:9px 12px;border:2px solid var(--cream-dark);border-radius:8px;font-family:Tahoma,sans-serif;font-size:13px;background:var(--cream);outline:none;transition:border .2s}
+.mf-group input:focus,.mf-group select:focus,.mf-group textarea:focus{border-color:var(--gold)}
+.mf-group textarea{height:70px;resize:none}
+.mf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-foot{padding:13px 18px;border-top:1px solid var(--cream-dark);display:flex;gap:8px;justify-content:flex-end}
 
-  .step-nav-inner {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex: 1;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+/* ── MAIN FORM ── */
+.container{max-width:600px;margin:0 auto;padding:14px}
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.section-header{background:var(--green-dark);color:white;padding:13px 18px;border-radius:10px 10px 0 0;border-bottom:3px solid var(--gold)}
+.section-header h2{font-size:15px;font-weight:700}
+.section-header p{font-size:11px;color:var(--cream-dark);margin-top:3px;line-height:1.5}
+.section-body{background:white;border-radius:0 0 10px 10px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,0.07);margin-bottom:14px}
 
-  .step-dot {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    border: 2px solid rgba(201,168,76,0.35);
-    background: transparent;
-    color: rgba(255,255,255,0.45);
-    font-size: 12px; font-weight: 700;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all .2s; font-family: Tahoma, sans-serif;
-  }
-  .step-dot.active { background: var(--gold); border-color: var(--gold); color: var(--green-dark); }
-  .step-dot.done { background: var(--green-light); border-color: var(--green-light); color: white; }
+.form-group{margin-bottom:13px}
+label{display:block;font-size:12px;font-weight:700;color:var(--green-dark);margin-bottom:5px}
+label .req{color:var(--red)}
+input[type="text"],select,textarea{width:100%;padding:10px 12px;border:2px solid var(--cream-dark);border-radius:8px;font-family:Tahoma,sans-serif;font-size:13px;background:var(--cream);color:var(--text-dark);transition:border .2s;outline:none}
+input:focus,select:focus{border-color:var(--gold);background:white}
+.info-box{background:var(--cream);border:1px solid var(--cream-dark);border-left:4px solid var(--gold);border-radius:8px;padding:10px 14px;margin-top:8px;font-size:12px;color:var(--text-mid)}
+.info-box strong{color:var(--green-dark);display:block;margin-bottom:3px}
 
-  .admin-btn {
-    display: flex; align-items: center; gap: 5px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    border: 1.5px solid rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.08);
-    color: var(--gold);
-    font-size: 11px; font-weight: 700;
-    cursor: pointer;
-    font-family: Tahoma, sans-serif;
-    transition: all .2s;
-    flex-shrink: 0;
-    margin-left: 6px;
-  }
-  .admin-btn:hover {
-    background: rgba(201,168,76,0.2);
-    border-color: var(--gold);
-  }
-  .admin-btn .admin-icon {
-    font-size: 14px; line-height: 1;
-  }
+.autocomplete-wrap{position:relative}
+.autocomplete-list{position:absolute;top:calc(100% + 2px);left:0;right:0;background:white;border:2px solid var(--gold);border-radius:8px;max-height:200px;overflow-y:auto;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,0.15);display:none}
+.autocomplete-list.show{display:block}
+.ac-item{padding:10px 14px;cursor:pointer;font-size:13px;border-bottom:1px solid var(--cream-dark);transition:background .15s}
+.ac-item:hover{background:var(--cream)}
+.ac-item:last-child{border-bottom:none}
+.ac-item .ac-sub{font-size:11px;color:var(--text-mid);margin-top:2px;display:flex;align-items:center;gap:6px}
+.badge-sudah{background:#27ae60;color:white;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:700}
+.badge-belum{background:#ddd;color:#666;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:700}
 
-  .admin-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 500;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 60px;
-  }
-  .admin-overlay.show { display: flex; }
-  .admin-panel {
-    background: var(--white);
-    border-radius: 14px;
-    width: 90%; max-width: 420px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    overflow: hidden;
-  }
-  .admin-panel-head {
-    background: var(--green-dark);
-    padding: 14px 18px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 2px solid var(--gold);
-  }
-  .admin-panel-head h3 { color: var(--gold); font-size: 14px; }
-  .admin-close {
-    background: none; border: none; color: rgba(255,255,255,0.6);
-    font-size: 18px; cursor: pointer; line-height: 1; padding: 0;
-  }
-  .admin-body { padding: 18px; }
-  .admin-menu-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 14px;
-    border-radius: 8px;
-    border: 1px solid var(--cream-dark);
-    margin-bottom: 8px;
-    cursor: pointer;
-    transition: all .15s;
-    background: var(--cream);
-  }
-  .admin-menu-item:hover { border-color: var(--gold); background: #fdf8ec; }
-  .admin-menu-item .ami-icon { font-size: 22px; }
-  .admin-menu-item .ami-text h4 { font-size: 13px; font-weight: 700; color: var(--text-dark); }
-  .admin-menu-item .ami-text p { font-size: 11px; color: var(--text-mid); margin-top: 2px; }
-  .admin-login {
-    background: var(--cream); border-radius: 10px; padding: 14px;
-    display: none;
-  }
-  .admin-login input {
-    width: 100%; padding: 9px 12px;
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 8px; font-size: 13px;
-    font-family: Tahoma, sans-serif;
-    margin-bottom: 8px; outline: none;
-    background: white;
-  }
-  .admin-login input:focus { border-color: var(--gold); }
-  .admin-login-btn {
-    width: 100%; padding: 10px;
-    background: var(--green-dark); color: white;
-    border: none; border-radius: 8px;
-    font-family: Tahoma, sans-serif; font-size: 13px; font-weight: 700;
-    cursor: pointer;
-  }
-  .admin-rekap { display: none; }
-  .admin-rekap-head {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 12px;
-  }
-  .admin-rekap-head h4 { font-size: 13px; font-weight: 700; color: var(--green-dark); }
-  .admin-rekap-actions { display: flex; gap: 8px; }
-  .admin-rekap-btn {
-    padding: 6px 12px; border-radius: 6px; border: none;
-    font-family: Tahoma, sans-serif; font-size: 11px; font-weight: 700;
-    cursor: pointer;
-  }
-  .arb-refresh { background: var(--green-dark); color: white; }
-  .arb-csv { background: var(--gold); color: var(--green-dark); }
-  .arb-back { background: var(--cream-dark); color: var(--text-mid); }
+.penginput-badge{display:flex;align-items:center;gap:8px;background:var(--cream);border:2px solid var(--gold);border-radius:8px;padding:9px 12px;font-size:13px;font-weight:700;color:var(--green-dark)}
+.penginput-badge .badge-change{margin-left:auto;font-size:11px;font-weight:400;color:var(--text-mid);cursor:pointer;text-decoration:underline}
 
-  /* ── MAIN ── */
-  .container { max-width: 600px; margin: 0 auto; padding: 16px; }
+.rubrik-item{background:var(--cream);border-radius:12px;padding:13px 15px;margin-bottom:10px;border:1.5px solid var(--cream-dark);transition:border-color .2s}
+.rubrik-item.belum-isi{border-color:var(--red);background:#fdf5f5}
+.rubrik-label{font-size:14px;font-weight:700;color:var(--green-dark);margin-bottom:3px}
+.rubrik-sub{font-size:12px;color:var(--text-mid);margin-bottom:11px}
+.score-btns{display:flex;gap:7px}
+.score-btn{flex:1;padding:11px 6px;border:2px solid var(--cream-dark);border-radius:10px;background:white;cursor:pointer;font-family:Tahoma,sans-serif;font-size:12px;font-weight:700;color:var(--text-mid);text-align:center;transition:all .2s;line-height:1.3}
+.score-btn .snum{font-size:19px;font-weight:700;display:block;margin-bottom:1px}
+.score-btn .sdesc{font-size:10px;font-weight:400;opacity:0.8;display:block}
+.score-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,0.1)}
+.score-btn.selected-1{background:#fef5f5;border-color:var(--red);color:var(--red);box-shadow:0 3px 10px rgba(192,57,43,0.15)}
+.score-btn.selected-2{background:#fff8ec;border-color:var(--orange);color:var(--orange);box-shadow:0 3px 10px rgba(230,126,34,0.15)}
+.score-btn.selected-3{background:#f0faf4;border-color:#27ae60;color:#27ae60;box-shadow:0 3px 10px rgba(39,174,96,0.15)}
+.neg-btns{display:flex;gap:7px}
+.neg-btn{flex:1;padding:10px 6px;border:2px solid var(--cream-dark);border-radius:10px;background:white;cursor:pointer;font-family:Tahoma,sans-serif;font-size:11px;font-weight:700;color:var(--text-mid);text-align:center;transition:all .2s}
+.neg-btn.sel-0{background:#f0faf4;border-color:#27ae60;color:#27ae60}
+.neg-btn.sel-1{background:#fff8ec;border-color:var(--orange);color:var(--orange)}
+.neg-btn.sel-2{background:#fef5f5;border-color:var(--red);color:var(--red)}
+.sub-header{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin:13px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--cream-dark)}
 
-  .section { display: none; animation: fadeIn .3s ease; }
-  .section.active { display: block; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.progress-bar{background:var(--cream-dark);border-radius:4px;height:5px;margin:8px 0 14px}
+.progress-fill{background:var(--gold);height:100%;border-radius:4px;transition:width .4s ease}
+.catatan-area textarea{height:70px;resize:none}
+.alert{padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:12px}
+.alert-warn{background:#fff8ec;border:1px solid var(--orange);color:#7d4800}
+.alert-info{background:#e8f4fd;border:1px solid #aed6f1;color:#1a5276}
+.surat-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.surat-tag{display:flex;align-items:center;gap:4px;background:var(--green-dark);color:white;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.surat-tag .tag-x{cursor:pointer;opacity:0.7;font-size:12px}
+.surat-tag .tag-x:hover{opacity:1}
+.error-msg{color:var(--red);font-size:11px;margin-top:4px;display:none}
+.error-msg.show{display:block}
+.error-summary{background:#fef5f5;border:2px solid var(--red);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--red);display:none}
+.error-summary.show{display:block}
+.error-summary strong{display:block;margin-bottom:4px}
+.btn-row{display:flex;gap:10px;margin-top:14px}
+.btn{flex:1;padding:13px;border:none;border-radius:8px;font-family:Tahoma,sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-next{background:var(--gold);color:var(--green-dark)}
+.btn-next:hover{background:var(--gold-light)}
+.btn-prev{background:var(--cream-dark);color:var(--text-mid)}
+.btn-prev:hover{background:#d5cbb5}
+.btn-save{background:var(--green-mid);color:white}
+.btn-save:hover{background:var(--green-dark)}
 
-  .section-header {
-    background: var(--green-dark);
-    color: white;
-    padding: 14px 18px;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 3px solid var(--gold);
-  }
-  .section-header h2 { font-size: 16px; font-weight: 700; }
-  .section-header p { font-size: 12px; color: var(--cream-dark); margin-top: 3px; line-height: 1.5; }
+/* ── LAPORAN ORANG TUA ── */
+.lap-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:400;overflow-y:auto;padding:20px 16px 40px}
+.lap-overlay.show{display:block}
+.lap-wrap{max-width:700px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.lap-toolbar{background:var(--green-dark);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:10}
+.lap-toolbar span{color:var(--gold);font-size:13px;font-weight:700}
+.lap-toolbar-btns{display:flex;gap:8px}
+.lap-tb-btn{padding:7px 13px;border-radius:6px;border:none;font-family:Tahoma,sans-serif;font-size:12px;font-weight:700;cursor:pointer}
+.ltb-print{background:var(--gold);color:var(--green-dark)}
+.ltb-next{background:var(--green-light);color:white}
 
-  .section-body {
-    background: white;
-    border-radius: 0 0 10px 10px;
-    padding: 18px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    margin-bottom: 16px;
-  }
+.lap-content{padding:40px 48px;font-family:'Lora',Georgia,serif;font-size:13.5px;line-height:1.9;color:#1a1a1a}
+.lap-kop{text-align:center;border-bottom:3px double #1a3a2a;padding-bottom:16px;margin-bottom:20px}
+.lk-sekolah{font-family:Tahoma,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green-dark);margin-bottom:4px}
+.lk-judul{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--green-dark);margin-bottom:2px}
+.lk-sub{font-size:11px;color:#666;font-family:Tahoma,sans-serif}
 
-  .form-group { margin-bottom: 14px; }
-  label { display: block; font-size: 12px; font-weight: 700; color: var(--green-dark); margin-bottom: 5px; }
-  label .req { color: var(--red); }
+.lap-identitas{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;margin:16px 0;padding:14px 18px;background:#f7f3ea;border-radius:8px;font-family:Tahoma,sans-serif;font-size:12px}
+.li-row{display:flex;gap:6px}
+.li-key{color:#666;min-width:90px}
+.li-val{font-weight:700;color:#1a1a1a}
 
-  input[type="text"], select, textarea {
-    width: 100%; padding: 10px 12px;
-    border: 2px solid var(--cream-dark);
-    border-radius: 8px;
-    font-family: Tahoma, sans-serif;
-    font-size: 13px;
-    background: var(--cream);
-    color: var(--text-dark);
-    transition: border .2s;
-    outline: none;
-  }
-  input:focus, select:focus { border-color: var(--gold); background: white; }
-  input.error { border-color: var(--red); }
+.lap-score-bar{display:flex;align-items:center;gap:16px;background:var(--green-dark);border-radius:10px;padding:16px 20px;margin:16px 0;color:white}
+.lsb-angka{font-size:46px;font-weight:700;line-height:1;font-family:Tahoma,sans-serif}
+.lsb-detail{flex:1}
+.lsb-kat{font-size:14px;font-weight:700;color:var(--gold-light);margin-bottom:4px}
+.lsb-skor{font-size:11px;color:rgba(255,255,255,0.6);font-family:Tahoma,sans-serif}
+.lsb-bar-wrap{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.lsb-bar-item{font-size:10px;font-family:Tahoma,sans-serif}
+.lbi-label{color:rgba(255,255,255,0.55);margin-bottom:2px}
+.lbi-track{background:rgba(255,255,255,0.15);border-radius:4px;height:5px;overflow:hidden}
+.lbi-fill{background:var(--gold);height:100%;border-radius:4px}
 
-  .info-box {
-    background: var(--cream);
-    border: 1px solid var(--cream-dark);
-    border-left: 4px solid var(--gold);
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-top: 8px;
-    font-size: 12px;
-    color: var(--text-mid);
-  }
-  .info-box strong { color: var(--green-dark); display: block; margin-bottom: 4px; }
+.lap-section{margin-bottom:22px}
+.lap-section h4{font-family:Tahoma,sans-serif;font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e0d8c8}
+.lap-section p{margin-bottom:10px;text-align:justify}
+.lap-section p:last-child{margin-bottom:0}
 
-  .autocomplete-wrap { position: relative; }
-  .autocomplete-list {
-    position: absolute; top: calc(100% + 2px); left: 0; right: 0;
-    background: white;
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-    max-height: 200px; overflow-y: auto;
-    z-index: 999;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    display: none;
-  }
-  .autocomplete-list.show { display: block; }
-  .ac-item {
-    padding: 10px 14px; cursor: pointer;
-    font-size: 13px;
-    border-bottom: 1px solid var(--cream-dark);
-    transition: background .15s;
-  }
-  .ac-item:hover { background: var(--cream); }
-  .ac-item:last-child { border-bottom: none; }
-  .ac-item .ac-sub { font-size: 11px; color: var(--text-mid); margin-top: 2px; }
+.lap-aspek-block{margin:12px 0;padding:12px 16px 12px 20px;border-left:3px solid var(--gold);background:#faf7f0;border-radius:0 8px 8px 0}
+.lab-title{font-family:Tahoma,sans-serif;font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px}
+.lab-skor{display:inline-block;padding:2px 8px;border-radius:12px;font-family:Tahoma,sans-serif;font-size:10px;font-weight:700;margin-bottom:6px}
+.lab-s-baik{background:#d5f5e3;color:#1e8449}
+.lab-s-cukup{background:#fef9e7;color:#b7770d}
+.lab-s-kurang{background:#fdf2f2;color:#c0392b}
+.lab-text p{font-size:13px;margin-bottom:5px}
+.lab-text p:last-child{margin-bottom:0}
 
-  .penginput-badge {
-    display: flex; align-items: center; gap: 8px;
-    background: var(--cream); border: 2px solid var(--gold);
-    border-radius: 8px; padding: 9px 12px;
-    font-size: 13px; font-weight: 700; color: var(--green-dark);
-  }
-  .penginput-badge .badge-change {
-    margin-left: auto; font-size: 11px; font-weight: 400;
-    color: var(--text-mid); cursor: pointer; text-decoration: underline;
-  }
+.lap-eskul-naratif{background:#f0f7f3;border:1px solid #b8d8c8;border-radius:10px;padding:16px;margin-top:10px}
+.len-title{font-family:Tahoma,sans-serif;font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.len-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.let-tag{padding:4px 14px;border-radius:20px;font-family:Tahoma,sans-serif;font-size:11px;font-weight:700}
+.let-wajib{background:#1a3a2a;color:white}
+.let-lomba{background:#c0392b;color:white}
+.let-tahfizh{background:#c9a84c;color:white}
+.let-pilihan{background:#ede5d0;color:#4a4a4a}
 
-  .rubrik-item {
-    background: var(--cream);
-    border-radius: 12px; padding: 14px 16px;
-    margin-bottom: 10px;
-    border: 1.5px solid var(--cream-dark);
-    transition: border-color .2s;
-  }
-  .rubrik-item.belum-isi { border-color: var(--red); background: #fdf5f5; }
-  .rubrik-label { font-size: 14px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
-  .rubrik-sub { font-size: 12px; font-weight: 400; color: var(--text-mid); margin-bottom: 12px; }
-  .score-btns { display: flex; gap: 8px; }
-  .score-btn {
-    flex: 1; padding: 12px 8px;
-    border: 2px solid var(--cream-dark);
-    border-radius: 10px; background: white;
-    cursor: pointer; font-family: Tahoma, sans-serif;
-    font-size: 13px; font-weight: 700; color: var(--text-mid);
-    text-align: center; transition: all .2s;
-    line-height: 1.3;
-  }
-  .score-btn .snum { font-size: 20px; font-weight: 700; display: block; margin-bottom: 2px; }
-  .score-btn .sdesc { font-size: 10px; font-weight: 400; opacity: 0.8; display: block; }
-  .score-btn:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
-  .score-btn.selected-1 { background: #fef5f5; border-color: var(--red); color: var(--red); box-shadow: 0 3px 10px rgba(192,57,43,0.15); }
-  .score-btn.selected-2 { background: #fff8ec; border-color: var(--orange); color: var(--orange); box-shadow: 0 3px 10px rgba(230,126,34,0.15); }
-  .score-btn.selected-3 { background: #f0faf4; border-color: #27ae60; color: #27ae60; box-shadow: 0 3px 10px rgba(39,174,96,0.15); }
+.lap-tips{background:#fff8ec;border:1px solid #f0c070;border-radius:10px;padding:16px;margin-top:10px}
+.lap-tips .lt-title{font-family:Tahoma,sans-serif;font-size:11px;font-weight:700;color:#8a5a00;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.lap-tips ul{padding-left:16px}
+.lap-tips ul li{font-size:13px;margin-bottom:5px}
 
-  .neg-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-  .neg-btn {
-    flex: 1; min-width: 80px; padding: 10px 8px;
-    border: 2px solid var(--cream-dark); border-radius: 10px;
-    background: white; cursor: pointer;
-    font-family: Tahoma, sans-serif;
-    font-size: 12px; font-weight: 700; color: var(--text-mid);
-    text-align: center; transition: all .2s;
-  }
-  .neg-btn:hover { transform: translateY(-1px); }
-  .neg-btn.sel-0 { background: #f0faf4; border-color: #27ae60; color: #27ae60; }
-  .neg-btn.sel-1 { background: #fff8ec; border-color: var(--orange); color: var(--orange); }
-  .neg-btn.sel-2 { background: #fef5f5; border-color: var(--red); color: var(--red); }
+.lap-penutup{background:#f0f7f3;border-radius:10px;padding:16px 18px;margin-top:16px;font-style:italic;text-align:center;font-size:13px;color:#2d5a3d;border:1px solid #b8d8c8}
 
-  .sub-header {
-    font-size: 11px; font-weight: 700; color: var(--gold);
-    text-transform: uppercase; letter-spacing: 1px;
-    margin: 14px 0 8px; padding-bottom: 4px;
-    border-bottom: 1px solid var(--cream-dark);
-  }
+.lap-ttd{margin-top:36px;display:flex;justify-content:flex-end;font-family:Tahoma,sans-serif;font-size:12px}
+.lap-ttd-box{text-align:center}
+.ttd-kota{color:#666;margin-bottom:2px}
+.ttd-hormat{color:#666;margin-bottom:2px}
+.ttd-nama{border-top:1px solid #333;margin-top:48px;padding-top:5px;font-weight:700;color:#1a1a1a}
+.ttd-nip{color:#666;font-size:11px;margin-top:1px}
+.ttd-jabatan{color:#666;font-size:11px}
 
-  .hasil-card {
-    background: var(--green-dark);
-    color: white; border-radius: 12px;
-    padding: 24px; text-align: center; margin-bottom: 16px;
-  }
-  .hasil-nama { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
-  .hasil-score { font-size: 52px; font-weight: 700; color: white; line-height: 1; margin: 10px 0; }
-  .hasil-cat { font-size: 14px; color: var(--gold-light); }
-  .score-breakdown { background: white; border-radius: 8px; overflow: hidden; border: 1px solid var(--cream-dark); margin-bottom: 16px; }
-  .breakdown-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 14px; border-bottom: 1px solid var(--cream-dark); font-size: 13px;
-  }
-  .breakdown-row:last-child { border-bottom: none; }
-  .breakdown-row .lbl { color: var(--text-mid); }
-  .breakdown-row .val { font-weight: 700; color: var(--green-dark); }
-
-  .rekap-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
-  .rekap-table th { background: var(--green-dark); color: white; padding: 8px 6px; text-align: left; }
-  .rekap-table td { padding: 8px 6px; border-bottom: 1px solid var(--cream-dark); }
-  .rekap-table tr:nth-child(even) td { background: var(--cream); }
-  .cat-istimewa { color: #27ae60; font-weight: 700; }
-  .cat-baik { color: #2980b9; font-weight: 700; }
-  .cat-cukup { color: var(--orange); font-weight: 700; }
-  .cat-kurang { color: var(--red); font-weight: 700; }
-
-  .btn-row { display: flex; gap: 10px; margin-top: 16px; }
-  .btn {
-    flex: 1; padding: 13px;
-    border: none; border-radius: 8px;
-    font-family: Tahoma, sans-serif;
-    font-size: 13px; font-weight: 700;
-    cursor: pointer; transition: all .2s;
-  }
-  .btn-next { background: var(--gold); color: var(--green-dark); }
-  .btn-next:hover { background: var(--gold-light); }
-  .btn-prev { background: var(--cream-dark); color: var(--text-mid); }
-  .btn-prev:hover { background: #d5cbb5; }
-  .btn-save { background: var(--green-mid); color: white; }
-  .btn-save:hover { background: var(--green-dark); }
-  .btn-export { background: var(--green-dark); color: var(--gold); border: 2px solid var(--gold); flex: none; padding: 10px 16px; }
-
-  .error-msg { color: var(--red); font-size: 11px; margin-top: 4px; display: none; }
-  .error-msg.show { display: block; }
-
-  .error-summary {
-    background: #fef5f5; border: 2px solid var(--red);
-    border-radius: 8px; padding: 10px 14px;
-    margin-bottom: 12px; font-size: 12px; color: var(--red); display: none;
-  }
-  .error-summary.show { display: block; }
-  .error-summary strong { display: block; margin-bottom: 4px; }
-
-  .progress-bar { background: var(--cream-dark); border-radius: 4px; height: 5px; margin: 8px 0 16px; }
-  .progress-fill { background: var(--gold); height: 100%; border-radius: 4px; transition: width .4s ease; }
-
-  .catatan-area textarea { height: 70px; resize: none; }
-  .alert { padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 12px; }
-  .alert-warn { background: #fff8ec; border: 1px solid var(--orange); color: #7d4800; }
-
-  .surat-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-  .surat-tag{display:flex;align-items:center;gap:4px;background:var(--green-dark);color:white;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
-  .surat-tag .tag-x{cursor:pointer;opacity:0.7;font-size:12px;line-height:1}
-  .surat-tag .tag-x:hover{opacity:1}
-
-  @media (max-width: 400px) {
-    .score-btn { font-size: 10px; padding: 7px 2px; }
-    .bismillah { font-size: 26px; }
-    .admin-btn span { display: none; }
-  }
-
-  /* ── LAPORAN OVERLAY ── */
-  .lap-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 400;
-    overflow-y: auto;
-    padding: 20px 16px 40px;
-  }
-  .lap-overlay.show { display: block; }
-  .lap-wrap {
-    max-width: 640px; margin: 0 auto;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  }
-  .lap-toolbar {
-    background: var(--green-dark);
-    padding: 12px 18px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 2px solid var(--gold);
-  }
-  .lap-toolbar span { color: var(--gold); font-size: 13px; font-weight: 700; }
-  .lap-toolbar-btns { display: flex; gap: 8px; }
-  .lap-tb-btn {
-    padding: 7px 14px; border-radius: 6px; border: none;
-    font-family: Tahoma, sans-serif; font-size: 12px; font-weight: 700;
-    cursor: pointer;
-  }
-  .ltb-print { background: var(--gold); color: var(--green-dark); }
-  .ltb-next { background: var(--green-light); color: white; }
-  .ltb-close { background: rgba(255,255,255,0.15); color: white; }
-
-  .lap-content {
-    padding: 32px 36px;
-    font-family: 'Times New Roman', serif;
-    font-size: 13px;
-    line-height: 1.8;
-    color: #1a1a1a;
-  }
-  .lap-siswa-info {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4px 20px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #ccc;
-    font-family: Tahoma, sans-serif;
-    font-size: 12px;
-  }
-  .lap-siswa-info .li-row { display: flex; gap: 6px; }
-  .lap-siswa-info .li-key { color: #666; min-width: 80px; }
-  .lap-siswa-info .li-val { font-weight: 700; color: #1a1a1a; }
-  .lap-nilai-bar {
-    display: flex; align-items: center; gap: 14px;
-    background: #f5f5f5; border-radius: 8px;
-    padding: 14px 18px; margin-bottom: 20px;
-    font-family: Tahoma, sans-serif;
-  }
-  .lap-nilai-angka { font-size: 42px; font-weight: 700; color: var(--green-dark); line-height: 1; }
-  .lap-nilai-detail { flex: 1; }
-  .lap-nilai-kat { font-size: 14px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
-  .lap-nilai-sub { font-size: 11px; color: #666; }
-  .lap-section { margin-bottom: 18px; }
-  .lap-section h4 {
-    font-family: Tahoma, sans-serif;
-    font-size: 11px; font-weight: 700;
-    color: var(--gold);
-    text-transform: uppercase; letter-spacing: 1px;
-    margin-bottom: 6px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #e0d8c8;
-  }
-  .lap-section p { text-align: justify; }
-  .lap-eskul-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-  .lap-eskul-tag {
-    padding: 3px 12px; border-radius: 20px;
-    font-family: Tahoma, sans-serif; font-size: 11px; font-weight: 700;
-  }
-  .let-wajib { background: #1a3a2a; color: white; }
-  .let-lomba { background: #c0392b; color: white; }
-  .let-tahfizh { background: #c9a84c; color: white; }
-  .let-pilihan { background: #ede5d0; color: #4a4a4a; }
-  .lap-ttd {
-    margin-top: 30px;
-    display: flex; justify-content: flex-end;
-    font-family: Tahoma, sans-serif; font-size: 12px;
-  }
-  .lap-ttd-box { text-align: center; }
-  .lap-ttd-box .ttd-nama { border-top: 1px solid #333; margin-top: 40px; padding-top: 4px; font-weight: 700; }
-  .lap-ttd-box .ttd-jabatan { color: #666; font-size: 11px; }
-
-  @media print {
-    .header, .step-nav, .container, .lap-toolbar, .admin-overlay { display: none !important; }
-    .lap-overlay { display: block !important; position: static; background: white; padding: 0; }
-    .lap-wrap { box-shadow: none; border-radius: 0; }
-    .lap-content { padding: 0; }
-    body { background: white; }
-  }
+@media(max-width:520px){
+  .lap-content{padding:24px 18px}
+  .lap-identitas{grid-template-columns:1fr}
+  .lsb-bar-wrap{grid-template-columns:1fr}
+  .admin-sidebar{width:52px}
+  .admin-sidebar .asb-label{display:none}
+  .lap-score-bar{flex-direction:column;text-align:center}
+}
+@media print{
+  .header,.counter-bar,.container,.lap-toolbar,.admin-fullscreen{display:none!important}
+  .lap-overlay{display:block!important;position:static;background:white;padding:0}
+  .lap-wrap{box-shadow:none;border-radius:0}
+  .lap-content{padding:0}
+  body{background:white}
+}
 </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
+<!-- HEADER -->
 <div class="header">
   <div class="header-inner">
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
     <div class="bismillah-divider">
-      <div class="line"></div>
-      <div class="crescent">☽</div>
-      <div class="diamond"></div>
-      <div class="crescent">✦</div>
-      <div class="diamond"></div>
-      <div class="crescent">☾</div>
+      <div class="line"></div><div class="crescent">☽</div><div class="diamond"></div>
+      <div class="crescent">✦</div><div class="diamond"></div><div class="crescent">☾</div>
       <div class="line rev"></div>
     </div>
     <div class="school-name">SD Islam Tahfizh Cahaya Quran</div>
@@ -581,78 +295,64 @@
   <div class="header-rim"></div>
 </div>
 
-<!-- ── STEP NAV ── -->
-<div class="step-nav" id="stepNav">
-  <div class="step-nav-inner" id="stepDots"></div>
-  <button class="admin-btn" onclick="toggleAdmin()">
-    <span class="admin-icon">☽</span>
-    <span>Admin</span>
-  </button>
+<!-- COUNTER BAR -->
+<div class="counter-bar">
+  <div class="cb-item">👦 Banin: <span class="cb-fill" id="counterBanin">— / —</span></div>
+  <div class="cb-sep">|</div>
+  <div class="cb-item">👧 Banat: <span class="cb-fill" id="counterBanat">— / —</span></div>
+  <div class="cb-sep">|</div>
+  <button class="admin-btn-top" onclick="bukaAdmin()">⚙ Admin</button>
 </div>
 
-<!-- ── ADMIN PANEL ── -->
-<div class="admin-overlay" id="adminOverlay" onclick="closeAdminOutside(event)">
-  <div class="admin-panel">
-    <div class="admin-panel-head">
-      <h3>☽ Panel Admin</h3>
-      <button class="admin-close" onclick="toggleAdmin()">✕</button>
+<!-- ── ADMIN FULLSCREEN ── -->
+<div class="admin-fullscreen" id="adminFullscreen">
+  <div id="adminLoginScreen" style="flex:1;display:flex;align-items:center;justify-content:center;padding:20px">
+    <div class="admin-login-box">
+      <div class="al-logo">☽</div>
+      <div class="al-title">Panel Administrasi</div>
+      <div class="al-sub">SD Islam Tahfizh Cahaya Quran</div>
+      <input type="text" id="adminUser" placeholder="Username" autocomplete="off">
+      <div style="position:relative;margin-bottom:12px">
+        <input type="password" id="adminPass" placeholder="Password" style="margin-bottom:0;padding-right:44px">
+        <button onclick="togglePass()" type="button" id="togglePassBtn" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.45);font-size:18px;line-height:1;padding:0;transition:color .2s" title="Tampilkan password">👁</button>
+      </div>
+      <button class="admin-login-submit" onclick="doAdminLogin()">Masuk</button>
+      <div class="admin-login-err" id="adminLoginErr">Username atau password salah</div>
+      <div style="margin-top:16px">
+        <button onclick="tutupAdmin()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:11px;cursor:pointer;font-family:Tahoma,sans-serif">← Kembali ke Form</button>
+      </div>
+    </div>
+  </div>
+  <div class="admin-app" id="adminApp">
+    <div class="admin-topbar">
+      <span class="atb-logo">☽</span>
+      <span class="atb-title">Panel Admin — SD Islam Tahfizh Cahaya Quran</span>
+      <span class="atb-user" id="adminUserLabel"></span>
+      <button class="atb-logout" onclick="doAdminLogout()">Keluar</button>
     </div>
     <div class="admin-body">
-      <div id="adminMenu">
-        <div class="admin-menu-item" onclick="showAdminLogin('rekap')">
-          <span class="ami-icon">📋</span>
-          <div class="ami-text">
-            <h4>Rekap Semua Siswa</h4>
-            <p>Lihat nilai seluruh peserta seleksi</p>
-          </div>
-        </div>
-        <div class="admin-menu-item" onclick="showAdminLogin('reset')">
-          <span class="ami-icon">↺</span>
-          <div class="ami-text">
-            <h4>Reset Sesi</h4>
-            <p>Hapus semua data di sesi ini</p>
-          </div>
-        </div>
+      <div class="admin-sidebar">
+        <div class="asb-item active" onclick="adminNav('dashboard',this)"><span class="asb-icon">📊</span><span class="asb-label"> Dashboard</span></div>
+        <div class="asb-item" onclick="adminNav('data',this)"><span class="asb-icon">📋</span><span class="asb-label"> Data Siswa</span></div>
+        <div class="asb-item" onclick="adminNav('laporan',this)"><span class="asb-icon">📄</span><span class="asb-label"> Laporan</span></div>
       </div>
-      <div class="admin-login" id="adminLogin">
-        <p style="font-size:12px;color:#666;margin-bottom:10px">Masukkan PIN Admin:</p>
-        <input type="password" id="adminPin" placeholder="PIN Admin" onkeydown="if(event.key==='Enter') checkPin()">
-        <button class="admin-login-btn" onclick="checkPin()">Masuk</button>
-        <p style="font-size:11px;color:var(--red);margin-top:6px;display:none" id="pinErr">PIN salah</p>
-      </div>
-      <div class="admin-rekap" id="adminRekap">
-        <div class="admin-rekap-head">
-          <h4>Rekap Penilaian</h4>
-          <div class="admin-rekap-actions">
-            <button class="admin-rekap-btn arb-refresh" onclick="loadAdminRekap()">↻ Refresh</button>
-            <button class="admin-rekap-btn arb-csv" onclick="exportCSV()">↓ CSV</button>
-            <button class="admin-rekap-btn arb-back" onclick="backToAdminMenu()">← Menu</button>
-          </div>
-        </div>
-        <div id="adminRekapContent" style="font-size:12px;color:var(--text-mid);text-align:center;padding:20px">Memuat...</div>
-      </div>
+      <div class="admin-content" id="adminContent"></div>
     </div>
   </div>
 </div>
 
+<!-- FORM CONTAINER -->
 <div class="container">
-  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12%"></div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12.5%"></div></div>
 
-  <!-- STEP 1 -->
+  <!-- STEP 1: IDENTITAS -->
   <div class="section active" id="sec1">
-    <div class="section-header">
-      <h2>Langkah 1 — Identitas</h2>
-      <p>Pilih penginput dan nama siswa yang akan dinilai</p>
-    </div>
+    <div class="section-header"><h2>Langkah 1 — Identitas</h2><p>Pilih nama penginput dan nama siswa yang akan dinilai</p></div>
     <div class="section-body">
-      <div class="form-group" id="penginputGroup">
+      <div class="form-group">
         <label>Nama Penginput <span class="req">*</span></label>
         <div id="penginputLocked" style="display:none">
-          <div class="penginput-badge">
-            <span>👤</span>
-            <span id="lockedNamaPenginput">—</span>
-            <span class="badge-change" onclick="gantiPenginput()">Ganti</span>
-          </div>
+          <div class="penginput-badge"><span>👤</span><span id="lockedNamaPenginput">—</span><span class="badge-change" onclick="gantiPenginput()">Ganti</span></div>
         </div>
         <div id="penginputInput">
           <div class="autocomplete-wrap">
@@ -662,7 +362,6 @@
         </div>
         <div class="error-msg" id="errPenginput">Wajib memilih atau mengisi nama penginput</div>
       </div>
-
       <div class="form-group">
         <label>Nama Siswa <span class="req">*</span></label>
         <div class="autocomplete-wrap">
@@ -671,17 +370,16 @@
         </div>
         <div class="error-msg" id="errNama">Wajib memilih nama siswa dari daftar</div>
       </div>
-
       <div id="infoBox" class="info-box" style="display:none">
         <strong id="infoNama">—</strong>
         <span id="infoDetail">—</span>
+        <div id="infoObserver" style="margin-top:6px;font-size:11px;color:var(--green-dark);font-weight:700">👁 Observer: <span id="infoObserverNama" style="font-weight:400;color:var(--text-mid)">—</span></div>
       </div>
-
       <div class="btn-row"><button class="btn btn-next" onclick="goNext(1)">Lanjut ke Kognitif →</button></div>
     </div>
   </div>
 
-  <!-- STEP 2 -->
+  <!-- STEP 2: KOGNITIF -->
   <div class="section" id="sec2">
     <div class="section-header"><h2>Langkah 2 — Tes Kognitif</h2><p>1 = Belum Bisa · 2 = Perlu Bantuan · 3 = Bisa Mandiri</p></div>
     <div class="section-body">
@@ -698,7 +396,7 @@
     </div>
   </div>
 
-  <!-- STEP 3 -->
+  <!-- STEP 3: TAHFIZH -->
   <div class="section" id="sec3">
     <div class="section-header"><h2>Langkah 3 — Tes Tahfizh</h2><p>1 = Kurang · 2 = Cukup · 3 = Baik</p></div>
     <div class="section-body">
@@ -716,79 +414,90 @@
       <div id="tahfizh-items"></div>
       <div class="btn-row">
         <button class="btn btn-prev" onclick="goPrev(3)">← Kembali</button>
-        <button class="btn btn-next" onclick="goNext(3)">Lanjut ke Adab →</button>
+        <button class="btn btn-next" onclick="goNext(3)">Lanjut ke Spiritual →</button>
       </div>
     </div>
   </div>
 
-  <!-- STEP 4 -->
+  <!-- STEP 4: SPIRITUAL & IBADAH -->
   <div class="section" id="sec4">
-    <div class="section-header"><h2>Langkah 4 — Adab &amp; Emosi</h2><p>1 = Kurang · 2 = Cukup · 3 = Baik</p></div>
+    <div class="section-header"><h2>Langkah 4 — Spiritual &amp; Ibadah</h2><p>1 = Belum · 2 = Perlu Bantuan · 3 = Bisa Mandiri</p></div>
     <div class="section-body">
       <div class="error-summary" id="errSummary4"></div>
+      <div class="alert alert-info">Nilai berdasarkan jawaban dan respons ananda saat ditanya langsung oleh penguji Tahfizh.</div>
+      <div class="sub-header">Doa Harian</div><div id="spiritual-A"></div>
+      <div class="sub-header">Pengetahuan Ibadah</div><div id="spiritual-B"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(4)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(4)">Lanjut ke Adab →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: ADAB & EMOSI -->
+  <div class="section" id="sec5">
+    <div class="section-header"><h2>Langkah 5 — Adab &amp; Emosi</h2><p>1 = Kurang · 2 = Cukup · 3 = Baik</p></div>
+    <div class="section-body">
+      <div class="error-summary" id="errSummary5"></div>
       <div class="sub-header">Adab Umum</div><div id="adab-A"></div>
       <div class="sub-header">Emosi &amp; Reaksi</div><div id="adab-B"></div>
       <div class="btn-row">
-        <button class="btn btn-prev" onclick="goPrev(4)">← Kembali</button>
-        <button class="btn btn-next" onclick="goNext(4)">Lanjut ke Perilaku →</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 5 -->
-  <div class="section" id="sec5">
-    <div class="section-header"><h2>Langkah 5 — Perilaku Negatif</h2><p>Catat jika perilaku negatif muncul selama sesi</p></div>
-    <div class="section-body">
-      <div class="alert alert-warn">Isi hanya jika perilaku tersebut muncul. "Tidak Muncul" adalah default.</div>
-      <div id="neg-items"></div>
-      <div class="btn-row">
         <button class="btn btn-prev" onclick="goPrev(5)">← Kembali</button>
-        <button class="btn btn-next" onclick="goNext(5)">Lanjut ke Kemandirian →</button>
+        <button class="btn btn-next" onclick="goNext(5)">Lanjut ke Mewarnai &amp; Puzzle →</button>
       </div>
     </div>
   </div>
 
-  <!-- STEP 6 -->
+  <!-- STEP 6: MEWARNAI & PUZZLE -->
   <div class="section" id="sec6">
-    <div class="section-header"><h2>Langkah 6 — Kemandirian</h2><p>1 = Belum · 2 = Perlu Dorongan · 3 = Mandiri</p></div>
+    <div class="section-header"><h2>Langkah 6 — Aktivitas Mewarnai &amp; Puzzle</h2><p>Observasi motorik, konsentrasi, kreativitas, dan daya tahan</p></div>
     <div class="section-body">
       <div class="error-summary" id="errSummary6"></div>
+      <div class="sub-header">🎨 Mewarnai</div><div id="mewarnai-items"></div>
+      <div class="sub-header">🧩 Puzzle</div><div id="puzzle-items"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(6)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(6)">Lanjut ke Perilaku →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7: PERILAKU NEGATIF -->
+  <div class="section" id="sec7">
+    <div class="section-header"><h2>Langkah 7 — Perilaku Negatif</h2><p>Catat jika perilaku negatif muncul selama sesi</p></div>
+    <div class="section-body">
+      <div class="alert alert-warn">Isi hanya jika perilaku tersebut benar-benar muncul. "Tidak Muncul" adalah default.</div>
+      <div id="neg-items"></div>
+      <div class="btn-row">
+        <button class="btn btn-prev" onclick="goPrev(7)">← Kembali</button>
+        <button class="btn btn-next" onclick="goNext(7)">Lanjut ke Kemandirian →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 8: KEMANDIRIAN -->
+  <div class="section" id="sec8">
+    <div class="section-header"><h2>Langkah 8 — Kemandirian</h2><p>1 = Belum · 2 = Perlu Dorongan · 3 = Mandiri</p></div>
+    <div class="section-body">
+      <div class="error-summary" id="errSummary8"></div>
       <div id="mandiri-items"></div>
       <div class="catatan-area form-group" style="margin-top:12px">
         <label>Catatan Khusus (opsional)</label>
         <textarea id="catatanKhusus" placeholder="Tuliskan kejadian atau pengamatan penting selama sesi..."></textarea>
       </div>
       <div class="btn-row">
-        <button class="btn btn-prev" onclick="goPrev(6)">← Kembali</button>
-        <button class="btn btn-next" onclick="goNext(6)">Lihat Hasil →</button>
+        <button class="btn btn-prev" onclick="goPrev(8)">← Kembali</button>
+        <button class="btn btn-save" onclick="goNext(8)">Simpan &amp; Selesai ✓</button>
       </div>
     </div>
   </div>
-
-  <!-- STEP 7: HASIL -->
-  <div class="section" id="sec7">
-    <div class="section-header"><h2>Langkah 7 — Hasil Penilaian</h2><p>Ringkasan nilai otomatis</p></div>
-    <div class="section-body">
-      <div class="hasil-card" id="hasilCard">
-        <div class="hasil-nama" id="hasilNama">—</div>
-        <div class="hasil-score" id="hasilScore">0</div>
-        <div class="hasil-cat" id="hasilCat">—</div>
-      </div>
-      <div class="score-breakdown" id="scoreBreakdown"></div>
-      <div class="btn-row">
-        <button class="btn btn-prev" onclick="goPrev(7)">← Kembali</button>
-        <button class="btn btn-save" onclick="simpanData()">✓ Simpan Penilaian</button>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<!-- ── LAPORAN OVERLAY ── -->
+<!-- LAPORAN ORANG TUA -->
 <div class="lap-overlay" id="lapOverlay">
   <div class="lap-wrap">
     <div class="lap-toolbar">
-      <span>☽ Laporan Penilaian</span>
+      <span>☽ Laporan Perkembangan Ananda</span>
       <div class="lap-toolbar-btns">
         <button class="lap-tb-btn ltb-print" onclick="window.print()">🖨 Cetak</button>
         <button class="lap-tb-btn ltb-next" onclick="tutupLaporan()">Siswa Berikutnya →</button>
@@ -798,260 +507,282 @@
   </div>
 </div>
 
+<!-- MODAL EDIT -->
+<div class="modal-overlay" id="modalEdit">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>✏ Edit Data Siswa</h3>
+      <button class="modal-close" onclick="tutupModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <button class="ac-btn acb-gray" onclick="tutupModal()">Batal</button>
+      <button class="ac-btn acb-green" onclick="simpanEdit()">Simpan Perubahan</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ── DATA ──
-const TIM_PENGINPUT = ["Fatih Raihan, S.Pd","Sahid Cakra B., S.Pd","Najwa Azka Khairani, S.Pd","Muna Hanifah"];
-const ADMIN_PIN = "1234";
-const SB_URL = "https://ohxepgioghhivpnbbsgb.supabase.co";
-const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oeGVwZ2lvZ2hoaXZwbmJic2diIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMzg0NjIsImV4cCI6MjA5MjYxNDQ2Mn0.0yhI2WDQhgpW5nDXJdva6nIgoPyjUDnnqSkm-3X5Uyc";
+// ══ CONFIG ══
+const TIM_PENGINPUT=["Fatih Raihan, S.Pd","Sahid Cakra B., S.Pd","Najwa Azka Khairani, S.Pd","Muna Hanifah"];
+const SB_URL="https://ohxepgioghhivpnbbsgb.supabase.co";
+const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oeGVwZ2lvZ2hoaXZwbmJic2diIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMzg0NjIsImV4cCI6MjA5MjYxNDQ2Mn0.0yhI2WDQhgpW5nDXJdva6nIgoPyjUDnnqSkm-3X5Uyc";
+const TOTAL_STEPS=8;
 
+// ══ SUPABASE ══
 async function sbInsert(data){
-  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
-    body:JSON.stringify(data)
-  });
+  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},body:JSON.stringify(data)});
   if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||r.statusText);}
-}
-
-async function sbSelect(){
-  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?select=*&order=created_at.desc',{
-    headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
-  });
-  if(!r.ok) throw new Error('Gagal memuat data');
   return r.json();
 }
+async function sbSelect(){
+  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?select=*&order=created_at.desc',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+  if(!r.ok)throw new Error('Gagal memuat data');return r.json();
+}
+async function sbUpdate(id,data){
+  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?id=eq.'+id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify(data)});
+  if(!r.ok)throw new Error('Gagal update');
+}
+async function sbDelete(id){
+  const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?id=eq.'+id,{method:'DELETE',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+  if(!r.ok)throw new Error('Gagal hapus');
+}
+async function sbGetAdmins(){
+  const r=await fetch(SB_URL+'/rest/v1/admin_users?select=*',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+  if(!r.ok)return null;return r.json();
+}
 
-const SISWA = [
-  {nama:"Ubaydillah Abiyyu",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
-  {nama:"Ibrahim Syathir Ahnaf",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
-  {nama:"Alghifari Hibatullah Jatmiko",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
-  {nama:"Anfa Khalid Dhyiaulhaq Widiarto",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
-  {nama:"Rahagi Atharrazka Ariyandana",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
-  {nama:"Musa Abdul Malik",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
-  {nama:"M. Alfatih",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1"},
-  {nama:"Rafardhan Abqary Iskandar",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
-  {nama:"M. Yazid Ilmany",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
-  {nama:"Ghaidan Aura Al Ghazali",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
-  {nama:"Yahya Zaidan Alfath",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
-  {nama:"M. Hamizan Muhsinin",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
-  {nama:"M. Mannaf Fadilah",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
-  {nama:"Afnan Addifaa Dhiyaulhaq",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2"},
-  {nama:"Ilyas Zaid Dhiaurrahman",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
-  {nama:"Haidar Zayd",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
-  {nama:"Fazodra Aretta Rafaeyyza Nasution",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
-  {nama:"Abdul Jabbar Al Miqdad",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
-  {nama:"M. Zayn Irfansyah",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
-  {nama:"Muhammad Al Ghaisan Ziyan Tugor",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
-  {nama:"M. Khalid Ar Rasyid",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1"},
-  {nama:"Muhammad Akhtar A.",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
-  {nama:"Azama Amiir Al Uswah",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
-  {nama:"Abdurrahman Baz Al Chuluq",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
-  {nama:"Abrisam Mannaf Abdussalam",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
-  {nama:"Marsekal Az Zubair Ramadhan",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
-  {nama:"Abdurrahman Cahya Sundara",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2"},
-  {nama:"M. Abrizam Al Faqih",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
-  {nama:"M. Uwais Abdurrohman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
-  {nama:"Alfathan Zeyn Pramono",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
-  {nama:"Abimana Muhammad Kurniawan",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
-  {nama:"Abdurrozaq Ibadurrahman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
-  {nama:"Shalteza Mesach Kardiman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
-  {nama:"Khalid Al Karim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1"},
-  {nama:"Gentama Mizyan Ahnaf",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
-  {nama:"Khalid Ash Shiddiq",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
-  {nama:"Ibrahim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
-  {nama:"Rayyan Atharrazka Dalimunthe",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
-  {nama:"Saad Al Akram Siregar",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
-  {nama:"Ibrahim Faris",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2"},
-  {nama:"M. Said Elnursie",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
-  {nama:"Muammar Ahmad Chaeran",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
-  {nama:"M. Kayandra Romansyah",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
-  {nama:"Aubrey M. El Rasya",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
-  {nama:"Leander Haamiz Wijaya",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
-  {nama:"M. Hafidz Alfatih Maulana",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
-  {nama:"Maulana Malik Ibrahim",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1"},
-  {nama:"Sulaiman Lingga Fibrayir",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
-  {nama:"Rumi Ahmad Mukhlashin",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
-  {nama:"Alrafa Zaidan Fathan",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
-  {nama:"Utsman Syauqi",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
-  {nama:"Althaf Elhasiq Mulyawan",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
-  {nama:"Abdurrahman Saleh Bawazir",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2"},
-  {nama:"Dafiya Ghumaisha Hilmi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
-  {nama:"Maryam Azzahra Abdurrahman",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
-  {nama:"Sofiya Haura Al Khansa",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
-  {nama:"Almahyra Leica Nugraha",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
-  {nama:"Maryam",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
-  {nama:"Syakira Az Zahra",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
-  {nama:"Kayina Dzikria Rizqi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1"},
-  {nama:"Shofiyya",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
-  {nama:"Khaula Shabriloveiyatsawab Riadi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
-  {nama:"Azzahra Hanifah Khairunnisa",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
-  {nama:"Naqiyya Zhufairah Yumna",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
-  {nama:"Sarah Adzkiya",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
-  {nama:"Hafidzah Khairunnisa Alfatih",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
-  {nama:"Nuha Elnara Adianto",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2"},
-  {nama:"Khadijah Shakayla Humaira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
-  {nama:"Shafiyyah Diar Zaiba",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
-  {nama:"Abidah Nuha Shabira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
-  {nama:"Fayra Afiza Hafidin",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
-  {nama:"Khalisa Zaila Hamidah",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
-  {nama:"Sakiinah Putri Irsyad",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
-  {nama:"Marzia Musyaffa Imannudin",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1"},
-  {nama:"Ince Adifa Usaima Mufidhah",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
-  {nama:"Hafshah Wafa Shidqia",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
-  {nama:"Aisyah Zhafira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
-  {nama:"Maryam Nusaibah Arina Rusli",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
-  {nama:"Alesha Putri Izzati",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
-  {nama:"Elmasyifa Berlian Shahira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
-  {nama:"Hanin Zhafira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2"},
-  {nama:"Inara Maryam Ramadhina",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
-  {nama:"Khadijah Mustofa",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
-  {nama:"Arsyila Felka Elrizqi",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
-  {nama:"Aliya Dzakira Ismail",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
-  {nama:"Unsa Fathimah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
-  {nama:"Sophia Az Zahra Salsabila",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
-  {nama:"Zakirah Mutmainnah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1"},
-  {nama:"Jenna Chairany Rompis",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
-  {nama:"Queen Fakhira Hariza",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
-  {nama:"Hadeeja Ad Dayyinah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
-  {nama:"Shahinaz Rashida Ikram",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
-  {nama:"Fatimah Aulia Hafizah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
-  {nama:"Assyifa Dzakira",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
-  {nama:"Rumaysha Taqiyya",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2"},
-  {nama:"Halwa Qanita An Khafiyya",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
-  {nama:"Hafshah Tya Amira",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
-  {nama:"Hadzkadina Rahmi Bakhtiar",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
-  {nama:"Nafisha Zunaira Rachman",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
-  {nama:"Butsaina Iftitah Delisha",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
-  {nama:"Hanna Sofia",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
-  {nama:"Nathisa Athfa",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1"},
-  {nama:"Fasheeha Azizah Amrulla",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
-  {nama:"Halimah Nur Almahyra",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
-  {nama:"Khadijah Naura Izzatunnisa",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
-  {nama:"Shofiyyah Qintharani",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
-  {nama:"Hawla Dzakiyyah Alfasha",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
-  {nama:"Nafisha Naura Putri Nayyara",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
-  {nama:"Aika Zhafeera Jennaira Zharifah",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2"},
+// ══ SISWA DATA ══
+const SISWA=[
+  {nama:"Ubaydillah Abiyyu",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Ibrahim Syathir Ahnaf",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Alghifari Hibatullah Jatmiko",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Anfa Khalid Dhyiaulhaq Widiarto",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Rahagi Atharrazka Ariyandana",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
+  {nama:"Musa Abdul Malik",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
+  {nama:"M. Alfatih",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
+  {nama:"Rafardhan Abqary Iskandar",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2",observer:"M. Riski"},
+  {nama:"M. Yazid Ilmany",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2",observer:"M. Riski"},
+  {nama:"Ghaidan Aura Al Ghazali",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2",observer:"M. Riski"},
+  {nama:"Yahya Zaidan Alfath",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2",observer:"M. Riski"},
+  {nama:"M. Hamizan Muhsinin",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
+  {nama:"M. Mannaf Fadilah",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
+  {nama:"Afnan Addifaa Dhiyaulhaq",sesi:"Sesi 1",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
+  {nama:"Ilyas Zaid Dhiaurrahman",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1",observer:"Ahnaf A., B.A"},
+  {nama:"Haidar Zayd",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1",observer:"Ahnaf A., B.A"},
+  {nama:"Fazodra Aretta Rafaeyyza Nasution",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1",observer:"Ahnaf A., B.A"},
+  {nama:"Abdul Jabbar Al Miqdad",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1",observer:"Ahnaf A., B.A"},
+  {nama:"M. Zayn Irfansyah",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1",observer:"M. Chaidar Ramadhan"},
+  {nama:"Muhammad Al Ghaisan Ziyan Tugor",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1",observer:"M. Chaidar Ramadhan"},
+  {nama:"M. Khalid Ar Rasyid",sesi:"Sesi 1",kelas:"Banin B",kelompok:"1",observer:"M. Chaidar Ramadhan"},
+  {nama:"Muhammad Akhtar A.",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2",observer:"Yazid Abdurrohman, S.Pd"},
+  {nama:"Azama Amiir Al Uswah",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2",observer:"Yazid Abdurrohman, S.Pd"},
+  {nama:"Abdurrahman Baz Al Chuluq",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2",observer:"Yazid Abdurrohman, S.Pd"},
+  {nama:"Marsekal Az Zubair Ramadhan",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2",observer:"Baharuddin, S.Pd"},
+  {nama:"Abdurrahman Cahya Sundara",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2",observer:"Baharuddin, S.Pd"},
+  {nama:"Abrisam Mannaf Abdussalam",sesi:"Sesi 1",kelas:"Banin B",kelompok:"2",observer:"Baharuddin, S.Pd"},
+  {nama:"M. Abrizam Al Faqih",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
+  {nama:"M. Uwais Abdurrohman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
+  {nama:"Alfathan Zeyn Pramono",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
+  {nama:"Abimana Muhammad Kurniawan",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
+  {nama:"Abdurrozaq Ibadurrahman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Shalteza Mesach Kardiman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Khalid Al Karim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Gentama Mizyan Ahnaf",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
+  {nama:"Khalid Ash Shiddiq",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
+  {nama:"Ibrahim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
+  {nama:"Saad Al Akram Siregar",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"M. Riski"},
+  {nama:"Ibrahim Faris",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"M. Riski"},
+  {nama:"Rayyan Atharrazka Dalimunthe",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"M. Riski"},
+  {nama:"M. Said Elnursie",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1",observer:"M. Chaidar Ramadhan"},
+  {nama:"Muammar Ahmad Chaeran",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1",observer:"M. Chaidar Ramadhan"},
+  {nama:"M. Kayandra Romansyah",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1",observer:"M. Chaidar Ramadhan"},
+  {nama:"Aubrey M. El Rasya",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1",observer:"M. Chaidar Ramadhan"},
+  {nama:"Leander Haamiz Wijaya",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1",observer:"Ahnaf A., B.A"},
+  {nama:"M. Hafidz Alfatih Maulana",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1",observer:"Ahnaf A., B.A"},
+  {nama:"Maulana Malik Ibrahim",sesi:"Sesi 2",kelas:"Banin B",kelompok:"1",observer:"Ahnaf A., B.A"},
+  {nama:"Sulaiman Lingga Fibrayir",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2",observer:"Baharuddin, S.Pd"},
+  {nama:"Rumi Ahmad Mukhlashin",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2",observer:"Baharuddin, S.Pd"},
+  {nama:"Alrafa Zaidan Fathan",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2",observer:"Baharuddin, S.Pd"},
+  {nama:"Utsman Syauqi",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2",observer:"Yazid Abdurrohman, S.Pd"},
+  {nama:"Althaf Elhasiq Mulyawan",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2",observer:"Yazid Abdurrohman, S.Pd"},
+  {nama:"Abdurrahman Saleh Bawazir",sesi:"Sesi 2",kelas:"Banin B",kelompok:"2",observer:"Yazid Abdurrohman, S.Pd"},
+  {nama:"Dafiya Ghumaisha Hilmi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1",observer:"Adek Afrisilia, S.Hum"},
+  {nama:"Maryam Azzahra Abdurrahman",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1",observer:"Adek Afrisilia, S.Hum"},
+  {nama:"Sofiya Haura Al Khansa",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1",observer:"Adek Afrisilia, S.Hum"},
+  {nama:"Almahyra Leica Nugraha",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1",observer:"Adek Afrisilia, S.Hum"},
+  {nama:"Maryam",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1",observer:"Hasna"},
+  {nama:"Syakira Az Zahra",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1",observer:"Hasna"},
+  {nama:"Kayina Dzikria Rizqi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"1",observer:"Hasna"},
+  {nama:"Shofiyya",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2",observer:"Azizah, S.Pd"},
+  {nama:"Khaula Shabriloveiyatsawab Riadi",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2",observer:"Azizah, S.Pd"},
+  {nama:"Azzahra Hanifah Khairunnisa",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2",observer:"Azizah, S.Pd"},
+  {nama:"Naqiyya Zhufairah Yumna",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2",observer:"Azizah, S.Pd"},
+  {nama:"Sarah Adzkiya",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2",observer:"Ai Hilma Nurjamilah"},
+  {nama:"Hafidzah Khairunnisa Alfatih",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2",observer:"Ai Hilma Nurjamilah"},
+  {nama:"Nuha Elnara Adianto",sesi:"Sesi 1",kelas:"Banat A",kelompok:"2",observer:"Ai Hilma Nurjamilah"},
+  {nama:"Khadijah Shakayla Humaira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1",observer:"Dianita Priliasari, S.Pd"},
+  {nama:"Shafiyyah Diar Zaiba",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1",observer:"Dianita Priliasari, S.Pd"},
+  {nama:"Abidah Nuha Shabira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1",observer:"Dianita Priliasari, S.Pd"},
+  {nama:"Fayra Afiza Hafidin",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1",observer:"Dianita Priliasari, S.Pd"},
+  {nama:"Khalisa Zaila Hamidah",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1",observer:"Viona Khaerunnisa"},
+  {nama:"Sakiinah Putri Irsyad",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1",observer:"Viona Khaerunnisa"},
+  {nama:"Marzia Musyaffa Imannudin",sesi:"Sesi 1",kelas:"Banat B",kelompok:"1",observer:"Viona Khaerunnisa"},
+  {nama:"Ince Adifa Usaima Mufidhah",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2",observer:"Desyifa Fauziah, S.Kom"},
+  {nama:"Hafshah Wafa Shidqia",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2",observer:"Desyifa Fauziah, S.Kom"},
+  {nama:"Aisyah Zhafira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2",observer:"Desyifa Fauziah, S.Kom"},
+  {nama:"Maryam Nusaibah Arina Rusli",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2",observer:"Desyifa Fauziah, S.Kom"},
+  {nama:"Alesha Putri Izzati",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2",observer:"Anniquzahrati"},
+  {nama:"Elmasyifa Berlian Shahira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2",observer:"Anniquzahrati"},
+  {nama:"Hanin Zhafira",sesi:"Sesi 1",kelas:"Banat B",kelompok:"2",observer:"Anniquzahrati"},
+  {nama:"Inara Maryam Ramadhina",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1",observer:"Hasna"},
+  {nama:"Khadijah Mustofa",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1",observer:"Hasna"},
+  {nama:"Arsyila Felka Elrizqi",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1",observer:"Hasna"},
+  {nama:"Aliya Dzakira Ismail",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1",observer:"Hasna"},
+  {nama:"Unsa Fathimah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1",observer:"Adek Afrisilia, S.Hum"},
+  {nama:"Sophia Az Zahra Salsabila",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1",observer:"Adek Afrisilia, S.Hum"},
+  {nama:"Zakirah Mutmainnah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"1",observer:"Adek Afrisilia, S.Hum"},
+  {nama:"Jenna Chairany Rompis",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2",observer:"Ai Hilma Nurjamilah"},
+  {nama:"Queen Fakhira Hariza",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2",observer:"Ai Hilma Nurjamilah"},
+  {nama:"Hadeeja Ad Dayyinah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2",observer:"Ai Hilma Nurjamilah"},
+  {nama:"Shahinaz Rashida Ikram",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2",observer:"Ai Hilma Nurjamilah"},
+  {nama:"Fatimah Aulia Hafizah",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2",observer:"Azizah, S.Pd"},
+  {nama:"Assyifa Dzakira",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2",observer:"Azizah, S.Pd"},
+  {nama:"Rumaysha Taqiyya",sesi:"Sesi 2",kelas:"Banat A",kelompok:"2",observer:"Azizah, S.Pd"},
+  {nama:"Halwa Qanita An Khafiyya",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1",observer:"Viona Khaerunnisa"},
+  {nama:"Hafshah Tya Amira",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1",observer:"Viona Khaerunnisa"},
+  {nama:"Hadzkadina Rahmi Bakhtiar",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1",observer:"Viona Khaerunnisa"},
+  {nama:"Nafisha Zunaira Rachman",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1",observer:"Viona Khaerunnisa"},
+  {nama:"Butsaina Iftitah Delisha",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1",observer:"Dianita Priliasari, S.Pd"},
+  {nama:"Hanna Sofia",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1",observer:"Dianita Priliasari, S.Pd"},
+  {nama:"Nathisa Athfa",sesi:"Sesi 2",kelas:"Banat B",kelompok:"1",observer:"Dianita Priliasari, S.Pd"},
+  {nama:"Fasheeha Azizah Amrulla",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2",observer:"Anniquzahrati"},
+  {nama:"Halimah Nur Almahyra",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2",observer:"Anniquzahrati"},
+  {nama:"Khadijah Naura Izzatunnisa",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2",observer:"Anniquzahrati"},
+  {nama:"Shofiyyah Qintharani",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2",observer:"Anniquzahrati"},
+  {nama:"Hawla Dzakiyyah Alfasha",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2",observer:"Desyifa Fauziah, S.Kom"},
+  {nama:"Nafisha Naura Putri Nayyara",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2",observer:"Desyifa Fauziah, S.Kom"},
+  {nama:"Aika Zhafeera Jennaira Zharifah",sesi:"Sesi 2",kelas:"Banat B",kelompok:"2",observer:"Desyifa Fauziah, S.Kom"},
 ];
 
-const RUBRIK_KOG = {
-  A:[{id:"kog_huruf",label:"Mengenal huruf A-Z",sub:"Menyebut dan menunjuk huruf"},{id:"kog_baca",label:"Membaca suku kata",sub:"ba-ju, ma-ta, ru-mah"},{id:"kog_kata",label:"Membaca kata sederhana",sub:"buku, meja, pintu"}],
-  B:[{id:"kog_angka",label:"Mengenal angka 1-20",sub:"Menyebut dan menulis angka"},{id:"kog_tambah",label:"Penjumlahan sederhana",sub:"Contoh: 3+4, 5+2"},{id:"kog_kurang",label:"Pengurangan sederhana",sub:"Contoh: 7-3, 9-4"}],
+// ══ RUBRIK DATA ══
+const RUBRIK_KOG={
+  A:[{id:"kog_huruf",label:"Mengenal huruf A–Z",sub:"Menyebut dan menunjuk huruf"},{id:"kog_baca",label:"Membaca suku kata",sub:"ba-ju, ma-ta, ru-mah"},{id:"kog_kata",label:"Membaca kata sederhana",sub:"buku, meja, pintu"}],
+  B:[{id:"kog_angka",label:"Mengenal angka 1–20",sub:"Menyebut dan menulis angka"},{id:"kog_tambah",label:"Penjumlahan sederhana",sub:"Contoh: 3+4, 5+2"},{id:"kog_kurang",label:"Pengurangan sederhana",sub:"Contoh: 7-3, 9-4"}],
   C:[{id:"kog_warna",label:"Mengenal warna dasar",sub:"Merah, kuning, biru, hijau"},{id:"kog_bentuk",label:"Mengenal bentuk",sub:"Lingkaran, kotak, segitiga"},{id:"kog_logika",label:"Logika & pola sederhana",sub:"Melanjutkan pola gambar/angka"}],
-  D:[{id:"kog_en_greeting",label:"Sapaan dasar",sub:"Hello, Good morning, My name is..."},{id:"kog_en_number",label:"Angka 1-10 (Inggris)",sub:"One, two, three... ten"},{id:"kog_en_color",label:"Warna (Inggris)",sub:"Red, yellow, blue, green"},{id:"kog_en_body",label:"Anggota tubuh (Inggris)",sub:"Head, hand, eye, nose"}],
-  E:[{id:"kog_ar_number",label:"Angka 1-10 (Arab)",sub:"Wahid, itsnan, tsalatsa..."},{id:"kog_ar_greet",label:"Salam & sapaan Arab",sub:"Assalamu'alaikum, Bismillah"},{id:"kog_ar_body",label:"Anggota tubuh (Arab)",sub:"Ras, yadun, ainun, anfun"},{id:"kog_ar_daily",label:"Kosakata harian Arab",sub:"Kitabun, qalamin, baitun"}],
+  D:[{id:"kog_en_greeting",label:"Sapaan dasar (Inggris)",sub:"Hello, Good morning, My name is..."},{id:"kog_en_number",label:"Angka 1–10 (Inggris)",sub:"One, two, three... ten"},{id:"kog_en_color",label:"Warna (Inggris)",sub:"Red, yellow, blue, green"},{id:"kog_en_body",label:"Anggota tubuh (Inggris)",sub:"Head, hand, eye, nose"}],
+  E:[{id:"kog_ar_number",label:"Angka 1–10 (Arab)",sub:"Wahid, itsnan, tsalatsa..."},{id:"kog_ar_greet",label:"Salam & sapaan Arab",sub:"Assalamu'alaikum, Bismillah"},{id:"kog_ar_body",label:"Anggota tubuh (Arab)",sub:"Ra's, yadun, 'ainun, anfun"},{id:"kog_ar_daily",label:"Kosakata harian Arab",sub:"Kitabun, qalamin, baitun"}],
 };
-const RUBRIK_TAHFIZH=[{id:"tf_kelancaran",label:"Kelancaran hafalan",sub:"Lancar tanpa banyak berhenti"},{id:"tf_tajwid",label:"Tajwid",sub:"Hukum bacaan sesuai"},{id:"tf_makhraj",label:"Makharijul huruf",sub:"Pengucapan huruf tepat"},{id:"tf_adab",label:"Adab membaca",sub:"Sikap, ketenangan, konsentrasi"}];
-const RUBRIK_ADAB={A:[{id:"adab_duduk",label:"Adab duduk & berpakaian",sub:"Rapi, sopan"},{id:"adab_guru",label:"Sopan kepada guru",sub:"Salam, menjawab, tidak memotong"},{id:"adab_teman",label:"Sopan kepada teman",sub:"Berbicara baik, tidak kasar"},{id:"adab_jujur",label:"Kejujuran",sub:"Tidak menyontek, mengakui kesalahan"}],B:[{id:"em_sabar",label:"Kesabaran menunggu",sub:"Tenang saat antri"},{id:"em_gagal",label:"Reaksi saat gagal/susah",sub:"Tidak langsung menyerah atau marah"},{id:"em_stabil",label:"Stabilitas emosi",sub:"Tidak mudah menangis/tertawa berlebihan"},{id:"em_fokus",label:"Konsentrasi & fokus",sub:"Tidak mudah terganggu lingkungan"}]};
-const RUBRIK_NEG=[{id:"neg_marah",label:"Marah berlebihan",sub:"Teriak, membanting barang"},{id:"neg_bully",label:"Bullying verbal/fisik",sub:"Mengejek, mendorong, memukul"},{id:"neg_tantrum",label:"Tantrum",sub:"Menangis tidak terkendali"},{id:"neg_lawan",label:"Melawan guru",sub:"Menolak instruksi"},{id:"neg_bohong",label:"Berbohong",sub:"Tertangkap tidak jujur"},{id:"neg_rusak",label:"Merusak barang",sub:"Menyobek, melempar, merusak"}];
-const RUBRIK_MANDIRI=[{id:"man_baju",label:"Mandiri berpakaian",sub:"Merapikan baju, tali sepatu sendiri"},{id:"man_barang",label:"Merapikan barang",sub:"Mengembalikan alat ke tempat semula"},{id:"man_tugas",label:"Menyelesaikan tugas mandiri",sub:"Tidak langsung minta bantuan"},{id:"man_berani",label:"Berani bicara ke guru",sub:"Bertanya, menyampaikan kebutuhan"},{id:"man_inisiatif",label:"Inisiatif positif",sub:"Membantu teman tanpa disuruh"}];
-
-const SURAT_LIST=[
-  "Al-Fatihah","Al-Baqarah","Ali 'Imran","An-Nisa","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Taubah","Yunus",
-  "Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra","Al-Kahfi","Maryam","Ta Ha",
-  "Al-Anbiya","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Asy-Syu'ara","An-Naml","Al-Qasas","Al-'Ankabut","Ar-Rum",
-  "Luqman","As-Sajdah","Al-Ahzab","Saba","Fatir","Ya Sin","As-Saffat","Sad","Az-Zumar","Ghafir",
-  "Fussilat","Asy-Syura","Az-Zukhruf","Ad-Dukhan","Al-Jasiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf",
-  "Az-Zariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadila","Al-Hasyr","Al-Mumtahanah",
-  "As-Saf","Al-Jumu'ah","Al-Munafiqun","At-Tagabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij",
-  "Nuh","Al-Jinn","Al-Muzzammil","Al-Muddassir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba","An-Nazi'at","'Abasa",
-  "At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Insyiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Gasyiyah","Al-Fajr","Al-Balad",
-  "Asy-Syams","Al-Lail","Ad-Duha","Al-Insyirah","At-Tin","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Adiyat",
-  "Al-Qari'ah","At-Takasur","Al-'Asr","Al-Humazah","Al-Fil","Quraisy","Al-Ma'un","Al-Kausar","Al-Kafirun","An-Nasr",
-  "Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"
+const RUBRIK_TAHFIZH=[
+  {id:"tf_kelancaran",label:"Kelancaran hafalan",sub:"Lancar tanpa banyak berhenti"},
+  {id:"tf_tajwid",label:"Tajwid",sub:"Hukum bacaan sesuai"},
+  {id:"tf_makhraj",label:"Makharijul huruf",sub:"Pengucapan huruf tepat"},
+  {id:"tf_adab",label:"Adab membaca",sub:"Sikap, ketenangan, konsentrasi"},
 ];
+const RUBRIK_SPIRITUAL={
+  A:[
+    {id:"sp_doa_makan",label:"Doa sebelum & sesudah makan",sub:"Hafal dan bisa melafalkan"},
+    {id:"sp_doa_tidur",label:"Doa sebelum tidur",sub:"Hafal doa tidur dan bangun"},
+    {id:"sp_doa_masuk",label:"Doa masuk & keluar rumah",sub:"Mengetahui doanya"},
+    {id:"sp_doa_belajar",label:"Doa sebelum belajar",sub:"Rabbizidni ilma..."},
+  ],
+  B:[
+    {id:"sp_wudhu",label:"Mengenal tata cara wudhu",sub:"Bisa menyebutkan urutan wudhu"},
+    {id:"sp_sholat",label:"Pengetahuan sholat",sub:"Tahu waktu sholat, gerakan dasar"},
+    {id:"sp_basmalah",label:"Memulai dengan Bismillah",sub:"Terbiasa mengucapkan bismillah sebelum aktivitas"},
+  ]
+};
+const RUBRIK_ADAB={
+  A:[
+    {id:"adab_duduk",label:"Adab duduk & berpakaian",sub:"Rapi, sopan, tidak serampangan"},
+    {id:"adab_guru",label:"Sopan kepada guru",sub:"Salam, menjawab, tidak memotong"},
+    {id:"adab_teman",label:"Sopan kepada teman",sub:"Berbicara baik, tidak kasar"},
+    {id:"adab_jujur",label:"Kejujuran",sub:"Tidak menyontek, mengakui jika tidak tahu"},
+  ],
+  B:[
+    {id:"em_sabar",label:"Kesabaran menunggu",sub:"Tenang saat antri giliran"},
+    {id:"em_gagal",label:"Reaksi saat gagal/susah",sub:"Tidak langsung menyerah atau marah"},
+    {id:"em_stabil",label:"Stabilitas emosi",sub:"Tidak mudah menangis/tertawa berlebihan"},
+    {id:"em_fokus",label:"Konsentrasi & fokus",sub:"Tidak mudah terganggu lingkungan"},
+  ]
+};
+const RUBRIK_MEWARNAI=[
+  {id:"mw_pegang",label:"Cara memegang alat warna",sub:"Sudah bisa memegang krayon/pensil warna dengan benar"},
+  {id:"mw_rapih",label:"Kerapian mewarnai",sub:"Mewarnai dalam garis, tidak asal"},
+  {id:"mw_fokus",label:"Fokus & daya tahan",sub:"Bisa menyelesaikan tanpa berhenti di tengah"},
+  {id:"mw_kreatif",label:"Pilihan warna & ekspresi",sub:"Memilih warna sendiri, ada inisiatif artistik"},
+];
+const RUBRIK_PUZZLE=[
+  {id:"pz_strategi",label:"Strategi menyusun puzzle",sub:"Mencoba dengan sistematis, bukan asal tempel"},
+  {id:"pz_tahan",label:"Daya tahan saat kesulitan",sub:"Tetap mencoba meski ada bagian yang sulit"},
+  {id:"pz_reaksi",label:"Reaksi saat berhasil/gagal",sub:"Wajar dan proporsional, tidak tantrum jika gagal"},
+  {id:"pz_kecepatan",label:"Kecepatan penyelesaian",sub:"Relatif terhadap tingkat kesulitan puzzle"},
+];
+const RUBRIK_NEG=[
+  {id:"neg_marah",label:"Marah berlebihan",sub:"Teriak, membanting barang"},
+  {id:"neg_bully",label:"Bullying verbal/fisik",sub:"Mengejek, mendorong, memukul"},
+  {id:"neg_tantrum",label:"Tantrum",sub:"Menangis tidak terkendali"},
+  {id:"neg_lawan",label:"Melawan instruksi",sub:"Menolak arahan guru/penguji"},
+  {id:"neg_bohong",label:"Berbohong",sub:"Tertangkap tidak jujur"},
+  {id:"neg_rusak",label:"Merusak barang",sub:"Menyobek, melempar, merusak"},
+];
+const RUBRIK_MANDIRI=[
+  {id:"man_baju",label:"Mandiri berpakaian",sub:"Merapikan baju, tali sepatu sendiri"},
+  {id:"man_barang",label:"Merapikan barang",sub:"Mengembalikan alat ke tempat semula"},
+  {id:"man_tugas",label:"Menyelesaikan tugas mandiri",sub:"Tidak langsung minta bantuan"},
+  {id:"man_berani",label:"Berani bicara ke guru",sub:"Bertanya, menyampaikan kebutuhan"},
+  {id:"man_inisiatif",label:"Inisiatif positif",sub:"Membantu teman tanpa disuruh"},
+];
+const SURAT_LIST=["Al-Fatihah","Al-Baqarah","Ali 'Imran","An-Nisa","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Taubah","Yunus","Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra","Al-Kahfi","Maryam","Ta Ha","Al-Anbiya","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Asy-Syu'ara","An-Naml","Al-Qasas","Al-'Ankabut","Ar-Rum","Luqman","As-Sajdah","Al-Ahzab","Saba","Fatir","Ya Sin","As-Saffat","Sad","Az-Zumar","Ghafir","Fussilat","Asy-Syura","Az-Zukhruf","Ad-Dukhan","Al-Jasiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf","Az-Zariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadila","Al-Hasyr","Al-Mumtahanah","As-Saf","Al-Jumu'ah","Al-Munafiqun","At-Tagabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij","Nuh","Al-Jinn","Al-Muzzammil","Al-Muddassir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba","An-Nazi'at","'Abasa","At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Insyiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Gasyiyah","Al-Fajr","Al-Balad","Asy-Syams","Al-Lail","Ad-Duha","Al-Insyirah","At-Tin","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Adiyat","Al-Qari'ah","At-Takasur","Al-'Asr","Al-Humazah","Al-Fil","Quraisy","Al-Ma'un","Al-Kausar","Al-Kafirun","An-Nasr","Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"];
 
-let suratDipilih=[];
-function getSuratValue(){return suratDipilih.join(', ');}
-function esc(s){return s.replace(/'/g,"\\'");}
+const WAJIB_BY_STEP={
+  2:[...RUBRIK_KOG.A,...RUBRIK_KOG.B,...RUBRIK_KOG.C,...RUBRIK_KOG.D,...RUBRIK_KOG.E],
+  3:RUBRIK_TAHFIZH,
+  4:[...RUBRIK_SPIRITUAL.A,...RUBRIK_SPIRITUAL.B],
+  5:[...RUBRIK_ADAB.A,...RUBRIK_ADAB.B],
+  6:[...RUBRIK_MEWARNAI,...RUBRIK_PUZZLE],
+  8:RUBRIK_MANDIRI
+};
 
-document.getElementById('inputSurat').addEventListener('input',function(){
-  const q=this.value.trim().toLowerCase();
-  document.getElementById('errSurat').classList.remove('show');
-  if(!q){document.getElementById('acSurat').classList.remove('show');return;}
-  const m=SURAT_LIST.filter(s=>s.toLowerCase().includes(q)&&!suratDipilih.includes(s)).slice(0,8);
-  if(!m.length){document.getElementById('acSurat').classList.remove('show');return;}
-  document.getElementById('acSurat').innerHTML=m.map(s=>
-    `<div class="ac-item" onclick="pilihSurat('${esc(s)}')">${s}<div class="ac-sub">Juz ${getSuratJuz(s)}</div></div>`
-  ).join('');
-  document.getElementById('acSurat').classList.add('show');
-});
+// ══ STATE ══
+let currentStep=1, selectedSiswa=null, selectedPenginput=null, scores={}, suratDipilih=[];
+let adminLoggedIn=false, adminUsername='', adminCurrentView='dashboard', allDataCache=[], editingId=null;
 
-function pilihSurat(nama){
-  if(!suratDipilih.includes(nama)) suratDipilih.push(nama);
-  document.getElementById('inputSurat').value='';
-  document.getElementById('acSurat').classList.remove('show');
-  renderSuratTags();
-  document.getElementById('errSurat').classList.remove('show');
+// ══ HELPERS ══
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function escAttr(s){return String(s).replace(/'/g,"&#39;").replace(/"/g,'&quot;')}
+function getKategori(n){
+  if(n>=85)return{label:'Sangat Direkomendasikan',cls:'cat-istimewa',warna:'#27ae60'};
+  if(n>=70)return{label:'Direkomendasikan',cls:'cat-baik',warna:'#2980b9'};
+  if(n>=55)return{label:'Perlu Pertimbangan',cls:'cat-cukup',warna:'#e67e22'};
+  return{label:'Belum Direkomendasikan',cls:'cat-kurang',warna:'#c0392b'};
+}
+function getSkorLabel(pct){
+  if(pct>=80)return{t:'Sangat Baik',c:'lab-s-baik'};
+  if(pct>=60)return{t:'Baik',c:'lab-s-baik'};
+  if(pct>=40)return{t:'Cukup',c:'lab-s-cukup'};
+  return{t:'Perlu Perhatian',c:'lab-s-kurang'};
 }
 
-function hapusSurat(nama){
-  suratDipilih=suratDipilih.filter(s=>s!==nama);
-  renderSuratTags();
-}
-
-function renderSuratTags(){
-  document.getElementById('suratTags').innerHTML=suratDipilih.map(s=>
-    `<div class="surat-tag">${s}<span class="tag-x" onclick="hapusSurat('${esc(s)}')">✕</span></div>`
-  ).join('');
-}
-
-function getSuratJuz(nama){
-  const idx=SURAT_LIST.indexOf(nama)+1;
-  if(idx<=2)return'1-2';if(idx<=5)return'3-6';if(idx<=9)return'7-10';
-  if(idx<=29)return String(Math.ceil(idx/3));if(idx<=50)return String(Math.ceil(idx/2.5));
-  if(idx<=78)return String(25+Math.ceil((idx-78)/3));return'28-30';
-}
-
-const WAJIB_BY_STEP={2:[...RUBRIK_KOG.A,...RUBRIK_KOG.B,...RUBRIK_KOG.C,...RUBRIK_KOG.D,...RUBRIK_KOG.E],3:RUBRIK_TAHFIZH,4:[...RUBRIK_ADAB.A,...RUBRIK_ADAB.B],6:RUBRIK_MANDIRI};
-
-let currentStep=1, selectedSiswa=null, selectedPenginput=null, scores={}, rekapData=[];
-const TOTAL_STEPS=7;
-
-function buildStepNav(){
-  const inner=document.getElementById('stepDots');
-  inner.innerHTML=Array.from({length:TOTAL_STEPS},(_,i)=>
-    `<div class="step-dot" id="dot${i+1}" onclick="jumpStep(${i+1})">${i+1}</div>`
-  ).join('');
-}
-function updateNav(){
-  for(let i=1;i<=TOTAL_STEPS;i++){
-    const d=document.getElementById('dot'+i);
-    d.classList.remove('active','done');
-    if(i===currentStep) d.classList.add('active');
-    else if(i<currentStep) d.classList.add('done');
-  }
-}
-
+// ══ RUBRIK BUILD ══
 function buildRubrikSection(cid,items,type='score'){
   const el=document.getElementById(cid);if(!el)return;
   el.innerHTML=items.map(item=>{
-    if(type==='neg') return `<div class="rubrik-item" id="wrap_${item.id}">
-      <div class="rubrik-label">${item.label}</div>
-      <div class="rubrik-sub">${item.sub}</div>
-      <div class="neg-btns">
-        <button class="neg-btn sel-0" onclick="setNeg('${item.id}',0,this)">Tidak Muncul</button>
-        <button class="neg-btn" onclick="setNeg('${item.id}',1,this)">Muncul 1×</button>
-        <button class="neg-btn" onclick="setNeg('${item.id}',2,this)">Sering</button>
-      </div></div>`;
-    return `<div class="rubrik-item" id="wrap_${item.id}">
-      <div class="rubrik-label">${item.label}</div>
-      <div class="rubrik-sub">${item.sub}</div>
-      <div class="score-btns">
-        <button class="score-btn" onclick="setScore('${item.id}',1,this)"><span class="snum">1</span><span class="sdesc">Belum Bisa</span></button>
-        <button class="score-btn" onclick="setScore('${item.id}',2,this)"><span class="snum">2</span><span class="sdesc">Perlu Bantuan</span></button>
-        <button class="score-btn" onclick="setScore('${item.id}',3,this)"><span class="snum">3</span><span class="sdesc">Bisa Mandiri</span></button>
-      </div></div>`;
+    if(type==='neg')return`<div class="rubrik-item" id="wrap_${item.id}"><div class="rubrik-label">${item.label}</div><div class="rubrik-sub">${item.sub}</div><div class="neg-btns"><button class="neg-btn sel-0" onclick="setNeg('${item.id}',0,this)">✓ Tidak Muncul</button><button class="neg-btn" onclick="setNeg('${item.id}',1,this)">Muncul 1×</button><button class="neg-btn" onclick="setNeg('${item.id}',2,this)">⚠ Sering</button></div></div>`;
+    return`<div class="rubrik-item" id="wrap_${item.id}"><div class="rubrik-label">${item.label}</div><div class="rubrik-sub">${item.sub}</div><div class="score-btns"><button class="score-btn" onclick="setScore('${item.id}',1,this)"><span class="snum">1</span><span class="sdesc">Belum Bisa</span></button><button class="score-btn" onclick="setScore('${item.id}',2,this)"><span class="snum">2</span><span class="sdesc">Perlu Bantuan</span></button><button class="score-btn" onclick="setScore('${item.id}',3,this)"><span class="snum">3</span><span class="sdesc">Bisa Mandiri</span></button></div></div>`;
   }).join('');
-  if(type==='neg') items.forEach(i=>{if(scores[i.id]===undefined) scores[i.id]=0;});
+  if(type==='neg')items.forEach(i=>{if(scores[i.id]===undefined)scores[i.id]=0;});
 }
 
 function buildAll(){
-  buildRubrikSection('kog-A',RUBRIK_KOG.A);buildRubrikSection('kog-B',RUBRIK_KOG.B);
-  buildRubrikSection('kog-C',RUBRIK_KOG.C);buildRubrikSection('kog-D',RUBRIK_KOG.D);
-  buildRubrikSection('kog-E',RUBRIK_KOG.E);buildRubrikSection('tahfizh-items',RUBRIK_TAHFIZH);
-  buildRubrikSection('adab-A',RUBRIK_ADAB.A);buildRubrikSection('adab-B',RUBRIK_ADAB.B);
-  buildRubrikSection('neg-items',RUBRIK_NEG,'neg');buildRubrikSection('mandiri-items',RUBRIK_MANDIRI);
+  Object.keys(RUBRIK_KOG).forEach(k=>buildRubrikSection('kog-'+k,RUBRIK_KOG[k]));
+  buildRubrikSection('tahfizh-items',RUBRIK_TAHFIZH);
+  Object.keys(RUBRIK_SPIRITUAL).forEach(k=>buildRubrikSection('spiritual-'+k,RUBRIK_SPIRITUAL[k]));
+  Object.keys(RUBRIK_ADAB).forEach(k=>buildRubrikSection('adab-'+k,RUBRIK_ADAB[k]));
+  buildRubrikSection('mewarnai-items',RUBRIK_MEWARNAI);
+  buildRubrikSection('puzzle-items',RUBRIK_PUZZLE);
+  buildRubrikSection('neg-items',RUBRIK_NEG,'neg');
+  buildRubrikSection('mandiri-items',RUBRIK_MANDIRI);
 }
 
 function setScore(id,val,btn){
@@ -1066,32 +797,43 @@ function setNeg(id,val,btn){
   btn.classList.add('sel-'+val);
 }
 
+// ══ SCORE CALC ══
 function calcScore(){
-  const kogItems=[...RUBRIK_KOG.A,...RUBRIK_KOG.B,...RUBRIK_KOG.C,...RUBRIK_KOG.D,...RUBRIK_KOG.E];
-  const pct=(items)=>items.reduce((s,i)=>s+(scores[i.id]||0),0)/(items.length*3)*100;
-  const kog=pct(kogItems),tf=pct(RUBRIK_TAHFIZH),adab=pct([...RUBRIK_ADAB.A,...RUBRIK_ADAB.B]),man=pct(RUBRIK_MANDIRI);
+  const kogUmumItems=[...RUBRIK_KOG.A,...RUBRIK_KOG.B,...RUBRIK_KOG.C];
+  const kogBilingualItems=[...RUBRIK_KOG.D,...RUBRIK_KOG.E];
+  const kogItems=[...kogUmumItems,...kogBilingualItems];
+  const pct=items=>items.reduce((s,i)=>s+(scores[i.id]||0),0)/(items.length*3)*100;
+  const kog=pct(kogItems),kogUmum=pct(kogUmumItems),kogBilingual=pct(kogBilingualItems);
+  const tf=pct(RUBRIK_TAHFIZH);
+  const sp=pct([...RUBRIK_SPIRITUAL.A,...RUBRIK_SPIRITUAL.B]);
+  const adab=pct([...RUBRIK_ADAB.A,...RUBRIK_ADAB.B]);
+  const adabAdab=pct(RUBRIK_ADAB.A),adabEmosi=pct(RUBRIK_ADAB.B);
+  const mw=pct(RUBRIK_MEWARNAI),pz=pct(RUBRIK_PUZZLE);
+  const man=pct(RUBRIK_MANDIRI);
   const neg=RUBRIK_NEG.reduce((s,i)=>s+(scores[i.id]||0),0)*3;
-  const nilai=Math.min(100,Math.max(0,kog*0.30+tf*0.30+adab*0.25+man*0.15-neg));
-  return{kogPct:kog.toFixed(1),tfPct:tf.toFixed(1),adabPct:adab.toFixed(1),manPct:man.toFixed(1),negPenalty:neg,nilai:nilai.toFixed(1)};
-}
-function getKategori(n){
-  if(n>=85)return{label:'Sangat Direkomendasikan',cls:'cat-istimewa'};
-  if(n>=70)return{label:'Direkomendasikan',cls:'cat-baik'};
-  if(n>=55)return{label:'Perlu Pertimbangan',cls:'cat-cukup'};
-  return{label:'Belum Direkomendasikan',cls:'cat-kurang'};
+  // Formula: Kog 25%, Tahfizh 25%, Spiritual 10%, Adab+Emosi 20%, Aktivitas 10%, Mandiri 10%
+  const nilai=Math.min(100,Math.max(0,kog*0.25+tf*0.25+sp*0.10+adab*0.20+((mw+pz)/2)*0.10+man*0.10-neg));
+  return{
+    kogPct:kog.toFixed(1),kogUmum:kogUmum.toFixed(1),kogBilingual:kogBilingual.toFixed(1),
+    tfPct:tf.toFixed(1),spPct:sp.toFixed(1),
+    adabPct:adab.toFixed(1),adabAdab:adabAdab.toFixed(1),adabEmosi:adabEmosi.toFixed(1),
+    mwPct:mw.toFixed(1),pzPct:pz.toFixed(1),
+    manPct:man.toFixed(1),negPenalty:neg,nilai:nilai.toFixed(1)
+  };
 }
 
+// ══ NAV ══
+function updateProgress(){
+  document.getElementById('progressFill').style.width=(currentStep/TOTAL_STEPS*100)+'%';
+}
 function goTo(step){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById('sec'+step).classList.add('active');
-  currentStep=step; updateNav();
-  document.getElementById('progressFill').style.width=(step/TOTAL_STEPS*100)+'%';
+  currentStep=step;updateProgress();
   window.scrollTo(0,0);
-  if(step===7) renderHasil();
 }
-function goNext(step){if(!validateStep(step))return;goTo(step+1);}
+function goNext(step){if(!validateStep(step))return;if(step<TOTAL_STEPS)goTo(step+1);}
 function goPrev(step){goTo(step-1);}
-function jumpStep(s){if(s<=currentStep) goTo(s);}
 
 function validateStep(step){
   let ok=true;
@@ -1103,63 +845,52 @@ function validateStep(step){
     }
     if(!selectedSiswa){document.getElementById('errNama').classList.add('show');ok=false;}
   }
-  if(step===3){
-    if(!suratDipilih.length){
-      document.getElementById('errSurat').classList.add('show');ok=false;
-    }
-  }
+  if(step===3&&!suratDipilih.length){document.getElementById('errSurat').classList.add('show');ok=false;}
   const wajib=WAJIB_BY_STEP[step];
   if(wajib){
     const belum=wajib.filter(i=>scores[i.id]===undefined);
     if(belum.length){
       belum.forEach(i=>document.getElementById('wrap_'+i.id)?.classList.add('belum-isi'));
       const es=document.getElementById('errSummary'+step);
-      es.innerHTML=`<strong>⚠ ${belum.length} item belum dinilai:</strong>${belum.map(i=>'• '+i.label).join('<br>')}`;
-      es.classList.add('show');es.scrollIntoView({behavior:'smooth',block:'center'});
+      if(es){es.innerHTML=`<strong>⚠ ${belum.length} item belum dinilai:</strong>${belum.map(i=>'• '+i.label).join('<br>')}`;es.classList.add('show');es.scrollIntoView({behavior:'smooth',block:'center'});}
       ok=false;
-    } else {
-      document.getElementById('errSummary'+step)?.classList.remove('show');
-    }
+    }else document.getElementById('errSummary'+step)?.classList.remove('show');
   }
+  if(ok&&step===TOTAL_STEPS){simpanDanTampilLaporan();return false;}
   return ok;
 }
 
+// ══ AUTOCOMPLETE PENGINPUT ══
 document.getElementById('inputPenginput').addEventListener('input',function(){
-  const q=this.value.trim().toLowerCase();
-  selectedPenginput=null;
+  const q=this.value.trim().toLowerCase();selectedPenginput=null;
   document.getElementById('errPenginput').classList.remove('show');
   if(!q){document.getElementById('acListPenginput').classList.remove('show');return;}
   const m=TIM_PENGINPUT.filter(n=>n.toLowerCase().includes(q));
-  let html=m.map(n=>`<div class="ac-item" onclick="pilihPenginput('${esc(n)}')">${n}<div class="ac-sub">Tim Penginput</div></div>`).join('');
+  let html=m.map(n=>`<div class="ac-item" onclick="pilihPenginput('${escAttr(n)}')">${n}<div class="ac-sub">Tim Penginput</div></div>`).join('');
   if(!TIM_PENGINPUT.some(n=>n.toLowerCase()===q))
-    html+=`<div class="ac-item" onclick="pilihPenginput('${esc(this.value.trim())}')">${this.value.trim()}<div class="ac-sub">Masukkan nama ini</div></div>`;
+    html+=`<div class="ac-item" onclick="pilihPenginput('${escAttr(this.value.trim())}')">${this.value.trim()}<div class="ac-sub">Masukkan nama ini</div></div>`;
   document.getElementById('acListPenginput').innerHTML=html;
   document.getElementById('acListPenginput').classList.add('show');
 });
 function pilihPenginput(n){selectedPenginput=n;lockPenginput(n);document.getElementById('acListPenginput').classList.remove('show');document.getElementById('errPenginput').classList.remove('show');}
-function lockPenginput(n){
-  document.getElementById('lockedNamaPenginput').textContent=n;
-  document.getElementById('penginputLocked').style.display='block';
-  document.getElementById('penginputInput').style.display='none';
-}
-function gantiPenginput(){
-  selectedPenginput=null;
-  document.getElementById('inputPenginput').value='';
-  document.getElementById('penginputLocked').style.display='none';
-  document.getElementById('penginputInput').style.display='block';
-  document.getElementById('inputPenginput').focus();
-}
+function lockPenginput(n){document.getElementById('lockedNamaPenginput').textContent=n;document.getElementById('penginputLocked').style.display='block';document.getElementById('penginputInput').style.display='none';}
+function gantiPenginput(){selectedPenginput=null;document.getElementById('inputPenginput').value='';document.getElementById('penginputLocked').style.display='none';document.getElementById('penginputInput').style.display='block';document.getElementById('inputPenginput').focus();}
 
+// ══ AUTOCOMPLETE SISWA (dengan badge sudah/belum) ══
+let inputNamaCache=[];
 document.getElementById('inputNama').addEventListener('input',function(){
-  const q=this.value.trim().toLowerCase();
-  selectedSiswa=null;document.getElementById('infoBox').style.display='none';
+  const q=this.value.trim().toLowerCase();selectedSiswa=null;
+  document.getElementById('infoBox').style.display='none';
   document.getElementById('errNama').classList.remove('show');
   if(q.length<2){document.getElementById('acList').classList.remove('show');return;}
-  const m=SISWA.filter(s=>s.nama.toLowerCase().includes(q)).slice(0,8);
+  const m=SISWA.filter(s=>s.nama.toLowerCase().includes(q)).slice(0,10);
   if(!m.length){document.getElementById('acList').classList.remove('show');return;}
-  document.getElementById('acList').innerHTML=m.map(s=>
-    `<div class="ac-item" onclick="selectSiswa('${esc(s.nama)}')">${s.nama}<div class="ac-sub">${s.sesi} — Kelas ${s.kelas} — Kelompok ${s.kelompok}</div></div>`
-  ).join('');
+  const sudahNama=new Set(allDataCache.map(d=>d.nama_siswa?.toLowerCase()));
+  document.getElementById('acList').innerHTML=m.map(s=>{
+    const sudah=sudahNama.has(s.nama.toLowerCase());
+    const badge=sudah?'<span class="badge-sudah">✓ Sudah</span>':'<span class="badge-belum">Belum</span>';
+    return`<div class="ac-item" onclick="selectSiswa('${escAttr(s.nama)}')">${esc(s.nama)}<div class="ac-sub">${s.sesi} — ${s.kelas} — Kelompok ${s.kelompok} ${badge}</div></div>`;
+  }).join('');
   document.getElementById('acList').classList.add('show');
 });
 function selectSiswa(nama){
@@ -1171,266 +902,651 @@ function selectSiswa(nama){
   document.getElementById('infoBox').style.display='block';
   document.getElementById('infoNama').textContent=s.nama;
   document.getElementById('infoDetail').textContent=`${s.sesi} | Kelas ${s.kelas} | Kelompok ${s.kelompok}`;
+  document.getElementById('infoObserverNama').textContent=s.observer||'—';
 }
+
+// ══ SURAT AUTOCOMPLETE ══
+document.getElementById('inputSurat').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  document.getElementById('errSurat').classList.remove('show');
+  if(!q){document.getElementById('acSurat').classList.remove('show');return;}
+  const m=SURAT_LIST.filter(s=>s.toLowerCase().includes(q)&&!suratDipilih.includes(s)).slice(0,8);
+  if(!m.length){document.getElementById('acSurat').classList.remove('show');return;}
+  document.getElementById('acSurat').innerHTML=m.map(s=>`<div class="ac-item" onclick="pilihSurat('${escAttr(s)}')">${s}</div>`).join('');
+  document.getElementById('acSurat').classList.add('show');
+});
+function pilihSurat(nama){if(!suratDipilih.includes(nama))suratDipilih.push(nama);document.getElementById('inputSurat').value='';document.getElementById('acSurat').classList.remove('show');renderSuratTags();document.getElementById('errSurat').classList.remove('show');}
+function hapusSurat(nama){suratDipilih=suratDipilih.filter(s=>s!==nama);renderSuratTags();}
+function renderSuratTags(){document.getElementById('suratTags').innerHTML=suratDipilih.map(s=>`<div class="surat-tag">${esc(s)}<span class="tag-x" onclick="hapusSurat('${escAttr(s)}')">✕</span></div>`).join('');}
+
 document.addEventListener('click',e=>{
-  if(!e.target.closest('.autocomplete-wrap')){
-    document.getElementById('acList').classList.remove('show');
-    document.getElementById('acListPenginput').classList.remove('show');
-    document.getElementById('acSurat').classList.remove('show');
-  }
+  if(!e.target.closest('.autocomplete-wrap'))
+    ['acList','acListPenginput','acSurat'].forEach(id=>document.getElementById(id).classList.remove('show'));
 });
 
-function renderHasil(){
-  const sc=calcScore();const kat=getKategori(parseFloat(sc.nilai));
-  document.getElementById('hasilNama').textContent=selectedSiswa?.nama||'—';
-  document.getElementById('hasilScore').textContent=sc.nilai;
-  document.getElementById('hasilCat').textContent=kat.label;
-  document.getElementById('scoreBreakdown').innerHTML=`
-    <div class="breakdown-row"><span class="lbl">Kognitif (30%)</span><span class="val">${sc.kogPct}%</span></div>
-    <div class="breakdown-row"><span class="lbl">Tahfizh (30%)</span><span class="val">${sc.tfPct}%</span></div>
-    <div class="breakdown-row"><span class="lbl">Adab & Emosi (25%)</span><span class="val">${sc.adabPct}%</span></div>
-    <div class="breakdown-row"><span class="lbl">Kemandirian (15%)</span><span class="val">${sc.manPct}%</span></div>
-    <div class="breakdown-row"><span class="lbl">Penalti Perilaku</span><span class="val" style="color:var(--red)">-${sc.negPenalty}</span></div>
-    <div class="breakdown-row" style="background:var(--cream)"><span class="lbl" style="font-weight:700">Nilai Akhir</span><span class="val" style="font-size:16px">${sc.nilai}</span></div>
-  `;
-}
-
-async function simpanData(){
-  const sc=calcScore();const kat=getKategori(parseFloat(sc.nilai));
+// ══ SIMPAN + LAPORAN ══
+async function simpanDanTampilLaporan(){
+  const sc=calcScore();
+  const kat=getKategori(parseFloat(sc.nilai));
   const entry={
-    nama:selectedSiswa.nama,sesi:selectedSiswa.sesi,kelas:selectedSiswa.kelas,
+    nama_siswa:selectedSiswa.nama,sesi:selectedSiswa.sesi,kelas:selectedSiswa.kelas,
     kelompok:selectedSiswa.kelompok,penginput:selectedPenginput||'—',
-    surat:getSuratValue(),
-    kognitif:sc.kogPct,tahfizh:sc.tfPct,adab:sc.adabPct,kemandirian:sc.manPct,
-    penalti:sc.negPenalty,nilai:sc.nilai,kategori:kat.label,
-    catatan:document.getElementById('catatanKhusus').value,
-    waktu:new Date().toLocaleString('id-ID')
-  };
-  const sbEntry={
-    nama_siswa:entry.nama,sesi:entry.sesi,kelas:entry.kelas,kelompok:entry.kelompok,
-    penginput:entry.penginput,surat_disetorkan:entry.surat,
+    catatan_observer:document.getElementById('catatanKhusus').value,
+    observer:selectedSiswa.observer||'—',
+    surat_disetorkan:suratDipilih.join(', '),
     skor_kognitif:parseFloat(sc.kogPct),skor_tahfizh:parseFloat(sc.tfPct),
     skor_adab:parseFloat(sc.adabPct),skor_kemandirian:parseFloat(sc.manPct),
     penalti_perilaku:sc.negPenalty,nilai_akhir:parseFloat(sc.nilai),
-    kategori:kat.label,catatan_observer:entry.catatan,
-    detail_skor:scores,waktu_input:new Date().toISOString()
+    kategori:kat.label,catatan_observer:document.getElementById('catatanKhusus').value,
+    detail_skor:scores,
+    skor_kog_umum:parseFloat(sc.kogUmum),skor_kog_bilingual:parseFloat(sc.kogBilingual),
+    skor_adab_adab:parseFloat(sc.adabAdab),skor_adab_emosi:parseFloat(sc.adabEmosi),
+    waktu_input:new Date().toISOString()
   };
-  const btn=document.querySelector('#sec7 .btn-save');
-  btn.textContent='Menyimpan...';btn.disabled=true;
-  try{
-    await sbInsert(sbEntry);
-    rekapData.push(entry);
-    btn.textContent='✓ Simpan Penilaian';btn.disabled=false;
-    buatLaporan(entry, sc);
-  } catch(e){
-    btn.textContent='✓ Simpan Penilaian';btn.disabled=false;
-    rekapData.push(entry);
-    buatLaporan(entry, sc);
-  }
-}
-
-function exportCSV(){
-  if(!rekapData.length){alert('Belum ada data!');return;}
-  const keys=['nama','sesi','kelas','kelompok','penginput','surat','kognitif','tahfizh','adab','kemandirian','penalti','nilai','kategori','catatan','waktu'];
-  const csv=[keys.join(','),...rekapData.map(d=>keys.map(k=>`"${(d[k]||'').toString().replace(/"/g,'""')}"`).join(','))].join('\n');
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
-  a.download='rekap_penilaian_seleksi.csv';a.click();
-}
-
-let pendingAdminAction=null;
-function toggleAdmin(){
-  const ov=document.getElementById('adminOverlay');
-  const isShow=ov.classList.contains('show');
-  ov.classList.toggle('show',!isShow);
-  if(!isShow){
-    document.getElementById('adminLogin').style.display='none';
-    document.getElementById('adminMenu').style.display='block';
-    document.getElementById('adminRekap').style.display='none';
-    document.getElementById('adminPin').value='';
-    document.getElementById('pinErr').style.display='none';
-  }
-}
-function closeAdminOutside(e){if(e.target===document.getElementById('adminOverlay')) toggleAdmin();}
-function showAdminLogin(action){
-  pendingAdminAction=action;
-  document.getElementById('adminMenu').style.display='none';
-  document.getElementById('adminLogin').style.display='block';
-  setTimeout(()=>document.getElementById('adminPin').focus(),100);
-}
-function backToAdminMenu(){
-  document.getElementById('adminRekap').style.display='none';
-  document.getElementById('adminMenu').style.display='block';
-}
-function checkPin(){
-  const pin=document.getElementById('adminPin').value;
-  if(pin===ADMIN_PIN){
-    document.getElementById('adminLogin').style.display='none';
-    document.getElementById('pinErr').style.display='none';
-    if(pendingAdminAction==='rekap'){
-      document.getElementById('adminRekap').style.display='block';
-      loadAdminRekap();
-    } else if(pendingAdminAction==='reset'){
-      if(confirm('Reset semua data sesi ini?')){rekapData=[];scores={};selectedSiswa=null;alert('Data direset.');}
-      toggleAdmin();
-    }
-  } else {
-    document.getElementById('pinErr').style.display='block';
-    document.getElementById('adminPin').value='';
-  }
-}
-async function loadAdminRekap(){
-  const el=document.getElementById('adminRekapContent');
-  el.innerHTML='<div style="text-align:center;padding:16px;color:var(--text-mid)">Memuat dari database...</div>';
-  try{
-    const data=await sbSelect();
-    if(!data.length){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--text-mid)">Belum ada data</div>';return;}
-    rekapData=data.map(d=>({nama:d.nama_siswa,sesi:d.sesi,kelas:d.kelas,kelompok:d.kelompok,penginput:d.penginput,surat:d.surat_disetorkan,kognitif:d.skor_kognitif,tahfizh:d.skor_tahfizh,adab:d.skor_adab,kemandirian:d.skor_kemandirian,penalti:d.penalti_perilaku,nilai:d.nilai_akhir,kategori:d.kategori,catatan:d.catatan_observer,waktu:d.created_at}));
-    el.innerHTML=`<div style="overflow-x:auto;border-radius:8px;border:1px solid var(--cream-dark)">
-      <table class="rekap-table" style="margin-bottom:0">
-        <thead><tr><th>#</th><th>Nama Siswa</th><th>Kelas</th><th>Nilai</th><th>Kategori</th><th>Penginput</th></tr></thead>
-        <tbody>${data.map((d,i)=>`<tr>
-          <td>${i+1}</td>
-          <td style="font-weight:700;min-width:120px">${d.nama_siswa}</td>
-          <td>${d.kelas}</td>
-          <td style="font-weight:700;font-size:14px">${d.nilai_akhir}</td>
-          <td class="${getKategori(parseFloat(d.nilai_akhir)).cls}">${d.kategori}</td>
-          <td style="color:var(--text-mid);font-size:11px">${d.penginput}</td>
-        </tr>`).join('')}</tbody>
-      </table>
-    </div>
-    <div style="margin-top:8px;font-size:11px;color:var(--text-mid);text-align:right">${data.length} siswa dinilai</div>`;
-  } catch(e){
-    el.innerHTML=`<div style="text-align:center;padding:16px;color:var(--red)">Gagal: ${e.message}</div>`;
-  }
+  sbInsert(entry).then(()=>loadCounters()).catch(()=>{});
+  // Langsung reset — laporan hanya bisa dilihat admin
+  showToast('✓ Data '+entry.nama_siswa+' berhasil disimpan!');
+  resetForm();
 }
 
 function tutupLaporan(){
   document.getElementById('lapOverlay').classList.remove('show');
-  nilaiSiswaBaru();
+  resetForm();
 }
-
-function nilaiSiswaBaru(){
-  selectedSiswa=null;scores={};suratDipilih=[];
+function resetForm(){
+  selectedSiswa=null;scores={};suratDipilih=[];selectedPenginput=null;
   document.getElementById('inputNama').value='';
   document.getElementById('inputSurat').value='';
-  renderSuratTags();
+  document.getElementById('inputPenginput').value='';
+  document.getElementById('penginputLocked').style.display='none';
+  document.getElementById('penginputInput').style.display='block';
   document.getElementById('catatanKhusus').value='';
   document.getElementById('infoBox').style.display='none';
-  document.querySelectorAll('.error-summary').forEach(e=>e.classList.remove('show'));
-  buildAll();goTo(1);
+  document.querySelectorAll('.error-summary,.error-msg').forEach(e=>e.classList.remove('show'));
+  renderSuratTags();buildAll();goTo(1);
 }
 
-function buatLaporan(entry, sc){
-  const kat = getKategori(parseFloat(sc.nilai));
-  const nama = entry.nama;
-  const k=parseFloat(sc.kogPct), t=parseFloat(sc.tfPct), a=parseFloat(sc.adabPct), m=parseFloat(sc.manPct);
+// ══ COUNTER REAL-TIME ══
+async function loadCounters(){
+  const banin=SISWA.filter(s=>s.kelas.includes('Banin'));
+  const banat=SISWA.filter(s=>s.kelas.includes('Banat'));
+  // Tampilkan total dulu sebelum load
+  document.getElementById('counterBanin').textContent=`... / ${banin.length}`;
+  document.getElementById('counterBanat').textContent=`... / ${banat.length}`;
+  try{
+    const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?select=nama_siswa',{
+      headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Accept':'application/json'}
+    });
+    if(!r.ok)throw new Error('fetch '+r.status);
+    const data=await r.json();
+    if(!Array.isArray(data))throw new Error('bukan array');
+    allDataCache=data;
+    const sudahNama=new Set(data.map(d=>(d.nama_siswa||'').trim().toLowerCase()).filter(Boolean));
+    const banInSudah=banin.filter(s=>sudahNama.has(s.nama.trim().toLowerCase())).length;
+    const banatSudah=banat.filter(s=>sudahNama.has(s.nama.trim().toLowerCase())).length;
+    document.getElementById('counterBanin').textContent=`${banInSudah} / ${banin.length}`;
+    document.getElementById('counterBanat').textContent=`${banatSudah} / ${banat.length}`;
+  }catch(e){
+    // Gagal load DB — tampilkan total saja
+    document.getElementById('counterBanin').textContent=`0 / ${banin.length}`;
+    document.getElementById('counterBanat').textContent=`0 / ${banat.length}`;
+    console.warn('Counter error:',e.message);
+  }
+}
 
-  const unggulList=[];
-  if(k>=75) unggulList.push('kemampuan akademik dasar yang sudah berkembang dengan baik, terlihat dari kelancaran membaca dan berhitungnya');
-  else if(k>=55) unggulList.push('semangat belajar yang tampak antusias selama sesi berlangsung');
-  if(t>=75) unggulList.push('hafalan Al-Quran yang cukup kuat disertai bacaan yang sudah terjaga dengan baik');
-  else if(t>=55) unggulList.push('kebiasaan membaca Al-Quran yang sudah mulai terbentuk dengan baik');
-  if(a>=75) unggulList.push('adab dan sopan santun yang sudah tertanam indah — ananda terlihat hormat kepada guru dan ramah kepada teman-temannya');
-  else if(a>=55) unggulList.push('sikap yang kooperatif dan mau mengikuti arahan selama kegiatan berlangsung');
-  if(m>=75) unggulList.push('kemandirian yang menonjol — ananda mampu menyelesaikan tugas sendiri dan tidak ragu berinisiatif membantu orang lain');
-  else if(m>=55) unggulList.push('keberanian untuk mencoba melakukan hal-hal secara mandiri');
-  if(unggulList.length===0) unggulList.push('kehadiran dan partisipasi ananda selama sesi seleksi berlangsung dengan baik');
-
-  const kembangList=[];
-  if(k<55) kembangList.push({aspek:'kemampuan membaca dan berhitung', saran:'Latihan ringan setiap hari sudah cukup — bacakan buku cerita bersama, atau ajak ananda menghitung benda-benda kecil di sekitar rumah dengan cara yang menyenangkan.'});
-  else if(k<75) kembangList.push({aspek:'penguatan kemampuan akademik', saran:'Ananda sudah di jalur yang tepat. Pertahankan rutinitas belajar yang sudah ada dan sesekali tambahkan permainan edukatif agar semangat belajarnya terus terjaga.'});
-  if(t<55) kembangList.push({aspek:'hafalan Al-Quran', saran:'Murajaah singkat setiap selesai sholat, meski hanya satu surat pendek, akan sangat membantu. Suasana yang tenang dan penuh kasih sayang di rumah adalah kunci agar ananda mencintai Al-Quran.'});
-  else if(t<75) kembangList.push({aspek:'kualitas bacaan Al-Quran', saran:'Sesekali simak bacaan ananda bersama ustadz atau melalui murattal, agar makhraj dan tajwidnya semakin berkembang secara alami.'});
-  if(a<55) kembangList.push({aspek:'pengelolaan emosi dan adab keseharian', saran:'Anak seusia ini masih dalam proses belajar mengelola perasaan — ini sangat wajar. Keteladanan orang tua dalam bersikap sabar dan santun di rumah adalah guru terbaik bagi ananda.'});
-  if(m<55) kembangList.push({aspek:'kemandirian sehari-hari', saran:'Berikan ananda kesempatan untuk mencoba sendiri hal-hal kecil di rumah — merapikan mainan, memakai sepatu sendiri, atau menuangkan minumannya. Apresiasi setiap usahanya, bukan hanya hasilnya.'});
-
-  const ESKUL_MAP=[
-    {nama:'Cinematography',kat:'wajib',min:{k:0,t:0,a:50,m:50}},
-    {nama:'Arabik & English',kat:'pilihan',min:{k:60,t:0,a:0,m:0}},
-    {nama:'Robotik',kat:'pilihan',min:{k:65,t:0,a:0,m:40}},
-    {nama:'Shinkenjuku',kat:'pilihan',min:{k:0,t:0,a:60,m:60}},
-    {nama:'Sains',kat:'pilihan',min:{k:60,t:0,a:0,m:0}},
-    {nama:'Cooking Class',kat:'pilihan',min:{k:0,t:0,a:40,m:50}},
-    {nama:'Archery',kat:'pilihan',min:{k:0,t:0,a:50,m:50}},
-    {nama:'Taekwondo',kat:'pilihan',min:{k:0,t:0,a:40,m:40}},
-    {nama:'Tahfizh Intensif',kat:'tahfizh',min:{k:0,t:65,a:50,m:0}},
-    {nama:'Olimpiade Sains',kat:'lomba',min:{k:75,t:0,a:0,m:50}},
-    {nama:'Olimpiade Bahasa',kat:'lomba',min:{k:70,t:0,a:0,m:0}},
-  ];
-  const reks=ESKUL_MAP.filter(e=>k>=e.min.k&&t>=e.min.t&&a>=e.min.a&&m>=e.min.m);
-  const clsMap={wajib:'let-wajib',lomba:'let-lomba',tahfizh:'let-tahfizh',pilihan:'let-pilihan'};
-
+// ══ LAPORAN ORANG TUA — NARASI SUPER DETAIL ══
+function buatLaporan(entry,sc){
+  const nama=entry.nama_siswa;
+  const panggilNama=nama.split(' ')[0];
+  const k=parseFloat(sc.kogUmum),bil=parseFloat(sc.kogBilingual);
+  const t=parseFloat(sc.tfPct),sp=parseFloat(sc.spPct||0);
+  const a=parseFloat(sc.adabAdab),em=parseFloat(sc.adabEmosi);
+  const mw=parseFloat(sc.mwPct||0),pz=parseFloat(sc.pzPct||0);
+  const m=parseFloat(sc.manPct);
+  const nilai=parseFloat(sc.nilai);
+  const kat=getKategori(nilai);
   const tgl=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
 
-  const pembuka = k>=70&&t>=70&&a>=70&&m>=70
-    ? `Dengan penuh rasa syukur, kami menyampaikan hasil observasi seleksi ananda <strong>${nama}</strong> yang telah mengikuti kegiatan seleksi siswa baru SD Islam Tahfizh Cahaya Quran dengan sangat baik.`
-    : `Dengan penuh perhatian dan rasa syukur, kami menyampaikan hasil observasi seleksi ananda <strong>${nama}</strong> yang telah mengikuti kegiatan seleksi siswa baru SD Islam Tahfizh Cahaya Quran.`;
+  // ── NARASI KOGNITIF ──
+  const skK=getSkorLabel(k);
+  let narasiKog='',saranKog='';
+  if(k>=80){narasiKog=`Subhanallah, ananda ${panggilNama} menampilkan kemampuan kognitif yang sangat memukau! Dalam sesi evaluasi, ananda mampu mengenal dan menyebutkan huruf A–Z dengan fasih, membaca suku kata dan kata-kata sederhana dengan lancar, serta menunjukkan pemahaman angka yang sangat baik. Kemampuan berhitung dan logika ananda berada di atas rata-rata anak seusianya — ananda bahkan bisa mengikuti pola dan menyelesaikan soal penjumlahan dan pengurangan dengan percaya diri. Ini adalah fondasi akademik yang luar biasa kuat.`;saranKog=`Untuk menjaga momentum yang indah ini, Bapak/Ibu bisa mulai memperkenalkan bacaan yang lebih menantang, bermain permainan logika bersama seperti catur anak, Sudoku sederhana, atau teka-teki gambar. Rasa ingin tahu ananda perlu terus dirawat dengan stimulus yang tepat.`;}
+  else if(k>=60){narasiKog=`Kemampuan kognitif ananda ${panggilNama} sudah menunjukkan perkembangan yang sangat menggembirakan. Ananda sudah mengenal huruf-huruf dengan baik dan mulai membangun kemampuan membacanya. Dalam bidang numerik, ananda mengenal angka dan sudah mulai memahami konsep berhitung sederhana. Kemampuan logika ananda juga sudah mulai terlihat saat menghadapi soal-soal pola. Ada beberapa area yang masih perlu diperkuat, namun pondasi yang ada sudah sangat bagus untuk dikembangkan lebih jauh.`;saranKog=`Untuk terus memperkuat kemampuan ini, Bapak/Ibu bisa mencoba membacakan buku cerita setiap malam sebelum tidur, lalu ajak ananda mendiskusikan isi ceritanya. Permainan kartu angka, puzzle huruf, dan permainan kata akan sangat membantu tanpa terasa seperti "belajar" bagi ananda.`;}
+  else{narasiKog=`Kemampuan kognitif ananda ${panggilNama} masih dalam proses berkembang, dan ini adalah hal yang sepenuhnya normal. Setiap anak memiliki garis perkembangan yang berbeda — ada yang lebih cepat di area akademik, ada yang lebih cepat di area sosial dan emosional, dan keduanya sama-sama berharga. Yang penting adalah ananda memiliki rasa ingin tahu yang bisa terus dipupuk dengan cara yang menyenangkan.`;saranKog=`Yang paling efektif untuk anak seusia ananda adalah belajar sambil bermain. Bapak/Ibu bisa mencoba: membacakan buku cerita bergambar setiap hari (bahkan 10 menit saja), bermain kartu huruf sambil bernyanyi, menghitung benda-benda di sekitar rumah secara santai. Yang terpenting: buat suasananya menyenangkan dan penuh kasih sayang, tanpa tekanan untuk "harus bisa".`;}
 
+  // ── NARASI BILINGUAL ──
+  const skBil=getSkorLabel(bil);
+  let narasiBil='',saranBil='';
+  if(bil>=80){narasiBil=`Dalam aspek kemampuan bilingual, ananda ${panggilNama} benar-benar memperlihatkan hasil yang membanggakan! Ananda merespons sapaan dalam Bahasa Inggris dengan percaya diri dan natural, menyebutkan angka, warna, dan anggota tubuh dalam Bahasa Inggris dengan tepat. Dalam Bahasa Arab, ananda juga menunjukkan kemampuan yang impresif — mengenal angka, sapaan, dan kosakata harian dengan baik. Kemampuan bilingual seperti ini adalah modal luar biasa yang akan sangat mendukung perjalanan akademik ananda.`;saranBil=`Untuk terus mengembangkan kemampuan bilingual yang sudah baik ini, Bapak/Ibu bisa mulai sesekali berkomunikasi dalam Bahasa Inggris di rumah untuk hal-hal sederhana: "Let's eat breakfast!", "Time to sleep!", atau menonton kartun edukatif berbahasa Inggris bersama. Untuk Bahasa Arab, bacaan Al-Quran yang rutin akan secara natural memperkuat kosakata ananda.`;}
+  else if(bil>=55){narasiBil=`Kemampuan bilingual ananda ${panggilNama} sudah menunjukkan perkembangan yang cukup menggembirakan. Ananda sudah mengenal beberapa kosakata dalam Bahasa Inggris dan Bahasa Arab meskipun belum semuanya dikuasai secara konsisten. Keberanian ananda untuk mencoba menjawab dalam bahasa asing — meski kadang sambil senyum-senyum sendiri — menunjukkan kepercayaan diri yang sangat patut diapresiasi.`;saranBil=`Di rumah, Bapak/Ibu bisa memulai dengan hal-hal yang sangat sederhana dan menyenangkan: menyapa dengan "Good morning!" di pagi hari, memutar lagu anak dalam Bahasa Inggris, atau menonton video edukatif seperti Cocomelon bersama. Untuk Arab, kebiasaan mengucapkan "Bismillah", "Alhamdulillah", dan doa-doa harian adalah paparan yang sangat efektif. Konsistensi lebih penting dari intensitas.`;}
+  else{narasiBil=`Kemampuan bilingual adalah area yang masih sangat terbuka lebar untuk berkembang pada diri ananda ${panggilNama}. Saat ini ananda masih dalam tahap pengenalan awal kosakata asing, yang sangat wajar karena tidak semua anak mendapat paparan bahasa asing yang intensif sebelum masuk sekolah. Justru inilah salah satu keunggulan SD Islam Tahfizh Cahaya Quran — program bilingual kami dirancang bertahap, kontekstual, dan menyenangkan sehingga anak yang belum terpapar pun akan berkembang pesat.`;saranBil=`Langkah paling mudah untuk memulai: pasangkan lagu anak Bahasa Inggris sebagai backsound di rumah — otak anak menyerap bahasa secara tidak sadar. Untuk Bahasa Arab, ajak ananda mendengarkan murattal dengan terjemahan, dan perkenalkan kalimat sederhana seperti "Ahlan, apa kabar?" atau "Jayyid jiddan!" (Bagus sekali!). Lakukan dengan santai dan konsisten.`;}
+
+  // ── NARASI TAHFIZH ──
+  const skTf=getSkorLabel(t);
+  const suratList=entry.surat_disetorkan||'beberapa surat pendek';
+  let narasiTf='',saranTf='';
+  if(t>=80){narasiTf=`Masya Allah, dalam sesi tahfizh, ananda ${panggilNama} benar-benar mencuri hati! Surat-surat yang disetorkan — ${suratList} — dilantunkan dengan kelancaran yang sangat baik, tajwid yang sudah terjaga dengan cermat, dan makharijul huruf yang tepat. Adab membaca ananda pun sangat indah — duduk tenang, konsentrasi penuh, dan memancarkan kekhusyukan yang mengagumkan untuk anak seusianya. Ini adalah bekal spiritual yang sangat berharga. Cinta ananda kepada Al-Quran sudah sangat terasa, dan kami sangat bersemangat untuk menjadi teman perjalanannya.`;saranTf=`Untuk menjaga dan meningkatkan kualitas hafalan, kami sarankan murajaah dilakukan setiap hari konsisten — bahkan 10 menit saja setelah sholat Maghrib sudah sangat efektif. Simak bacaan ananda secara rutin dengan penuh kehangatan, dan perbaiki dengan lembut jika ada yang kurang tepat. Jaga agar menghafal selalu menjadi momen yang menyenangkan dan penuh ridha Allah.`;}
+  else if(t>=60){narasiTf=`Dalam sesi tahfizh, ananda ${panggilNama} menyetorkan ${suratList} dengan cukup baik. Secara keseluruhan, hafalan sudah terbentuk dan bisa diikuti dengan jelas. Ada beberapa bagian yang sesekali memerlukan jeda untuk mengingat kembali — hal yang sangat wajar dalam proses menghafal. Tajwid dan makharijul huruf sudah menunjukkan pemahaman dasar yang baik, dan adab membaca ananda sangat menggemaskan.`;saranTf=`Untuk memperkuat hafalan ananda, kami rekomendasikan murajaah rutin setiap hari — cukup setelah sholat Maghrib atau sebelum tidur, 10–15 menit sudah sangat berarti. Kuncinya adalah konsistensi: lebih baik sedikit setiap hari daripada banyak tapi jarang. Mendengarkan murattal dari qori yang merdu juga sangat membantu otak merekam irama dan kata-kata secara alami.`;}
+  else if(t>=40){narasiTf=`Ananda ${panggilNama} telah menunjukkan usaha yang sungguh-sungguh dalam menyetorkan ${suratList}. Hafalan masih dalam proses pemantapan — ada bagian yang sudah fasih, ada pula yang masih perlu pengulangan lebih lanjut. Yang membuat kami sangat terkesan adalah keberanian ananda untuk tampil di hadapan penguji — itu membutuhkan keberanian yang tidak sedikit, dan ananda melakukannya dengan berani!`;saranTf=`Membangun hafalan adalah perjalanan panjang yang membutuhkan rutinitas yang menyenangkan. Di rumah, Bapak/Ibu bisa memulai dengan mendengarkan murattal surat-surat yang sudah dihafal sebagai lagu pengantar tidur atau background saat bermain. Lalu secara perlahan, ajak ananda mengikuti bacaannya. Jadikan murajaah sebagai momen istimewa antara Bapak/Ibu dan ananda, bukan kewajiban yang menegangkan.`;}
+  else{narasiTf=`Ananda ${panggilNama} masih dalam tahap awal membangun perjalanan hafalannya. Yang membuat kami kagum adalah keberanian dan kemauan ananda untuk mencoba — itu adalah benih yang sangat berharga dan tidak boleh padam. Hafalan Al-Quran adalah perjalanan panjang yang indah, dan setiap langkah kecil — bahkan satu ayat yang dihafal dengan benar — bernilai besar di sisi Allah Subhanahu wa Ta'ala.`;saranTf=`Langkah terbaik untuk memulai adalah dengan paparan yang konsisten dan penuh kasih: pasangkan murattal sebagai backsound di rumah, perdengarkan surat-surat pendek (Al-Fatihah, Al-Ikhlas, Al-Falaq, An-Nas) berulang kali hingga ananda hafal tanpa sadar. Jangan terburu-buru — bangun dulu kecintaan ananda terhadap Al-Quran, dan hafalan akan mengalir dengan sendirinya.`;}
+
+  // ── NARASI SPIRITUAL ──
+  const skSp=getSkorLabel(sp);
+  let narasiSp='',saranSp='';
+  if(sp>=80){narasiSp=`Kecerdasan spiritual ananda ${panggilNama} benar-benar memukau! Ananda mampu melafalkan doa-doa harian dengan lancar — dari doa makan, tidur, masuk rumah, hingga doa sebelum belajar. Pengetahuan ananda tentang wudhu dan sholat juga sangat baik — ananda bisa menyebutkan urutan wudhu dengan benar dan mengenal waktu-waktu sholat. Yang paling istimewa, ananda terbiasa memulai aktivitas dengan Bismillah secara natural. Ini mencerminkan lingkungan rumah yang sangat baik dalam menanamkan nilai-nilai Islam.`;saranSp=`Pondasi spiritual yang sudah kuat ini perlu terus dipelihara dengan teladan yang konsisten. Sholat berjamaah bersama di rumah, berdoa bersama sebelum makan, dan membiasakan dzikir pagi-petang akan memperkuat karakter Islami ananda secara alami. Biarkan ananda melihat orang tuanya beribadah — itu adalah pendidikan terbaik.`;}
+  else if(sp>=55){narasiSp=`Ananda ${panggilNama} sudah menunjukkan pengenalan yang cukup baik terhadap praktek ibadah sehari-hari. Beberapa doa harian sudah dikenal dengan baik, meskipun ada yang masih perlu diperkuat. Ananda juga sudah mengenal konsep wudhu dan sholat, meski pemahaman detailnya masih perlu dikembangkan. Yang membahagiakan, ananda sudah menunjukkan kebiasaan mengucapkan Bismillah yang cukup konsisten.`;saranSp=`Untuk memperkuat aspek spiritual ini, Bapak/Ibu bisa membiasakan berdoa bersama sebelum setiap aktivitas penting. Ajak ananda ikut berwudhu bersama sambil mengajarkan urutannya satu per satu. Sholat berjamaah di rumah — meski hanya sesekali — akan memberikan kesan mendalam pada ananda.`;}
+  else{narasiSp=`Pengetahuan ibadah ananda ${panggilNama} masih dalam tahap awal, dan ini adalah area yang sangat bisa dikembangkan dengan cepat di lingkungan sekolah maupun rumah. Anak usia ini belajar ibadah paling efektif bukan dari hafalan, melainkan dari kebiasaan dan keteladanan yang ia saksikan setiap hari dari orang-orang yang ia cintai.`;saranSp=`Langkah paling efektif: mulai dari doa makan! Berdoa bersama setiap kali makan dalam 1-2 minggu biasanya sudah cukup membuat anak hafal. Kemudian tambahkan doa tidur. Ajak ananda melihat Bapak/Ibu berwudhu dan sholat — tidak perlu memaksa, cukup undang dengan lembut: "Ayo lihat Ayah sholat..." Pembiasaan yang hangat jauh lebih efektif daripada pengajaran yang formal.`;}
+
+  // ── NARASI ADAB ──
+  const skAdab=getSkorLabel(a);
+  let narasiAdab='';
+  if(a>=80){narasiAdab=`Dari sisi adab dan akhlak, ananda ${panggilNama} sungguh menampilkan karakter yang sangat indah dan membanggakan. Sejak memasuki ruangan, ananda sudah menunjukkan sikap yang rapi dan sopan. Ananda menyampaikan salam dengan tulus, menjawab pertanyaan dengan hormat tanpa memotong pembicaraan, dan berinteraksi dengan teman-temannya dengan penuh kehangatan dan ketulusan. Kejujuran ananda sangat menonjol — bahkan ketika tidak bisa menjawab, ananda dengan jujur mengakuinya. Akhlak seperti ini adalah mahkota yang lebih berharga dari kecerdasan akademik sekalipun.`;}
+  else if(a>=55){narasiAdab=`Adab ananda ${panggilNama} secara keseluruhan sudah menunjukkan nilai-nilai yang baik. Ananda bersikap sopan kepada guru dan bersedia mengikuti arahan yang diberikan. Dalam berinteraksi dengan teman, ananda umumnya menunjukkan sikap yang ramah, meskipun kadang masih perlu diingatkan untuk menunggu giliran. Kejujuran ananda juga cukup baik — ini adalah nilai yang harus terus diperkuat dan diapresiasi setiap kali muncul.`;}
+  else{narasiAdab=`Adab adalah aspek yang sedang tumbuh dalam diri ananda ${panggilNama}, dan hal ini sangat wajar pada usia ini. Anak usia prasekolah memang masih dalam proses internalisasi nilai-nilai sosial — mereka belajar melalui pengulangan, keteladanan, dan respons yang konsisten dari orang dewasa di sekitarnya. Potensi ananda untuk berkembang dalam aspek ini sangat besar.`;}
+
+  // ── NARASI EMOSI ──
+  const skEm=getSkorLabel(em);
+  let narasiEm='',saranAdabEm='';
+  if(em>=80){narasiEm=`Kematangan emosi ananda ${panggilNama} sangat mengesankan dan melebihi ekspektasi kami untuk anak seusianya. Ananda mampu menunggu giliran dengan sabar dan tenang, tidak menunjukkan reaksi yang berlebihan saat menghadapi soal yang sulit, dan tetap fokus bahkan ketika ada gangguan di sekitarnya. Kemampuan regulasi emosi seperti ini adalah aset luar biasa yang akan sangat mendukung proses belajar ananda selama bertahun-tahun ke depan.`;}
+  else if(em>=55){narasiEm=`Ananda ${panggilNama} menunjukkan kemampuan mengelola emosi yang cukup baik untuk usianya. Ananda mampu bertahan dalam situasi yang membutuhkan kesabaran, meskipun ada saat-saat di mana ekspresi emosinya perlu sedikit diarahkan. Secara keseluruhan, ananda menunjukkan stabilitas yang cukup baik selama sesi berlangsung — sebuah tanda perkembangan emosi yang positif.`;}
+  else{narasiEm=`Regulasi emosi ananda ${panggilNama} masih dalam proses berkembang, yang sangat alamiah untuk anak seusianya. Anak usia 5-6 tahun memang sedang belajar mengenal, menamai, dan mengelola perasaannya sendiri — ini adalah tugas perkembangan yang normal dan membutuhkan waktu serta kesabaran. Lingkungan rumah yang tenang, konsisten, dan penuh kasih sayang adalah "sekolah" terbaik untuk belajar mengelola emosi.`;}
+  if(a<70||em<70){saranAdabEm=`Untuk mendukung perkembangan adab dan kecerdasan emosi ananda, beberapa hal yang bisa Bapak/Ibu lakukan: (1) Jadilah teladan nyata setiap hari — anak belajar paling efektif dari apa yang mereka saksikan, bukan sekadar dari apa yang diajarkan. (2) Ketika ananda marah atau kecewa, bantu ia menamai emosinya: <em>"Kamu sedang kesal ya karena mainannya diambil?"</em> — ini mengajarkan kesadaran emosi yang sangat penting. (3) Beri apresiasi yang spesifik saat ananda menunjukkan adab yang baik: <em>"Tadi kamu sabar menunggu giliran, Bunda bangga sekali!"</em> (4) Bacakan kisah-kisah para Nabi dan sahabat yang kaya nilai akhlak mulia.`;}
+
+  // ── NARASI MEWARNAI & PUZZLE ──
+  const skMw=getSkorLabel(mw),skPz=getSkorLabel(pz);
+  let narasiAktivitas='';
+  const aktNilai=(mw+pz)/2;
+  if(aktNilai>=80){narasiAktivitas=`Dalam sesi aktivitas — mewarnai dan puzzle — ananda ${panggilNama} benar-benar menunjukkan kemampuan yang memukau. Cara ananda memegang krayon sudah sangat tepat dan stabil, mewarnai dengan rapi dalam garis, dan memilih warna dengan penuh kreativitas yang mencerminkan imajinasi yang kaya. Dalam sesi puzzle, ananda menunjukkan strategi yang sistematis, daya tahan yang baik saat menghadapi bagian yang sulit, dan reaksi yang sangat sehat saat berhasil menyelesaikannya. Kemampuan ini mencerminkan kematangan motorik halus dan kemampuan berpikir terstruktur yang luar biasa.`;}
+  else if(aktNilai>=55){narasiAktivitas=`Dalam sesi mewarnai dan puzzle, ananda ${panggilNama} menunjukkan kemampuan yang cukup baik. Mewarnai dilakukan dengan cukup rapi meskipun sesekali keluar dari garis — yang sangat wajar untuk usia ini. Ananda juga menunjukkan minat dan antusias yang baik selama aktivitas berlangsung. Dalam puzzle, ananda mau mencoba berbagai cara meski memerlukan sedikit dorongan saat menghadapi bagian yang sulit. Ini menunjukkan potensi yang baik yang terus berkembang.`;}
+  else{narasiAktivitas=`Dalam sesi aktivitas, ananda ${panggilNama} masih dalam proses mengembangkan kemampuan motorik halus dan konsentrasi yang dibutuhkan untuk mewarnai dan puzzle. Ini adalah keterampilan yang sangat bisa berkembang pesat dengan latihan yang menyenangkan di rumah. Yang penting ananda sudah berani mencoba!`;}
+  
+  let saranAktivitas='';
+  if(mw<70){saranAktivitas=`Untuk melatih motorik halus ananda, aktivitas seperti mewarnai, melipat origami, menyusun puzzle, bermain playdough, atau menggunting gambar sangat direkomendasikan dilakukan secara rutin. Buat sudut kreatif kecil di rumah dengan peralatan mewarnai, dan biarkan ananda bereksperimen dengan bebas — proses lebih penting dari hasil!`;}
+  else{saranAktivitas=`Untuk terus mengembangkan kreativitas dan kemampuan motorik yang sudah baik ini, Bapak/Ibu bisa memperkenalkan aktivitas-aktivitas seni yang lebih bervariasi: melukis dengan cat air, membuat kolase dari kertas bekas, atau bermain puzzle dengan jumlah keping yang lebih banyak secara bertahap.`;}
+
+  // ── NARASI KEMANDIRIAN ──
+  const skMan=getSkorLabel(m);
+  let narasiMan='',saranMan='';
+  if(m>=80){narasiMan=`Kemandirian ananda ${panggilNama} benar-benar menonjol dan membanggakan! Ananda mampu merapikan pakaian dan barang-barangnya sendiri, menyelesaikan tugas tanpa langsung meminta bantuan, berani menyampaikan kebutuhan kepada guru dengan jelas, bahkan memperlihatkan inisiatif untuk membantu teman yang membutuhkan. Tingkat kemandirian seperti ini menunjukkan pola asuh yang sangat baik dari Bapak/Ibu, dan ananda akan sangat siap menghadapi dinamika sekolah dasar.`;saranMan=`Untuk terus mengembangkan kemandirian yang sudah luar biasa ini, Bapak/Ibu bisa memberikan tanggung jawab yang sedikit lebih besar secara bertahap: mempersiapkan tas sekolah sendiri, memiliki "tugas" rutin di rumah seperti menyiram tanaman, atau mengatur perlengkapan tidurnya sendiri. Kepercayaan yang diberikan akan memperkuat rasa tanggung jawab ananda.`;}
+  else if(m>=55){narasiMan=`Ananda ${panggilNama} sudah menunjukkan benih-benih kemandirian yang menggembirakan. Ananda mau mencoba sendiri beberapa hal, meskipun terkadang masih memerlukan dorongan atau konfirmasi dari orang dewasa terlebih dahulu. Kepercayaan diri ananda untuk mengambil inisiatif masih perlu diperkuat, namun pondasinya sudah ada dan sangat bisa dikembangkan.`;saranMan=`Untuk menumbuhkan kemandirian ananda, mulailah dari hal-hal kecil yang konsisten: biarkan ananda memakai sepatunya sendiri meski butuh waktu lebih lama, minta ananda membereskan mainannya setelah bermain, atau memilihkan pakaian sendiri untuk esok hari. Kunci utamanya: <em>tahan diri untuk tidak langsung membantu</em> — berikan waktu dan ruang untuk ia mencoba terlebih dahulu. Apresiasi prosesnya, bukan hanya hasilnya!`;}
+  else{narasiMan=`Ananda ${panggilNama} saat ini masih banyak bergantung pada dukungan orang dewasa, yang merupakan fase yang normal dan perlu ditangani dengan penuh kesabaran dan strategi. Kemandirian bukan sesuatu yang muncul tiba-tiba — ia tumbuh dari kesempatan yang konsisten diberikan oleh orang tua di rumah, sedikit demi sedikit, dengan penuh kesabaran.`;saranMan=`Mulai dari satu kebiasaan kecil dan jalani selama 2 minggu: misalnya, setiap habis main, ananda harus membereskan mainannya sendiri sebelum dibolehkan melakukan aktivitas berikutnya. Konsisten dan tidak menyerah saat ananda menolak atau rewel di awal — itu bagian normal dari prosesnya. Setelah satu kebiasaan terbentuk, tambahkan yang berikutnya. Satu langkah kecil yang konsisten lebih bermakna dari seribu niat yang tidak dijalankan.`;}
+
+  // ── ESKUL NARATIF ──
+  const ESKUL_MAP=[
+    {nama:'Cinematography',kat:'wajib',min:{k:0,t:0,a:50,m:50},desc:'sebagai sarana mengekspresikan kreativitas dan mengabadikan momen berharga'},
+    {nama:'Arabik & English Club',kat:'pilihan',min:{k:60,t:0,a:0,m:0},desc:'karena kemampuan bilingualnya yang sudah terbentuk akan berkembang sangat pesat'},
+    {nama:'Robotik',kat:'pilihan',min:{k:65,t:0,a:0,m:40},desc:'karena kemampuan logika dan kemandiriannya sangat mendukung untuk pembelajaran berbasis teknologi'},
+    {nama:'Shinkenjuku (Bela Diri)',kat:'pilihan',min:{k:0,t:0,a:60,m:60},desc:'untuk mengembangkan kedisiplinan, rasa percaya diri, dan ketahanan fisik-mental'},
+    {nama:'Sains Eksperimen',kat:'pilihan',min:{k:60,t:0,a:0,m:0},desc:'karena rasa ingin tahu dan kemampuan berpikirnya sangat cocok untuk eksplorasi ilmiah'},
+    {nama:'Cooking Class',kat:'pilihan',min:{k:0,t:0,a:40,m:50},desc:'untuk mengembangkan kreativitas, kesabaran, dan kemandirian melalui aktivitas memasak yang menyenangkan'},
+    {nama:'Archery',kat:'pilihan',min:{k:0,t:0,a:50,m:50},desc:'untuk melatih konsentrasi, kesabaran, dan ketepatan yang sangat sesuai karakter ananda'},
+    {nama:'Taekwondo',kat:'pilihan',min:{k:0,t:0,a:40,m:40},desc:'untuk membangun kedisiplinan, kepercayaan diri, dan kemampuan regulasi emosi melalui olahraga bela diri'},
+    {nama:'Tahfizh Intensif',kat:'tahfizh',min:{k:0,t:65,a:50,m:0},desc:'mengingat kemampuan tahfizh yang sudah sangat baik — program ini akan membantu ananda mencapai target hafalan yang lebih tinggi'},
+    {nama:'Olimpiade Sains',kat:'lomba',min:{k:75,t:0,a:0,m:50},desc:'karena potensi akademiknya sangat mendukung untuk berprestasi di kompetisi ilmiah'},
+    {nama:'Olimpiade Bahasa',kat:'lomba',min:{k:70,t:0,a:0,m:0},desc:'untuk menyalurkan kemampuan bahasa ke arena kompetisi yang akan mengasah kepercayaan dirinya lebih jauh'},
+  ];
+  const reks=ESKUL_MAP.filter(e=>k>=e.min.k&&bil>=(e.min.k/2)&&t>=e.min.t&&a>=e.min.a&&m>=e.min.m);
+  const clsMap={wajib:'let-wajib',lomba:'let-lomba',tahfizh:'let-tahfizh',pilihan:'let-pilihan'};
+  
+  let narasiEskul='';
+  if(reks.length){
+    const eWajib=reks.filter(e=>e.kat==='wajib');
+    const ePilihan=reks.filter(e=>e.kat==='pilihan');
+    const eTahfizh=reks.filter(e=>e.kat==='tahfizh');
+    const eLomba=reks.filter(e=>e.kat==='lomba');
+    let parts=[];
+    if(eWajib.length)parts.push(`Seluruh siswa kami wajib mengikuti <strong>Cinematography</strong> yang dirancang untuk mengembangkan kreativitas, kepekaan seni, dan kemampuan bercerita visual`);
+    if(eTahfizh.length)parts.push(`Program <strong>Tahfizh Intensif</strong> sangat kami rekomendasikan untuk ${panggilNama} — ${eTahfizh[0].desc}`);
+    if(eLomba.length)parts.push(`Berdasarkan profil ananda, ${panggilNama} juga berpotensi mengikuti <strong>${eLomba.map(e=>e.nama).join(' dan ')}</strong> — ${eLomba[0].desc}`);
+    if(ePilihan.length)parts.push(`Untuk pengembangan bakat dan karakter, ${ePilihan.slice(0,3).map(e=>`<strong>${e.nama}</strong> (${e.desc})`).join('; ')}`);
+    narasiEskul='Berdasarkan profil menyeluruh ananda, '+parts.join('; dan ')+'.';
+  }else{
+    narasiEskul=`Rekomendasi kegiatan ekstrakurikuler yang paling tepat untuk ${panggilNama} akan disampaikan secara personal oleh wali kelas setelah mengamati perkembangan ananda di hari-hari awal sekolah, karena setiap anak memiliki keunikannya masing-masing yang perlu diamati lebih dekat.`;
+  }
+
+  // ── TIPS MENDAMPINGI ──
+  const tips=[];
+  tips.push(`Jadwalkan <em>"waktu belajar menyenangkan"</em> setiap hari selama 15–20 menit — bukan sebagai kewajiban, tetapi sebagai momen bonding yang bermakna antara Bapak/Ibu dan ananda. Anak yang merasa belajar adalah kegiatan yang dilakukan bersama orang yang ia cintai akan jauh lebih termotivasi.`);
+  if(t<70)tips.push(`Biasakan memutar murattal di rumah sebagai backsound — baik saat ananda bermain, makan, atau menjelang tidur. Paparan yang konsisten jauh lebih efektif daripada sesi menghafal yang intens sesekali.`);
+  if(em<70)tips.push(`Validasi perasaan ananda sebelum mengoreksi perilakunya. Katakan <em>"Bunda tahu kamu sedang kesal..."</em> sebelum <em>"...tapi tidak boleh begitu ya."</em> Pendekatan ini mengajarkan kesadaran emosi sekaligus nilai adab secara bersamaan.`);
+  if(m<70)tips.push(`Beri ananda kepercayaan dan waktu untuk mencoba hal-hal sendiri. Menyelesaikan tantangan kecil secara mandiri akan membangun kepercayaan diri yang jauh lebih kokoh daripada pujian semata.`);
+  tips.push(`Hindari membandingkan ananda dengan anak lain, termasuk kakak/adiknya. Setiap anak memiliki garis perkembangannya sendiri yang unik dan indah. Fokus pada perjalanan ananda, bukan pada posisi relatifnya terhadap orang lain.`);
+  tips.push(`Pastikan ananda mendapat tidur yang cukup (9–11 jam per malam) dan sarapan bergizi sebelum berangkat sekolah. Keduanya terbukti secara ilmiah sangat mempengaruhi kemampuan belajar, konsentrasi, dan regulasi emosi anak.`);
+  tips.push(`Libatkan ananda dalam percakapan nyata setiap hari — ceritakan hari Bapak/Ibu dan tanyakan tentang harinya. Kemampuan komunikasi dan kosakata anak berkembang paling pesat dari percakapan yang hangat dan tulus dalam keluarga.`);
+
+  // ── PENUTUP ──
+  const kataKatPenutup=nilai>=75
+    ? `Dengan segenap rasa syukur kepada Allah Subhanahu wa Ta'ala, kami menyampaikan bahwa ananda ${panggilNama} telah menorehkan hasil yang sangat menggembirakan. Potensi yang ananda miliki adalah amanah yang luar biasa. Kami sangat berharap dapat menjadi mitra Bapak/Ibu dalam memaksimalkan potensi tersebut — bersama, insyaAllah kita akan mendampingi ananda menjadi generasi yang tidak hanya cerdas secara akademik, tetapi juga hafizh yang berakhlak mulia dan menjadi kebanggaan umat.`
+    : `Setiap anak adalah bintang yang sedang menunggu cahayanya muncul dengan sempurna. Sesi observasi ini hanyalah sebuah potret singkat — bukan penentu masa depan ananda. Kami sepenuhnya yakin bahwa ${panggilNama} memiliki potensi yang sangat besar yang masih menanti untuk digali. Dukungan penuh dari Bapak/Ibu, dipadukan dengan program pembelajaran kami yang holistik dan bernilai Islam, insyaAllah akan membawa ananda kepada versi terbaiknya.`;
+
+  // ── RENDER HTML LAPORAN ──
   document.getElementById('lapContent').innerHTML=`
-    <div class="lap-siswa-info">
-      <div class="li-row"><span class="li-key">Nama</span><span class="li-val">${nama}</span></div>
-      <div class="li-row"><span class="li-key">Sesi</span><span class="li-val">${entry.sesi}</span></div>
-      <div class="li-row"><span class="li-key">Kelas</span><span class="li-val">${entry.kelas} — Kelompok ${entry.kelompok}</span></div>
-      <div class="li-row"><span class="li-key">Surat</span><span class="li-val">${entry.surat||'—'}</span></div>
+    <div class="lap-kop">
+      <div class="lk-sekolah">Laporan Observasi Seleksi Siswa Baru</div>
+      <div class="lk-judul">SD Islam Tahfizh Cahaya Quran</div>
+      <div class="lk-sub">Tahun Ajaran 2025/2026 &nbsp;·&nbsp; Dokumen Bersifat Rahasia untuk Orang Tua</div>
     </div>
-    <div class="lap-nilai-bar">
-      <div class="lap-nilai-angka">${sc.nilai}</div>
-      <div class="lap-nilai-detail">
-        <div class="lap-nilai-kat">${kat.label}</div>
-        <div class="lap-nilai-sub">Kognitif ${sc.kogPct}% &nbsp;·&nbsp; Tahfizh ${sc.tfPct}% &nbsp;·&nbsp; Adab & Emosi ${sc.adabPct}% &nbsp;·&nbsp; Kemandirian ${sc.manPct}%</div>
-      </div>
+
+    <div class="lap-identitas">
+      <div class="li-row"><span class="li-key">Nama Ananda</span><span class="li-val">${esc(nama)}</span></div>
+      <div class="li-row"><span class="li-key">Sesi</span><span class="li-val">${esc(entry.sesi)}</span></div>
+      <div class="li-row"><span class="li-key">Kelas Observasi</span><span class="li-val">${esc(entry.kelas)} — Kelompok ${esc(entry.kelompok)}</span></div>
+      <div class="li-row"><span class="li-key">Surat Disetorkan</span><span class="li-val">${esc(entry.surat_disetorkan||'—')}</span></div>
+      <div class="li-row"><span class="li-key">Observer</span><span class="li-val">${esc(entry.penginput)}</span></div>
+      <div class="li-row"><span class="li-key">Tanggal</span><span class="li-val">${tgl}</span></div>
     </div>
-    <div class="lap-section">
-      <h4>Pengantar</h4>
-      <p>${pembuka} Laporan ini disusun sebagai bahan diskusi bersama antara pihak sekolah dan Bapak/Ibu orang tua, dalam rangka mendukung tumbuh kembang ananda secara optimal.</p>
-    </div>
-    <div class="lap-section">
-      <h4>Yang Kami Banggakan dari Ananda</h4>
-      <p>Selama sesi observasi berlangsung, kami dengan senang hati menyaksikan ${unggulList.join(', serta ')}. Hal-hal ini adalah modal yang sangat berharga bagi perjalanan belajar ananda ke depan, dan kami yakin potensi ini akan terus berkembang indah dengan dukungan Bapak/Ibu di rumah.</p>
-    </div>
-    ${kembangList.length>0?`
-    <div class="lap-section">
-      <h4>Ruang Tumbuh yang Masih Terbuka</h4>
-      <p>Setiap anak memiliki ritme perkembangannya masing-masing, dan kami percaya ananda pun demikian. Beberapa aspek yang kami lihat masih memiliki ruang untuk tumbuh lebih jauh adalah:</p>
-      ${kembangList.map(item=>`
-        <div style="margin:10px 0 10px 8px;padding-left:12px;border-left:2px solid #c9a84c">
-          <div style="font-weight:700;margin-bottom:3px;font-family:Tahoma,sans-serif;font-size:12px;color:#1a3a2a">${item.aspek}</div>
-          <div>${item.saran}</div>
+
+    <div class="lap-score-bar">
+      <div class="lsb-angka">${sc.nilai}</div>
+      <div class="lsb-detail">
+        <div class="lsb-kat">${kat.label}</div>
+        <div class="lsb-skor">Nilai akhir dari 100 · Penalti perilaku: -${sc.negPenalty}</div>
+        <div class="lsb-bar-wrap">
+          <div class="lsb-bar-item"><div class="lbi-label">Kognitif Umum (${sc.kogUmum}%)</div><div class="lbi-track"><div class="lbi-fill" style="width:${sc.kogUmum}%"></div></div></div>
+          <div class="lsb-bar-item"><div class="lbi-label">Bilingual (${sc.kogBilingual}%)</div><div class="lbi-track"><div class="lbi-fill" style="width:${sc.kogBilingual}%"></div></div></div>
+          <div class="lsb-bar-item"><div class="lbi-label">Tahfizh (${sc.tfPct}%)</div><div class="lbi-track"><div class="lbi-fill" style="width:${sc.tfPct}%"></div></div></div>
+          <div class="lsb-bar-item"><div class="lbi-label">Spiritual (${sc.spPct}%)</div><div class="lbi-track"><div class="lbi-fill" style="width:${sc.spPct}%"></div></div></div>
+          <div class="lsb-bar-item"><div class="lbi-label">Adab (${sc.adabAdab}%) · Emosi (${sc.adabEmosi}%)</div><div class="lbi-track"><div class="lbi-fill" style="width:${sc.adabPct}%"></div></div></div>
+          <div class="lsb-bar-item"><div class="lbi-label">Kemandirian (${sc.manPct}%)</div><div class="lbi-track"><div class="lbi-fill" style="width:${sc.manPct}%"></div></div></div>
         </div>
-      `).join('')}
-    </div>`:''}
-    <div class="lap-section">
-      <h4>Pesan untuk Bapak/Ibu</h4>
-      <p>Terima kasih telah mempercayakan pendidikan ananda kepada kami. Kehadiran Bapak/Ibu dalam proses ini adalah bentuk cinta yang luar biasa. Kami percaya bahwa dengan kolaborasi yang baik antara rumah dan sekolah, ananda akan tumbuh menjadi generasi yang tidak hanya cerdas, tetapi juga berakhlak mulia dan mencintai Al-Quran. Semoga Allah mudahkan langkah ananda dan keluarga.</p>
-    </div>
-    <div class="lap-section">
-      <h4>Rekomendasi Kegiatan Ekstrakurikuler</h4>
-      <p>Berdasarkan profil ananda secara menyeluruh, berikut kegiatan ekstrakurikuler yang kami rekomendasikan untuk mendukung perkembangannya:</p>
-      <div class="lap-eskul-list">
-        ${reks.length
-          ? reks.map(e=>`<span class="lap-eskul-tag ${clsMap[e.kat]}">${e.nama}</span>`).join('')
-          : '<span style="font-size:12px;color:#666;font-style:italic">Rekomendasi kegiatan akan disampaikan secara personal oleh wali kelas.</span>'
-        }
       </div>
     </div>
-    ${entry.catatan?`<div class="lap-section">
-      <h4>Catatan Tambahan dari Observer</h4>
-      <p style="font-style:italic;color:#555">"${entry.catatan}"</p>
-    </div>`:''}
+
+    <div class="lap-section">
+      <h4>Pengantar dari Sekolah</h4>
+      <p>Bismillahirrahmanirrahim. Assalamu'alaikum warahmatullahi wabarakatuh.</p>
+      <p>Dengan penuh kebahagiaan dan rasa syukur kepada Allah Subhanahu wa Ta'ala, kami menyampaikan laporan observasi ananda <strong>${esc(nama)}</strong> yang telah mengikuti rangkaian seleksi penerimaan siswa baru SD Islam Tahfizh Cahaya Quran. Laporan ini disusun dengan teliti berdasarkan pengamatan langsung tim observer kami yang berpengalaman, dan bertujuan memberikan gambaran menyeluruh yang jujur namun penuh kasih sayang kepada Bapak/Ibu sebagai orang tua.</p>
+      <p>Kami percaya setiap anak adalah anugerah unik dari Allah — laporan ini bukan sekadar kumpulan angka, melainkan cermin dari potensi besar yang sedang menunggu untuk berkembang dengan bimbingan yang tepat. Semoga laporan ini menjadi bekal bagi Bapak/Ibu untuk semakin memahami keunikan ananda dan mendampinginya dengan lebih terarah.</p>
+    </div>
+
+    <div class="lap-section">
+      <h4>A. Kemampuan Kognitif Umum</h4>
+      <div class="lap-aspek-block">
+        <div class="lab-title">Membaca, Berhitung & Logika</div>
+        <span class="lab-skor ${skK.c}">${skK.t} — ${sc.kogUmum}%</span>
+        <div class="lab-text"><p>${narasiKog}</p><p>${saranKog}</p></div>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>B. Kemampuan Bilingual (Bahasa Inggris & Arab)</h4>
+      <div class="lap-aspek-block">
+        <div class="lab-title">Penguasaan Bahasa Asing</div>
+        <span class="lab-skor ${skBil.c}">${skBil.t} — ${sc.kogBilingual}%</span>
+        <div class="lab-text"><p>${narasiBil}</p><p>${saranBil}</p></div>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>C. Tahfizh Al-Quran</h4>
+      <div class="lap-aspek-block">
+        <div class="lab-title">Kelancaran, Tajwid, Makhraj & Adab Membaca</div>
+        <span class="lab-skor ${skTf.c}">${skTf.t} — ${sc.tfPct}%</span>
+        <div class="lab-text"><p>${narasiTf}</p><p>${saranTf}</p></div>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>D. Spiritual & Pengetahuan Ibadah</h4>
+      <div class="lap-aspek-block">
+        <div class="lab-title">Doa Harian & Pengetahuan Ibadah Dasar</div>
+        <span class="lab-skor ${skSp.c}">${skSp.t} — ${sc.spPct}%</span>
+        <div class="lab-text"><p>${narasiSp}</p><p>${saranSp}</p></div>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>E. Adab & Kecerdasan Emosional</h4>
+      <div class="lap-aspek-block">
+        <div class="lab-title">Adab Keseharian & Interaksi</div>
+        <span class="lab-skor ${skAdab.c}">${skAdab.t} — ${sc.adabAdab}%</span>
+        <div class="lab-text"><p>${narasiAdab}</p></div>
+      </div>
+      <div class="lap-aspek-block" style="margin-top:10px">
+        <div class="lab-title">Regulasi & Kematangan Emosi</div>
+        <span class="lab-skor ${skEm.c}">${skEm.t} — ${sc.adabEmosi}%</span>
+        <div class="lab-text"><p>${narasiEm}</p></div>
+      </div>
+      ${saranAdabEm?`<p style="margin-top:12px;font-size:13px">${saranAdabEm}</p>`:''}
+    </div>
+
+    <div class="lap-section">
+      <h4>F. Aktivitas Mewarnai & Puzzle</h4>
+      <div class="lap-aspek-block">
+        <div class="lab-title">Motorik Halus, Kreativitas & Daya Tahan</div>
+        <span class="lab-skor ${skMw.c}">Mewarnai: ${skMw.t} (${sc.mwPct}%)</span>
+        <span class="lab-skor ${skPz.c}" style="margin-left:6px">Puzzle: ${skPz.t} (${sc.pzPct}%)</span>
+        <div class="lab-text"><p>${narasiAktivitas}</p><p>${saranAktivitas}</p></div>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>G. Kemandirian & Inisiatif</h4>
+      <div class="lap-aspek-block">
+        <div class="lab-title">Kemampuan Mandiri & Kepercayaan Diri</div>
+        <span class="lab-skor ${skMan.c}">${skMan.t} — ${sc.manPct}%</span>
+        <div class="lab-text"><p>${narasiMan}</p><p>${saranMan}</p></div>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>H. Rekomendasi Kegiatan Ekstrakurikuler</h4>
+      <div class="lap-eskul-naratif">
+        <div class="len-title">Program yang Direkomendasikan</div>
+        <div class="len-tags">
+          ${reks.length?reks.map(e=>`<span class="let-tag ${clsMap[e.kat]}">${e.nama}</span>`).join(''):'<span style="font-size:12px;color:#666;font-style:italic">Akan direkomendasikan wali kelas</span>'}
+        </div>
+        <p style="font-size:13px;line-height:1.8">${narasiEskul}</p>
+      </div>
+    </div>
+
+    <div class="lap-section">
+      <h4>I. Tips Mendampingi Ananda di Rumah</h4>
+      <div class="lap-tips">
+        <div class="lt-title">💡 Panduan Praktis untuk Bapak/Ibu</div>
+        <ul>${tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+      </div>
+    </div>
+
+    <div class="lap-penutup">${kataKatPenutup}</div>
+
     <div class="lap-ttd">
       <div class="lap-ttd-box">
-        <div style="font-size:11px;color:#666;margin-bottom:2px">Jakarta, ${tgl}</div>
-        <div style="font-size:11px;color:#666;margin-bottom:2px">Hormat kami,</div>
-        <div class="ttd-nama">${entry.penginput}</div>
-        <div class="ttd-jabatan">Observer Seleksi Siswa Baru</div>
+        <div class="ttd-kota">Bekasi, ${tgl}</div>
+        <div class="ttd-hormat">Kepala SD Islam Tahfizh Cahaya Quran,</div>
+        <div class="ttd-nama">Achmad Jumadi, M.Pd.</div>
+        <div class="ttd-jabatan">Kepala Sekolah</div>
       </div>
     </div>
   `;
   document.getElementById('lapOverlay').classList.add('show');
-  document.getElementById('lapOverlay').scrollTop=0;
 }
 
-buildStepNav();buildAll();updateNav();
+// ══ ADMIN LOGIN ══
+async function doAdminLogin(){
+  const u=document.getElementById('adminUser').value.trim();
+  const p=document.getElementById('adminPass').value;
+  if(!u||!p){document.getElementById('adminLoginErr').style.display='block';document.getElementById('adminLoginErr').textContent='Username dan password wajib diisi';return;}
+  try{
+    const admins=await sbGetAdmins();
+    const found=admins&&admins.find(a=>a.username===u&&a.password_hash===p);
+    if(found){
+      adminLoggedIn=true;adminUsername=u;
+      document.getElementById('adminLoginScreen').style.display='none';
+      document.getElementById('adminApp').classList.add('show');
+      document.getElementById('adminUserLabel').textContent=u;
+      document.getElementById('adminLoginErr').style.display='none';
+      await loadData();
+      renderAdminView('dashboard');
+    }else{
+      document.getElementById('adminLoginErr').style.display='block';
+      document.getElementById('adminLoginErr').textContent='Username atau password salah';
+    }
+  }catch(e){document.getElementById('adminLoginErr').style.display='block';document.getElementById('adminLoginErr').textContent='Gagal terhubung ke server';}
+}
+document.getElementById('adminPass').addEventListener('keydown',e=>{if(e.key==='Enter')doAdminLogin();});
+
+function togglePass(){
+  const inp=document.getElementById('adminPass');
+  const btn=document.getElementById('togglePassBtn');
+  if(inp.type==='password'){inp.type='text';btn.style.color='var(--gold)';}
+  else{inp.type='password';btn.style.color='rgba(255,255,255,0.45)';}
+}
+
+function doAdminLogout(){adminLoggedIn=false;adminUsername='';document.getElementById('adminApp').classList.remove('show');document.getElementById('adminLoginScreen').style.display='flex';document.getElementById('adminUser').value='';document.getElementById('adminPass').value='';tutupAdmin();}
+function bukaAdmin(){document.getElementById('adminFullscreen').classList.add('show');}
+function tutupAdmin(){document.getElementById('adminFullscreen').classList.remove('show');}
+
+// ══ ADMIN NAV ══
+function adminNav(view,el){
+  document.querySelectorAll('.asb-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  adminCurrentView=view;
+  renderAdminView(view);
+}
+async function loadData(){
+  try{allDataCache=await sbSelect();}catch(e){allDataCache=[];}
+}
+function renderAdminView(view){
+  const c=document.getElementById('adminContent');
+  if(view==='dashboard')c.innerHTML=renderDashboard();
+  else if(view==='data')c.innerHTML=renderDataTable();
+  else if(view==='laporan')c.innerHTML=renderLaporanList();
+}
+
+function renderDashboard(){
+  const total=allDataCache.length;
+  const banin=allDataCache.filter(d=>d.kelas?.includes('Banin')).length;
+  const banat=allDataCache.filter(d=>d.kelas?.includes('Banat')).length;
+  const totalSiswa=SISWA.length;
+  const banin_t=SISWA.filter(s=>s.kelas.includes('Banin')).length;
+  const banat_t=SISWA.filter(s=>s.kelas.includes('Banat')).length;
+  const belum=totalSiswa-total;
+  return`
+    <div class="admin-stats">
+      <div class="stat-card"><div class="sc-num">${total}</div><div class="sc-label">Total Diinput</div></div>
+      <div class="stat-card"><div class="sc-num">${banin}/${banin_t}</div><div class="sc-label">Banin</div></div>
+      <div class="stat-card"><div class="sc-num">${banat}/${banat_t}</div><div class="sc-label">Banat</div></div>
+      <div class="stat-card"><div class="sc-num" style="color:var(--orange)">${belum}</div><div class="sc-label">Belum Diinput</div></div>
+    </div>
+    <div class="admin-card">
+      <div class="admin-card-head"><h3>📊 Distribusi Kategori</h3></div>
+      <div class="admin-card-body">
+        ${['Sangat Direkomendasikan','Direkomendasikan','Perlu Pertimbangan','Belum Direkomendasikan'].map(k=>{
+          const n=allDataCache.filter(d=>d.kategori===k).length;
+          const pct=total?Math.round(n/total*100):0;
+          return`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:4px"><span>${k}</span><span>${n} siswa (${pct}%)</span></div><div style="background:#eee;border-radius:4px;height:8px"><div style="background:var(--green-mid);height:100%;border-radius:4px;width:${pct}%"></div></div></div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderDataTable(){
+  if(!allDataCache.length)return`<div class="admin-card"><div class="admin-card-body" style="text-align:center;padding:40px;color:#999">Belum ada data yang diinput.</div></div>`;
+  return`
+    <div class="admin-card">
+      <div class="admin-card-head">
+        <h3>📋 Data Siswa (${allDataCache.length})</h3>
+        <div class="ach-actions">
+          <button class="ac-btn acb-gold" onclick="exportCSVAdmin()">↓ CSV</button>
+          <button class="ac-btn acb-gray" onclick="loadData().then(()=>renderAdminView('data'))">↺ Refresh</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Nama Siswa</th><th>Sesi</th><th>Kelas</th><th>Nilai</th><th>Kategori</th><th>Penginput</th><th>Aksi</th></tr></thead>
+          <tbody>
+            ${allDataCache.map((d,i)=>{
+              const kat=getKategori(d.nilai_akhir||0);
+              return`<tr>
+                <td>${i+1}</td>
+                <td style="font-weight:700">${esc(d.nama_siswa||'')}</td>
+                <td>${esc(d.sesi||'')}</td>
+                <td>${esc(d.kelas||'')}</td>
+                <td style="font-weight:700;font-size:15px">${d.nilai_akhir||0}</td>
+                <td class="${kat.cls}">${kat.label}</td>
+                <td style="font-size:11px">${esc(d.penginput||'')}</td>
+                <td><div class="td-actions">
+                  <button class="ac-btn acb-blue" onclick="previewLaporanAdmin(allDataCache[${i}])">👁</button>
+                  <button class="ac-btn acb-green" onclick="bukaEditAdmin(allDataCache[${i}])">✏</button>
+                  <button class="ac-btn acb-red" onclick="hapusData('${d.id}','${escAttr(d.nama_siswa||'')}')">🗑</button>
+                </div></td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function renderLaporanList(){
+  if(!allDataCache.length)return`<div class="admin-card"><div class="admin-card-body" style="text-align:center;padding:40px;color:#999">Belum ada data.</div></div>`;
+  return`
+    <div class="admin-card">
+      <div class="admin-card-head">
+        <h3>📄 Laporan Orang Tua</h3>
+        <div class="ach-actions">
+          <button class="ac-btn acb-gold" onclick="alert('Fitur download ZIP/DOC memerlukan library tambahan. Gunakan tombol Cetak per siswa dari preview laporan.')">↓ Download Semua</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Nama Siswa</th><th>Kelas</th><th>Nilai</th><th>Kategori</th><th>Aksi</th></tr></thead>
+          <tbody>
+            ${allDataCache.map((d,i)=>{
+              const kat=getKategori(d.nilai_akhir||0);
+              return`<tr>
+                <td>${i+1}</td>
+                <td style="font-weight:700">${esc(d.nama_siswa||'')}</td>
+                <td>${esc(d.kelas||'')}</td>
+                <td style="font-weight:700">${d.nilai_akhir||0}</td>
+                <td class="${kat.cls}">${kat.label}</td>
+                <td><button class="ac-btn acb-blue" onclick="previewLaporanAdmin(allDataCache[${i}])">👁 Preview & Cetak</button></td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function previewLaporanAdmin(d){
+  const sc={
+    kogUmum:d.skor_kog_umum??d.skor_kognitif??0,
+    kogBilingual:d.skor_kog_bilingual??d.skor_kognitif??0,
+    tfPct:d.skor_tahfizh??0,
+    spPct:d.skor_spiritual??50,
+    adabPct:d.skor_adab??0,
+    adabAdab:d.skor_adab_adab??d.skor_adab??0,
+    adabEmosi:d.skor_adab_emosi??d.skor_adab??0,
+    mwPct:d.skor_mewarnai??60,
+    pzPct:d.skor_puzzle??60,
+    manPct:d.skor_kemandirian??0,
+    negPenalty:d.penalti_perilaku??0,
+    nilai:d.nilai_akhir??0,
+    kogPct:d.skor_kognitif??0
+  };
+  const entry={
+    nama_siswa:d.nama_siswa,sesi:d.sesi,kelas:d.kelas,kelompok:d.kelompok,
+    penginput:d.penginput,surat_disetorkan:d.surat_disetorkan,
+    catatan_observer:d.catatan_observer
+  };
+  tutupAdmin();
+  buatLaporan(entry,sc);
+  setTimeout(()=>{
+    const nextBtn=document.querySelector('.ltb-next');
+    if(nextBtn){nextBtn.textContent='← Kembali ke Admin';nextBtn.onclick=()=>{tutupLaporan();bukaAdminDirect();};}
+  },100);
+}
+
+function bukaAdminDirect(){
+  document.getElementById('adminFullscreen').classList.add('show');
+  document.getElementById('adminLoginScreen').style.display='none';
+  document.getElementById('adminApp').classList.add('show');
+  adminNav('laporan',document.querySelectorAll('.asb-item')[2]);
+}
+
+// ══ EDIT DATA ══
+function bukaEditAdmin(d){
+  editingId=d.id;
+  document.getElementById('modalBody').innerHTML=`
+    <div class="mf-row">
+      <div class="mf-group"><label>Nama Siswa</label><input type="text" id="ef_nama" value="${escAttr(d.nama_siswa||'')}"></div>
+      <div class="mf-group"><label>Penginput</label><input type="text" id="ef_penginput" value="${escAttr(d.penginput||'')}"></div>
+    </div>
+    <div class="mf-row">
+      <div class="mf-group"><label>Sesi</label><select id="ef_sesi"><option ${d.sesi==='Sesi 1'?'selected':''}>Sesi 1</option><option ${d.sesi==='Sesi 2'?'selected':''}>Sesi 2</option></select></div>
+      <div class="mf-group"><label>Kelas</label><input type="text" id="ef_kelas" value="${escAttr(d.kelas||'')}"></div>
+    </div>
+    <div class="mf-row">
+      <div class="mf-group"><label>Kelompok</label><input type="text" id="ef_kelompok" value="${escAttr(d.kelompok||'')}"></div>
+      <div class="mf-group"><label>Surat Disetorkan</label><input type="text" id="ef_surat" value="${escAttr(d.surat_disetorkan||'')}"></div>
+    </div>
+    <p style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin:12px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--cream-dark)">Nilai Skor (%)</p>
+    <div class="mf-row">
+      <div class="mf-group"><label>Kognitif Umum (%)</label><input type="number" id="ef_kog" value="${d.skor_kog_umum??d.skor_kognitif??0}" min="0" max="100"></div>
+      <div class="mf-group"><label>Bilingual (%)</label><input type="number" id="ef_bil" value="${d.skor_kog_bilingual??d.skor_kognitif??0}" min="0" max="100"></div>
+    </div>
+    <div class="mf-row">
+      <div class="mf-group"><label>Tahfizh (%)</label><input type="number" id="ef_tf" value="${d.skor_tahfizh??0}" min="0" max="100"></div>
+      <div class="mf-group"><label>Spiritual (%)</label><input type="number" id="ef_sp" value="${d.skor_spiritual??50}" min="0" max="100"></div>
+    </div>
+    <div class="mf-row">
+      <div class="mf-group"><label>Adab (%)</label><input type="number" id="ef_adab" value="${d.skor_adab_adab??d.skor_adab??0}" min="0" max="100"></div>
+      <div class="mf-group"><label>Emosi (%)</label><input type="number" id="ef_emosi" value="${d.skor_adab_emosi??d.skor_adab??0}" min="0" max="100"></div>
+    </div>
+    <div class="mf-row">
+      <div class="mf-group"><label>Kemandirian (%)</label><input type="number" id="ef_man" value="${d.skor_kemandirian??0}" min="0" max="100"></div>
+      <div class="mf-group"><label>Penalti Perilaku</label><input type="number" id="ef_neg" value="${d.penalti_perilaku??0}" min="0"></div>
+    </div>
+    <div class="mf-group"><label>Catatan Observer</label><textarea id="ef_catatan">${esc(d.catatan_observer||'')}</textarea></div>
+  `;
+  document.getElementById('modalEdit').classList.add('show');
+}
+
+async function simpanEdit(){
+  const kog=parseFloat(document.getElementById('ef_kog').value)||0;
+  const bil=parseFloat(document.getElementById('ef_bil').value)||0;
+  const tf=parseFloat(document.getElementById('ef_tf').value)||0;
+  const sp=parseFloat(document.getElementById('ef_sp').value)||0;
+  const adab=parseFloat(document.getElementById('ef_adab').value)||0;
+  const emosi=parseFloat(document.getElementById('ef_emosi').value)||0;
+  const man=parseFloat(document.getElementById('ef_man').value)||0;
+  const neg=parseFloat(document.getElementById('ef_neg').value)||0;
+  const kogAvg=(kog+bil)/2;
+  const adabAvg=(adab+emosi)/2;
+  const nilai=parseFloat(Math.min(100,Math.max(0,kogAvg*0.25+tf*0.25+sp*0.10+adabAvg*0.20+man*0.10-neg)).toFixed(1));
+  const updated={
+    nama_siswa:document.getElementById('ef_nama').value,
+    penginput:document.getElementById('ef_penginput').value,
+    sesi:document.getElementById('ef_sesi').value,
+    kelas:document.getElementById('ef_kelas').value,
+    kelompok:document.getElementById('ef_kelompok').value,
+    surat_disetorkan:document.getElementById('ef_surat').value,
+    skor_kognitif:kogAvg,skor_kog_umum:kog,skor_kog_bilingual:bil,
+    skor_tahfizh:tf,skor_spiritual:sp,
+    skor_adab:adabAvg,skor_adab_adab:adab,skor_adab_emosi:emosi,
+    skor_kemandirian:man,penalti_perilaku:neg,
+    nilai_akhir:nilai,kategori:getKategori(nilai).label,
+    catatan_observer:document.getElementById('ef_catatan').value,
+  };
+  try{
+    await sbUpdate(editingId,updated);
+    tutupModal();await loadData();renderAdminView('data');
+    showToast('✓ Data berhasil diperbarui');
+  }catch(e){showToast('Gagal menyimpan: '+e.message,true);}
+}
+
+async function hapusData(id,nama){
+  if(!confirm(`Yakin ingin menghapus data ${nama}?`))return;
+  try{
+    await sbDelete(id);await loadData();renderAdminView('data');
+    showToast('🗑 Data '+nama+' dihapus');
+  }catch(e){showToast('Gagal hapus: '+e.message,true);}
+}
+
+function tutupModal(){document.getElementById('modalEdit').classList.remove('show');}
+document.getElementById('modalEdit').addEventListener('click',e=>{if(e.target===document.getElementById('modalEdit'))tutupModal();});
+
+function showToast(msg,isErr=false){
+  const t=document.createElement('div');
+  t.style.cssText=`position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:3000;background:${isErr?'#e74c3c':'#1a3a2a'};color:white;padding:11px 22px;border-radius:10px;font-size:13px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.25);font-family:Tahoma,sans-serif;border:1px solid ${isErr?'#c0392b':'#c9a84c'}`;
+  t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
+}
+
+function exportCSVAdmin(){
+  if(!allDataCache.length){alert('Belum ada data!');return;}
+  const keys=['nama_siswa','sesi','kelas','kelompok','penginput','surat_disetorkan','skor_kognitif','skor_tahfizh','skor_adab','skor_kemandirian','penalti_perilaku','nilai_akhir','kategori','catatan_observer','created_at'];
+  const csv=[keys.join(','),...allDataCache.map(d=>keys.map(k=>`"${(d[k]||'').toString().replace(/"/g,'""')}"`).join(','))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='rekap_penilaian.csv';a.click();
+}
+
+// ══ INIT ══
+buildAll();
+loadCounters();
 </script>
 </body>
 </html>
