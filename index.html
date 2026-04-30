@@ -1155,6 +1155,7 @@ function buatLaporan(entry,sc){
       <div class="li-row"><span class="li-key">Kelas Observasi</span><span class="li-val">${esc(entry.kelas)} — Kelompok ${esc(entry.kelompok)}</span></div>
       <div class="li-row"><span class="li-key">Surat Disetorkan</span><span class="li-val">${esc(entry.surat_disetorkan||'—')}</span></div>
       <div class="li-row"><span class="li-key">Observer</span><span class="li-val">${esc(entry.observer||entry.penginput||'—')}</span></div>
+      <div class="li-row"><span class="li-key">Penginput</span><span class="li-val">${esc(entry.penginput||'—')}</span></div>
       <div class="li-row"><span class="li-key">Tanggal</span><span class="li-val">${tgl}</span></div>
     </div>
 
@@ -1453,7 +1454,8 @@ function previewLaporanAdmin(d){
   };
   const entry={
     nama_siswa:d.nama_siswa,sesi:d.sesi,kelas:d.kelas,kelompok:d.kelompok,
-    penginput:d.penginput,surat_disetorkan:d.surat_disetorkan,
+    penginput:d.penginput,observer:d.observer||d.penginput||'—',
+    surat_disetorkan:d.surat_disetorkan,
     catatan_observer:d.catatan_observer
   };
   tutupAdmin();
