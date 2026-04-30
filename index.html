@@ -304,7 +304,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
 <div class="counter-bar">
   <div class="cb-item">👦 Banin: <span class="cb-fill" id="counterBanin">— / —</span></div>
   <div class="cb-sep">|</div>
-  <div class="cb-item">🧕 Banat: <span class="cb-fill" id="counterBanat">— / —</span></div>
+  <div class="cb-item">👧 Banat: <span class="cb-fill" id="counterBanat">— / —</span></div>
   <div class="cb-sep">|</div>
   <button class="admin-btn-top" onclick="bukaAdmin()">⚙ Admin</button>
 </div>
@@ -531,7 +531,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
 // ══ CONFIG ══
 const TIM_PENGINPUT=["Fatih Raihan, S.Pd","Sahid Cakra B., S.Pd","Najwa Azka Khairani, S.Pd","Muna Hanifah"];
 const SB_URL="https://ohxepgioghhivpnbbsgb.supabase.co";
-const SB_KEY="sb_publishable_KXI7kugcN0x3CtnHBEi7lw_odCZimek";
+const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oeGVwZ2lvZ2hoaXZwbmJic2diIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMzg0NjIsImV4cCI6MjA5MjYxNDQ2Mn0.0yhI2WDQhgpW5nDXJdva6nIgoPyjUDnnqSkm-3X5Uyc";
 const TOTAL_STEPS=8;
 
 // ══ SUPABASE via JS Client ══
@@ -992,24 +992,20 @@ function resetForm(){
 async function loadCounters(){
   const banin=SISWA.filter(s=>s.kelas.includes('Banin'));
   const banat=SISWA.filter(s=>s.kelas.includes('Banat'));
-  // Tampilkan total dulu sebelum load
   document.getElementById('counterBanin').textContent=`... / ${banin.length}`;
   document.getElementById('counterBanat').textContent=`... / ${banat.length}`;
   try{
-    const r=await fetch(SB_URL+'/rest/v1/penilaian_seleksi?select=nama_siswa',{
-      headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Accept':'application/json'}
-    });
-    if(!r.ok)throw new Error('fetch '+r.status);
-    const data=await r.json();
-    if(!Array.isArray(data))throw new Error('bukan array');
-    allDataCache=data;
-    const sudahNama=new Set(data.map(d=>(d.nama_siswa||'').trim().toLowerCase()).filter(Boolean));
+    const sb=getSB();
+    if(!sb)throw new Error('no sb');
+    const{data,error}=await sb.from('penilaian_seleksi').select('nama_siswa');
+    if(error)throw new Error(error.message);
+    allDataCache=data||[];
+    const sudahNama=new Set((data||[]).map(d=>(d.nama_siswa||'').trim().toLowerCase()).filter(Boolean));
     const banInSudah=banin.filter(s=>sudahNama.has(s.nama.trim().toLowerCase())).length;
     const banatSudah=banat.filter(s=>sudahNama.has(s.nama.trim().toLowerCase())).length;
     document.getElementById('counterBanin').textContent=`${banInSudah} / ${banin.length}`;
     document.getElementById('counterBanat').textContent=`${banatSudah} / ${banat.length}`;
   }catch(e){
-    // Gagal load DB — tampilkan total saja
     document.getElementById('counterBanin').textContent=`0 / ${banin.length}`;
     document.getElementById('counterBanat').textContent=`0 / ${banat.length}`;
     console.warn('Counter error:',e.message);
