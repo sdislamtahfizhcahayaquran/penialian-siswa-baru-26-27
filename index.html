@@ -397,7 +397,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
       <div id="infoBox" class="info-box" style="display:none">
         <strong id="infoNama">—</strong>
         <span id="infoDetail">—</span>
-        <div id="infoObserver" style="margin-top:6px;font-size:11px;color:var(--green-dark);font-weight:700">👁 Observer: <span id="infoObserverNama" style="font-weight:400;color:var(--text-mid)">—</span></div>
+        <div id="infoObserver" style="margin-top:6px;font-size:11px;color:var(--green-dark);font-weight:700"> Observer: <span id="infoObserverNama" style="font-weight:400;color:var(--text-mid)">—</span></div>
       </div>
       <div class="btn-row"><button class="btn btn-next" onclick="goNext(1)">Lanjut ke Kognitif →</button></div>
     </div>
@@ -457,7 +457,7 @@ input:focus,select:focus{border-color:var(--gold);background:white}
   <!-- SECTION 4: OBSERVER (H-K) -->
   <div class="section" id="sec4">
     <div class="section-header">
-      <h2>👁 Lembar Observasi</h2>
+      <h2> Lembar Observasi</h2>
       <p>H. Adab &amp; Emosi &nbsp;·&nbsp; I. Mewarnai &amp; Puzzle &nbsp;·&nbsp; J. Kemandirian &nbsp;·&nbsp; K. Perilaku Negatif</p>
     </div>
     <div class="section-body">
@@ -561,10 +561,10 @@ async function sbGetAdmins(){
 
 // ══ SISWA DATA ══
 const SISWA=[
-  {nama:"Ubaydillah Abiyyu",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
-  {nama:"Ibrahim Syathir Ahnaf",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
-  {nama:"Alghifari Hibatullah Jatmiko",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
-  {nama:"Anfa Khalid Dhyiaulhaq Widiarto",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Ubaydillah Abiyyu",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Muhammad Ilham, M.Pd."},
+  {nama:"Ibrahim Syathir Ahnaf",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Muhammad Ilham, M.Pd."},
+  {nama:"Alghifari Hibatullah Jatmiko",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Muhammad Ilham, M.Pd."},
+  {nama:"Anfa Khalid Dhyiaulhaq Widiarto",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Muhammad Ilham, M.Pd."},
   {nama:"Rahagi Atharrazka Ariyandana",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
   {nama:"Musa Abdul Malik",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
   {nama:"M. Alfatih",sesi:"Sesi 1",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
@@ -592,9 +592,9 @@ const SISWA=[
   {nama:"M. Uwais Abdurrohman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
   {nama:"Alfathan Zeyn Pramono",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
   {nama:"Abimana Muhammad Kurniawan",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Aryobimo"},
-  {nama:"Abdurrozaq Ibadurrahman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
-  {nama:"Shalteza Mesach Kardiman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
-  {nama:"Khalid Al Karim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Syarif Hidayat, S.Pd."},
+  {nama:"Abdurrozaq Ibadurrahman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Muhammad Ilham, M.Pd."},
+  {nama:"Shalteza Mesach Kardiman",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Muhammad Ilham, M.Pd."},
+  {nama:"Khalid Al Karim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"1",observer:"Muhammad Ilham, M.Pd."},
   {nama:"Gentama Mizyan Ahnaf",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
   {nama:"Khalid Ash Shiddiq",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
   {nama:"Ibrahim",sesi:"Sesi 2",kelas:"Banin A",kelompok:"2",observer:"Ali Rahmatan Lilaalamiin, S.Pd."},
@@ -1381,7 +1381,7 @@ function renderDataTable(){
                 <td class="${kat.cls}">${kat.label}</td>
                 <td style="font-size:11px">${esc(d.penginput||'')}</td>
                 <td><div class="td-actions">
-                  <button class="ac-btn acb-blue" onclick="previewLaporanAdmin(allDataCache[${i}])">👁</button>
+                  <button class="ac-btn acb-blue" onclick="previewLaporanAdmin(allDataCache[${i}])"></button>
                   <button class="ac-btn acb-green" onclick="bukaEditAdmin(allDataCache[${i}])">✏</button>
                   <button class="ac-btn acb-red" onclick="hapusData('${d.id}','${escAttr(d.nama_siswa||'')}')">🗑</button>
                 </div></td>
@@ -1416,7 +1416,7 @@ function renderLaporanList(){
                 <td>${esc(d.kelas||'')}</td>
                 <td style="font-weight:700">${d.nilai_akhir||0}</td>
                 <td class="${kat.cls}">${kat.label}</td>
-                <td><button class="ac-btn acb-blue" onclick="previewLaporanAdmin(allDataCache[${i}])">👁 Preview & Cetak</button></td>
+                <td><button class="ac-btn acb-blue" onclick="previewLaporanAdmin(allDataCache[${i}])"> Preview & Cetak</button></td>
               </tr>`;
             }).join('')}
           </tbody>
