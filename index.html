@@ -1242,6 +1242,7 @@ function bukaTambahSiswa(){
   editingId=null;
   document.getElementById('modalTitle').textContent='+ Tambah Siswa ke Daftar';
   document.getElementById('modalSaveBtn').textContent='Tambahkan ke Daftar';
+  const observerList=[...new Set(SISWA.map(s=>s.observer).filter(Boolean))];
   document.getElementById('modalBody').innerHTML=`
     <div style="background:#e8f4fb;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#0a5c8a">
       Tambah siswa ke daftar penginputan. Nilai akan diisi oleh tim penginput melalui form utama seperti biasa.
@@ -1262,23 +1263,26 @@ function bukaTambahSiswa(){
       </div>
       <div class="mf-group">
         <label>Kelas <span style="color:var(--red)">*</span></label>
-        <div class="mf-ac-wrap">
-          <input type="text" id="ts_kelas" placeholder="Banin A / Banin B / Banat A / Banat B" autocomplete="off" oninput="acModalKelas2(this.value)">
-          <div class="mf-ac-list" id="acModal_kelas2"></div>
-        </div>
+        <select id="ts_kelas">
+          <option value="">-- Pilih Kelas --</option>
+          ${KELAS_LIST.map(k=>`<option>${k}</option>`).join('')}
+        </select>
       </div>
     </div>
     <div class="mf-row">
       <div class="mf-group">
         <label>Kelompok <span style="color:var(--red)">*</span></label>
-        <div class="mf-ac-wrap">
-          <input type="text" id="ts_kelompok" placeholder="1 / 2 / 3 / 4 / Tambahan" autocomplete="off" oninput="acModalKelompok2(this.value)">
-          <div class="mf-ac-list" id="acModal_kelompok2"></div>
-        </div>
+        <select id="ts_kelompok">
+          <option value="">-- Pilih Kelompok --</option>
+          ${KELOMPOK_LIST.map(k=>`<option>${k}</option>`).join('')}
+        </select>
       </div>
       <div class="mf-group">
         <label>Observer</label>
-        <input type="text" id="ts_observer" placeholder="Nama observer/pengawas">
+        <div class="mf-ac-wrap">
+          <input type="text" id="ts_observer" placeholder="Ketik nama observer..." autocomplete="off" oninput="acModalObserver(this.value)">
+          <div class="mf-ac-list" id="acModal_observer"></div>
+        </div>
       </div>
     </div>
   `;
@@ -1287,22 +1291,16 @@ function bukaTambahSiswa(){
   setTimeout(()=>document.addEventListener('click',tutupAcModal,{once:false}),100);
 }
 
-function acModalKelas2(q){
-  const list=document.getElementById('acModal_kelas2');if(!list)return;
+function acModalObserver(q){
+  const list=document.getElementById('acModal_observer');if(!list)return;
   const lq=q.trim().toLowerCase();
   if(!lq){list.classList.remove('show');return;}
-  const m=KELAS_LIST.filter(k=>k.toLowerCase().includes(lq));
-  list.innerHTML=m.map(k=>`<div class="mf-ac-item" onclick="pilihAcModal('ts_kelas','acModal_kelas2','${escAttr(k)}')">${k}</div>`).join('');
-  list.classList.toggle('show',m.length>0);
-}
-
-function acModalKelompok2(q){
-  const list=document.getElementById('acModal_kelompok2');if(!list)return;
-  const lq=q.trim().toLowerCase();
-  if(!lq){list.classList.remove('show');return;}
-  const m=KELOMPOK_LIST.filter(k=>k.toLowerCase().includes(lq));
-  list.innerHTML=m.map(k=>`<div class="mf-ac-item" onclick="pilihAcModal('ts_kelompok','acModal_kelompok2','${escAttr(k)}')">${k}</div>`).join('');
-  list.classList.toggle('show',m.length>0);
+  const observerList=[...new Set(SISWA.map(s=>s.observer).filter(Boolean))];
+  const m=observerList.filter(o=>o.toLowerCase().includes(lq));
+  let html='';
+  m.forEach(o=>{html+=`<div class="mf-ac-item" onclick="pilihAcModal('ts_observer','acModal_observer','${escAttr(o)}')">${o}</div>`;});
+  if(!observerList.some(o=>o.toLowerCase()===lq)){html+=`<div class="mf-ac-item" onclick="pilihAcModal('ts_observer','acModal_observer','${escAttr(q.trim())}')">${q.trim()} <span style="color:#999;font-size:10px">(Masukkan ini)</span></div>`;}
+  list.innerHTML=html;list.classList.toggle('show',!!html);
 }
 
 function simpanTambahSiswa(){
