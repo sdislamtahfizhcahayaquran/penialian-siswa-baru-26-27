@@ -1237,30 +1237,23 @@ function bukaEditAdmin(d){
   document.getElementById('modalEdit').classList.add('show');
 }
 
-// ══ PERBAIKAN 2: FORM TAMBAH SISWA DENGAN AUTOCOMPLETE ══
+// ══ PERBAIKAN 2: FORM TAMBAH SISWA — HANYA DATA DAFTAR, BUKAN SKOR ══
 function bukaTambahSiswa(){
   editingId=null;
-  document.getElementById('modalTitle').textContent='+ Tambah Siswa Baru';
-  document.getElementById('modalSaveBtn').textContent='Simpan Siswa Baru';
+  document.getElementById('modalTitle').textContent='+ Tambah Siswa ke Daftar';
+  document.getElementById('modalSaveBtn').textContent='Tambahkan ke Daftar';
   document.getElementById('modalBody').innerHTML=`
-    <div style="background:#e8f4fb;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#0a5c8a">Gunakan untuk menambah siswa yang belum ada di daftar.</div>
-    <div class="mf-row">
-      <div class="mf-group">
-        <label>Nama Siswa <span style="color:var(--red)">*</span></label>
-        <input type="text" id="ef_nama" placeholder="Nama lengkap siswa">
-      </div>
-      <div class="mf-group">
-        <label>Penginput <span style="color:var(--red)">*</span></label>
-        <div class="mf-ac-wrap">
-          <input type="text" id="ef_penginput" placeholder="Ketik nama penginput..." autocomplete="off" oninput="acModalPenginput(this.value)">
-          <div class="mf-ac-list" id="acModal_penginput"></div>
-        </div>
-      </div>
+    <div style="background:#e8f4fb;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#0a5c8a">
+      Tambah siswa ke daftar penginputan. Nilai akan diisi oleh tim penginput melalui form utama seperti biasa.
+    </div>
+    <div class="mf-group">
+      <label>Nama Siswa <span style="color:var(--red)">*</span></label>
+      <input type="text" id="ts_nama" placeholder="Nama lengkap siswa">
     </div>
     <div class="mf-row">
       <div class="mf-group">
         <label>Sesi <span style="color:var(--red)">*</span></label>
-        <select id="ef_sesi">
+        <select id="ts_sesi">
           <option value="">-- Pilih Sesi --</option>
           <option>Sesi 1</option>
           <option>Sesi 2</option>
@@ -1270,8 +1263,8 @@ function bukaTambahSiswa(){
       <div class="mf-group">
         <label>Kelas <span style="color:var(--red)">*</span></label>
         <div class="mf-ac-wrap">
-          <input type="text" id="ef_kelas" placeholder="Banin A / Banin B / Banat A / Banat B" autocomplete="off" oninput="acModalKelas(this.value)">
-          <div class="mf-ac-list" id="acModal_kelas"></div>
+          <input type="text" id="ts_kelas" placeholder="Banin A / Banin B / Banat A / Banat B" autocomplete="off" oninput="acModalKelas2(this.value)">
+          <div class="mf-ac-list" id="acModal_kelas2"></div>
         </div>
       </div>
     </div>
@@ -1279,23 +1272,58 @@ function bukaTambahSiswa(){
       <div class="mf-group">
         <label>Kelompok <span style="color:var(--red)">*</span></label>
         <div class="mf-ac-wrap">
-          <input type="text" id="ef_kelompok" placeholder="1 / 2 / 3 / 4 / Tambahan" autocomplete="off" oninput="acModalKelompok(this.value)">
-          <div class="mf-ac-list" id="acModal_kelompok"></div>
+          <input type="text" id="ts_kelompok" placeholder="1 / 2 / 3 / 4 / Tambahan" autocomplete="off" oninput="acModalKelompok2(this.value)">
+          <div class="mf-ac-list" id="acModal_kelompok2"></div>
         </div>
       </div>
       <div class="mf-group">
-        <label>Surat Disetorkan</label>
-        <input type="text" id="ef_surat" placeholder="Al-Fatihah, Al-Ikhlas...">
+        <label>Observer</label>
+        <input type="text" id="ts_observer" placeholder="Nama observer/pengawas">
       </div>
     </div>
-    ${renderSkorFields()}
-    <div class="mf-group"><label>Catatan</label><textarea id="ef_catatan" placeholder="Catatan khusus..."></textarea></div>
   `;
+  document.getElementById('modalSaveBtn').onclick=simpanTambahSiswa;
   document.getElementById('modalEdit').classList.add('show');
-  // Tutup list saat klik luar
-  setTimeout(()=>{
-    document.addEventListener('click',tutupAcModal,{once:false});
-  },100);
+  setTimeout(()=>document.addEventListener('click',tutupAcModal,{once:false}),100);
+}
+
+function acModalKelas2(q){
+  const list=document.getElementById('acModal_kelas2');if(!list)return;
+  const lq=q.trim().toLowerCase();
+  if(!lq){list.classList.remove('show');return;}
+  const m=KELAS_LIST.filter(k=>k.toLowerCase().includes(lq));
+  list.innerHTML=m.map(k=>`<div class="mf-ac-item" onclick="pilihAcModal('ts_kelas','acModal_kelas2','${escAttr(k)}')">${k}</div>`).join('');
+  list.classList.toggle('show',m.length>0);
+}
+
+function acModalKelompok2(q){
+  const list=document.getElementById('acModal_kelompok2');if(!list)return;
+  const lq=q.trim().toLowerCase();
+  if(!lq){list.classList.remove('show');return;}
+  const m=KELOMPOK_LIST.filter(k=>k.toLowerCase().includes(lq));
+  list.innerHTML=m.map(k=>`<div class="mf-ac-item" onclick="pilihAcModal('ts_kelompok','acModal_kelompok2','${escAttr(k)}')">${k}</div>`).join('');
+  list.classList.toggle('show',m.length>0);
+}
+
+function simpanTambahSiswa(){
+  const nama=document.getElementById('ts_nama').value.trim();
+  const sesi=document.getElementById('ts_sesi').value;
+  const kelas=document.getElementById('ts_kelas').value.trim();
+  const kelompok=document.getElementById('ts_kelompok').value.trim();
+  const observer=document.getElementById('ts_observer').value.trim();
+  if(!nama){showToast('Nama siswa wajib diisi!',true);return;}
+  if(!sesi){showToast('Sesi wajib dipilih!',true);return;}
+  if(!kelas){showToast('Kelas wajib diisi!',true);return;}
+  if(!kelompok){showToast('Kelompok wajib diisi!',true);return;}
+  // Cek duplikat
+  if(SISWA.find(s=>s.nama.toLowerCase()===nama.toLowerCase())){showToast('Siswa dengan nama ini sudah ada di daftar!',true);return;}
+  // Tambah ke array SISWA
+  SISWA.push({nama,sesi,kelas,kelompok,observer:observer||'—'});
+  tutupModal();
+  showToast(`✓ ${nama} berhasil ditambahkan ke daftar!`);
+  // Reset onclick modal save ke simpanEdit
+  document.getElementById('modalSaveBtn').onclick=simpanEdit;
+  renderAdminView('data');
 }
 
 function tutupAcModal(e){
