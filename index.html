@@ -1319,7 +1319,7 @@ function acModalObserver(q){
   list.innerHTML=html;list.classList.toggle('show',!!html);
 }
 
-function simpanTambahSiswa(){
+async function simpanTambahSiswa(){
   const nama=document.getElementById('ts_nama').value.trim();
   const sesi=document.getElementById('ts_sesi').value;
   const kelas=document.getElementById('ts_kelas').value.trim();
