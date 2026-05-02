@@ -392,7 +392,10 @@ input:focus,select:focus{border-color:var(--gold);background:white}
       <div id="infoBox" class="info-box" style="display:none">
         <strong id="infoNama">—</strong>
         <span id="infoDetail">—</span>
-        <div id="infoObserver" style="margin-top:6px;font-size:11px;color:var(--green-dark);font-weight:700">👤 Observer: <span id="infoObserverNama" style="font-weight:400;color:var(--text-mid)">—</span></div>
+        <div id="infoObserver" style="margin-top:8px">
+        <label style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:4px;display:block">👤 Observer (bisa diganti)</label>
+        <input type="text" id="infoObserverNama" value="—" style="width:100%;padding:8px 12px;border:2px solid var(--cream-dark);border-radius:8px;font-family:Tahoma,sans-serif;font-size:13px;background:var(--cream);outline:none">
+      </div>
       </div>
       <div class="btn-row"><button class="btn btn-next" onclick="goNext(1)">Lanjut ke Kognitif →</button></div>
     </div>
@@ -850,7 +853,7 @@ function selectSiswa(nama){
   document.getElementById('infoBox').style.display='block';
   document.getElementById('infoNama').textContent=s.nama;
   document.getElementById('infoDetail').textContent=`${s.sesi} | Kelas ${s.kelas} | Kelompok ${s.kelompok}`;
-  document.getElementById('infoObserverNama').textContent=s.observer||'—';
+  document.getElementById('infoObserverNama').value=s.observer||'—';
 }
 
 // ══ SURAT AUTOCOMPLETE ══
@@ -879,7 +882,7 @@ async function simpanDanTampilLaporan(){
     nama_siswa:selectedSiswa.nama,sesi:selectedSiswa.sesi,kelas:selectedSiswa.kelas,
     kelompok:selectedSiswa.kelompok,penginput:selectedPenginput||'—',
     catatan_observer:document.getElementById('catatanKhusus').value,
-    observer:selectedSiswa.observer||'—',
+    observer:document.getElementById('infoObserverNama').value||selectedSiswa.observer||'—',
     surat_disetorkan:suratDipilih.join(', '),
     skor_kognitif:parseFloat(sc.kogPct),skor_tahfizh:parseFloat(sc.tfPct),
     skor_adab:parseFloat(sc.adabPct),skor_kemandirian:parseFloat(sc.manPct),
@@ -910,6 +913,19 @@ function resetForm(){
 }
 
 // ══ COUNTER ══
+async function loadSiswaTambahan(){
+  try{
+    const sb=getSB();if(!sb)return;
+    const{data,error}=await sb.from('siswa_tambahan').select('*');
+    if(error||!data)return;
+    data.forEach(s=>{
+      if(!SISWA.find(x=>x.nama.toLowerCase()===s.nama.toLowerCase())){
+        SISWA.push({nama:s.nama,sesi:s.sesi,kelas:s.kelas,kelompok:s.kelompok,observer:s.observer||'—'});
+      }
+    });
+  }catch(e){}
+}
+
 async function loadCounters(){
   const banin=SISWA.filter(s=>s.kelas.includes('Banin'));
   const banat=SISWA.filter(s=>s.kelas.includes('Banat'));
@@ -1316,11 +1332,17 @@ function simpanTambahSiswa(){
   // Cek duplikat
   if(SISWA.find(s=>s.nama.toLowerCase()===nama.toLowerCase())){showToast('Siswa dengan nama ini sudah ada di daftar!',true);return;}
   // Tambah ke array SISWA
-  SISWA.push({nama,sesi,kelas,kelompok,observer:observer||'—'});
+  const siswaObj={nama,sesi,kelas,kelompok,observer:observer||'—'};
+  SISWA.push(siswaObj);
+  // Simpan ke Supabase supaya permanen
+  try{
+    const sb=getSB();
+    if(sb)await sb.from('siswa_tambahan').insert(siswaObj);
+  }catch(e){}
   tutupModal();
   showToast(`✓ ${nama} berhasil ditambahkan ke daftar!`);
-  // Reset onclick modal save ke simpanEdit
   document.getElementById('modalSaveBtn').onclick=simpanEdit;
+  loadCounters();
   renderAdminView('data');
 }
 
@@ -1616,7 +1638,7 @@ function exportCSVAdmin(){
 
 // ══ INIT ══
 buildAll();
-loadCounters();
+(async()=>{await loadSiswaTambahan();loadCounters();})();
 </script>
 </body>
 </html>
